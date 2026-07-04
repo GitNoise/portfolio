@@ -1,0 +1,1932 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patrick Wojda — Data Visualization</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --paper: #f4f1ea;
+        --ink: #1a1a18;
+        --red: #e2216a;
+        --line: #cfcdc4;
+        --muted: #62615b;
+        --disp: "Archivo", sans-serif;
+        --narrow: "Archivo Narrow", sans-serif;
+        --mono: "JetBrains Mono", monospace;
+      }
+
+      body {
+        font-family: var(--disp);
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 44px;
+      }
+
+      /* Topbar */
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--ink);
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.5px;
+        color: var(--muted);
+        text-transform: uppercase;
+        position: sticky;
+        top: 0;
+        background: var(--paper);
+        z-index: 20;
+      }
+      .topbar .mark {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .topnav {
+        display: flex;
+        gap: 24px;
+      }
+      .topnav a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .topnav a:hover {
+        color: var(--red);
+      }
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        background: var(--ink);
+        color: var(--paper);
+        padding: 10px 16px;
+        font-family: var(--mono);
+        font-size: 12px;
+        z-index: 100;
+      }
+      .skip-link:focus {
+        left: 8px;
+        top: 8px;
+      }
+      a:focus-visible,
+      .topnav a:focus-visible {
+        outline: 2px solid var(--red);
+        outline-offset: 3px;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      .sq {
+        width: 12px;
+        height: 12px;
+        background: var(--red);
+        flex-shrink: 0;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 80px 0 64px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 40px;
+        align-items: end;
+      }
+      .hero h1 {
+        font-size: 78px;
+        font-weight: 800;
+        line-height: 0.92;
+        letter-spacing: -2.5px;
+      }
+      .hero h1 .blk {
+        display: inline-block;
+        background: var(--red);
+        color: var(--paper);
+        padding: 0 12px;
+      }
+      .hero-side {
+        text-align: right;
+      }
+      .hero-role {
+        font-family: var(--narrow);
+        font-size: 20px;
+        font-weight: 500;
+        max-width: 340px;
+        line-height: 1.4;
+        color: #333330;
+        margin-left: auto;
+      }
+      .hero-facts {
+        margin-top: 48px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--muted);
+      }
+      .hero-facts .fact {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        line-height: 1.5;
+        padding-right: 24px;
+      }
+      .hero-facts .fact + .fact {
+        border-left: 1px solid var(--line);
+        padding-left: 24px;
+      }
+      .hero-facts .sqs {
+        width: 8px;
+        height: 8px;
+        background: var(--red);
+        flex-shrink: 0;
+        margin-top: 3px;
+      }
+
+      /* Section head */
+      .sec-head {
+        display: flex;
+        align-items: baseline;
+        gap: 18px;
+        margin: 0 0 26px;
+      }
+      .sec-head h2 {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .sec-head .rule {
+        flex: 1;
+        height: 1px;
+        background: var(--ink);
+        align-self: center;
+      }
+      .sec-head .count {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .section {
+        margin-top: 76px;
+        scroll-margin-top: 80px;
+      }
+      #contact {
+        scroll-margin-top: 80px;
+      }
+
+      /* What I do */
+      .offer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 44px;
+        align-items: start;
+      }
+      .offer-lead {
+        font-family: var(--narrow);
+        font-size: 21px;
+        line-height: 1.45;
+        color: var(--ink);
+      }
+      .offer-list {
+        list-style: none;
+      }
+      .offer-list li {
+        font-family: var(--narrow);
+        font-size: 16px;
+        line-height: 1.5;
+        color: #2f2f2c;
+        padding: 9px 0 9px 22px;
+        position: relative;
+        border-top: 1px solid var(--line);
+      }
+      .offer-list li:first-child {
+        border-top: none;
+      }
+      .offer-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 15px;
+        width: 8px;
+        height: 8px;
+        background: var(--red);
+      }
+      .build-line {
+        font-family: var(--mono);
+        font-size: 13px;
+        line-height: 1.6;
+        color: #2f2f2c;
+        margin-top: 28px;
+        padding-left: 15px;
+        border-left: 3px solid var(--red);
+        max-width: 640px;
+      }
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 26px;
+      }
+      .skill {
+        font-family: var(--mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #2f2f2c;
+        border: 1px solid var(--ink);
+        padding: 5px 10px;
+      }
+
+      /* Why + How sections */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: start;
+      }
+      .two-col h3 {
+        font-family: var(--mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--red);
+        margin-bottom: 18px;
+      }
+      .checklist {
+        list-style: none;
+      }
+      .checklist li {
+        font-family: var(--narrow);
+        font-size: 16px;
+        line-height: 1.5;
+        color: #2f2f2c;
+        padding: 8px 0 8px 24px;
+        position: relative;
+        border-top: 1px solid var(--line);
+      }
+      .checklist li:first-child {
+        border-top: none;
+      }
+      .checklist li::before {
+        content: "✔";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        color: var(--red);
+        font-size: 13px;
+      }
+
+      /* Client work */
+      .clients-intro {
+        font-family: var(--narrow);
+        font-size: 18px;
+        line-height: 1.5;
+        color: #2f2f2c;
+        max-width: 640px;
+        margin-bottom: 30px;
+      }
+      .clients-intro strong {
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .clients-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-top: 1px solid var(--ink);
+        border-left: 1px solid var(--line);
+      }
+      .client {
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 20px 20px 26px;
+      }
+      .client-tag {
+        font-family: var(--mono);
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--red);
+        margin-bottom: 12px;
+      }
+      .client-name {
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: -0.4px;
+        margin-bottom: 8px;
+      }
+      .client-desc {
+        font-family: var(--narrow);
+        font-size: 14px;
+        line-height: 1.45;
+        color: #3a3a37;
+      }
+
+      /* ===== Gallery — editorial compositions ===== */
+      .piece {
+        position: relative;
+        padding: 64px 0;
+      }
+
+      /* annotation — hand-drawn arrow + note, the communication layer */
+      .annot {
+        position: absolute;
+        z-index: 6;
+        display: block;
+        pointer-events: none;
+        max-width: 190px;
+      }
+      .annot .note {
+        font-family: var(--mono);
+        font-size: 11px;
+        line-height: 1.4;
+        color: var(--ink);
+        display: block;
+      }
+      .annot .note em {
+        font-style: normal;
+        color: var(--red);
+      }
+      .annot svg {
+        display: block;
+        overflow: visible;
+      }
+      .annot svg path {
+        stroke: var(--red);
+        stroke-width: 1.6;
+        fill: none;
+        stroke-linecap: round;
+      }
+      .arrow-svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: visible;
+        pointer-events: none;
+        z-index: 6;
+      }
+      .arrow-svg path {
+        stroke: var(--red);
+        stroke-width: 1.7;
+        fill: none;
+        stroke-linecap: round;
+      }
+      @media (max-width: 860px) {
+        .annot,
+        .arrow-svg {
+          display: none;
+        }
+      }
+
+      .piece-title {
+        font-size: 34px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        line-height: 1;
+      }
+      .piece-title .n {
+        color: var(--red);
+        font-weight: 900;
+      }
+      .piece-meta {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 10px;
+      }
+      .piece-body {
+        font-family: var(--narrow);
+        font-size: 16px;
+        line-height: 1.5;
+        color: #2f2f2c;
+      }
+      .piece-body strong {
+        font-weight: 600;
+        color: var(--red);
+      }
+      .piece-foot {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 14px;
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+      .piece-foot a {
+        color: var(--red);
+        text-decoration: none;
+      }
+      .piece-foot a:hover {
+        text-decoration: underline;
+      }
+
+      /* image placeholder */
+      .img {
+        background: #d9d6cd;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        min-height: 80px;
+        border: 1px solid var(--line);
+      }
+      .img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .img.contain {
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+      }
+      .img.contain.on-dark {
+        background: #0a0a0a;
+      }
+      .img.contain img {
+        height: auto;
+        object-fit: contain;
+      }
+
+      /* showcase — the image group */
+      .showcase {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      /* vertical-header showcase: title column on the OUTER edge, big image beside it */
+      .showcase.row {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .showcase.row .vhead-col {
+        flex: 0 0 auto;
+      }
+      .showcase.row .figs {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .showcase.row > .withheld {
+        flex: 1;
+      }
+
+      /* placeholder labels */
+      .ph-label {
+        font-family: var(--mono);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 14px;
+        line-height: 1.4;
+        color: #85837a;
+      }
+
+      /* figure caption — quiet margin note */
+      .figcap {
+        background: transparent;
+        font-family: var(--mono);
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.55px;
+        color: var(--muted);
+        padding: 6px 2px 0;
+        display: block;
+      }
+
+      /* header — lives INSIDE the showcase; red square connected behind the title */
+      .head {
+        position: relative;
+        isolation: isolate;
+        padding: 10px 0 14px;
+        margin-bottom: 4px;
+      }
+      .head .sq {
+        position: absolute;
+        width: 88px;
+        height: 88px;
+        background: var(--red);
+        z-index: 0;
+        top: -4px;
+        left: -10px;
+      }
+      .head .num {
+        position: relative;
+        z-index: 1;
+        display: block;
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        color: var(--ink);
+        margin-bottom: 8px;
+      }
+      .head .ttl {
+        position: relative;
+        z-index: 1;
+        display: block;
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        line-height: 1.05;
+        color: var(--ink);
+        margin: 0;
+        max-width: 12em;
+      }
+
+      /* vertical header variant — square connected, title runs vertically */
+      .vhead-col {
+        position: relative;
+        isolation: isolate;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding-left: 4px;
+      }
+      .vhead-col .sq {
+        position: absolute;
+        width: 88px;
+        height: 88px;
+        background: var(--red);
+        z-index: 0;
+        top: -6px;
+        left: -14px;
+      }
+      .vhead-col .num {
+        position: relative;
+        z-index: 1;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-family: var(--mono);
+        font-size: 13px;
+        letter-spacing: 1px;
+        color: var(--ink);
+      }
+      .vhead-col .ttl {
+        position: relative;
+        z-index: 1;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 25px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: var(--ink);
+        line-height: 1;
+        margin: 0;
+      }
+      /* vertical header on the outer right edge */
+      .vhead-col.vhead-right {
+        padding-left: 0;
+        padding-right: 4px;
+      }
+      .vhead-col.vhead-right .sq {
+        left: auto;
+        right: -14px;
+      }
+      /* vertical title as outer-margin anchor (full piece height) */
+      .vhead-col.vhead-anchor {
+        align-self: stretch;
+        min-width: 68px;
+        padding-top: 4px;
+      }
+      .vhead-col.vhead-anchor .ttl {
+        font-size: 26px;
+      }
+
+      /* black = confidential / withheld */
+      .withheld {
+        background: var(--ink);
+        color: var(--paper);
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 14px;
+      }
+      .withheld .wl {
+        font-family: var(--mono);
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--red);
+      }
+      .withheld .wn {
+        font-family: var(--narrow);
+        font-size: 15px;
+        line-height: 1.45;
+        color: #d8d6cc;
+      }
+
+      /* big numeral */
+      .bignum {
+        font-size: 90px;
+        font-weight: 900;
+        line-height: 0.8;
+        color: var(--red);
+        letter-spacing: -3px;
+      }
+
+      /* layouts — showcase is the dominant column; text is capped narrow */
+      .comp {
+        display: grid;
+        gap: 36px 72px;
+        align-items: stretch;
+      }
+      .figunit {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .figunit .img {
+        flex: 0 0 auto;
+        min-height: 0;
+      }
+      /* showcase images keep their natural aspect ratio */
+      .comp .img {
+        display: block;
+        min-height: 0;
+      }
+      .comp .img img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+      .txt {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      /* pin foot to bottom-left / bottom-right when column is taller than copy */
+      .comp:not(:has(.zoom)) > .txt > .piece-foot {
+        margin-top: auto;
+        padding-top: 32px;
+      }
+      .piece-body {
+        max-width: 38ch;
+      }
+      .comp.sc-left,
+      .comp.sc-right {
+        grid-template-columns: minmax(280px, 1fr) minmax(0, 1.72fr);
+      } /* text | showcase */
+      /* frame is a single thick vertical rule on the composition's outer edge */
+      .comp.framed {
+        padding: 8px 28px;
+      }
+      .comp.framed.fr-bl {
+        border-left: 3px solid var(--ink);
+      }
+      .comp.framed.fr-br {
+        border-right: 3px solid var(--ink);
+      }
+      .comp.framed > .showcase {
+        border: none;
+        padding: 0;
+      }
+      /* flip — showcase on the left */
+      .comp.flip {
+        grid-template-columns: minmax(0, 1.72fr) minmax(280px, 1fr);
+      } /* showcase | text */
+      .comp.flip .head {
+        text-align: right;
+      }
+      .comp.flip .head .sq {
+        left: auto;
+        right: -10px;
+      }
+      /* vertical anchor — three-column editorial grid */
+      .comp.vt-left {
+        grid-template-columns: auto minmax(0, 1.72fr) minmax(280px, 1fr);
+        align-items: stretch;
+      }
+      .comp.vt-left > .vhead-anchor {
+        grid-column: 1;
+        grid-row: 1 / -1;
+      }
+      .comp.vt-left > .showcase {
+        grid-column: 2;
+        grid-row: 1 / -1;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+      }
+      .comp.vt-left .withheld {
+        flex: 1;
+      }
+      .comp.vt-left > .txt {
+        grid-column: 3;
+        align-self: stretch;
+      }
+      .comp.vt-right {
+        grid-template-columns: minmax(280px, 1fr) minmax(0, 1.72fr) auto;
+        align-items: stretch;
+      }
+      .comp.vt-right > .txt {
+        grid-column: 1;
+        align-self: stretch;
+      }
+      .comp.vt-right > .showcase {
+        grid-column: 2;
+        grid-row: 1 / -1;
+        align-self: stretch;
+      }
+      .comp.vt-right > .vhead-anchor {
+        grid-column: 3;
+        grid-row: 1 / -1;
+      }
+      /* zoom/detail under text; hero spans full height beside the text column */
+      .txt .zoom {
+        max-width: min(300px, 100%);
+      }
+      .comp:has(.zoom):not(.vt-left):not(.vt-right) {
+        align-items: stretch;
+      }
+      .comp.sc-right:not(.flip):has(.zoom) .txt {
+        grid-column: 1;
+        grid-row: 1 / -1;
+        align-self: stretch;
+      }
+      .comp.sc-right:not(.flip):has(.zoom) .showcase {
+        grid-column: 2;
+        grid-row: 1 / -1;
+        align-self: stretch;
+      }
+      .comp.flip:not(.vt-left):not(.vt-right):has(.zoom) .showcase {
+        grid-column: 1;
+        grid-row: 1 / -1;
+        align-self: stretch;
+      }
+      .comp.flip:not(.vt-left):not(.vt-right):has(.zoom) .txt {
+        grid-column: 2;
+        grid-row: 1 / -1;
+        align-self: stretch;
+      }
+      /* text column: stack top-down, zoom pinned to bottom-left */
+      .comp:has(.zoom) .txt:not(.txt-vhead) {
+        display: flex;
+        flex-direction: column;
+      }
+      .comp:has(.zoom) .txt:not(.txt-vhead) .piece-body,
+      .comp:has(.zoom) .txt:not(.txt-vhead) .build-line {
+        max-width: 38ch;
+      }
+      .comp:has(.zoom) .txt:not(.txt-vhead) .zoom {
+        margin-top: auto;
+        align-self: flex-start;
+        padding-top: 40px;
+      }
+      .comp.flip:has(.zoom) .txt:not(.txt-vhead) .zoom {
+        align-self: flex-end;
+      }
+      .comp:has(.zoom) .txt:not(.txt-vhead) .build-line {
+        margin-top: 32px;
+      }
+      .comp:has(.zoom) .txt:not(.txt-vhead) .piece-foot {
+        margin-top: 20px;
+      }
+      /* showcase: hero top, caption bottom — pins opposite corners to zoom/title */
+      .comp > .showcase:not(.row):has(.main.figunit) {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
+      .comp > .showcase .main.figunit {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+      .comp > .showcase .main .figcap {
+        margin-top: auto;
+        padding-top: 10px;
+      }
+      /* split copy — second paragraph under hero, caption pinned bottom */
+      .comp .showcase.showcase-split {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
+      .comp .showcase.showcase-split .main.figunit {
+        flex: 0 0 auto;
+      }
+      .comp .showcase.showcase-split .showcase-body,
+      .comp .showcase.showcase-split > .build-line {
+        margin-top: 22px;
+        max-width: 42ch;
+      }
+      .comp .showcase.showcase-split > .figcap {
+        margin-top: auto;
+        padding-top: 16px;
+      }
+      .comp .main .img,
+      .comp .zoom .img {
+        aspect-ratio: unset;
+        height: auto;
+      }
+      .comp .main .img.contain,
+      .comp .zoom .img.contain {
+        display: block;
+      }
+      /* grid of screenshots (evolution over time) */
+      /* contact-sheet collage — one plate, columns stack independently */
+      .imgrid {
+        display: flex;
+        gap: 0;
+        border: 1px solid var(--line);
+        background: #fff;
+        align-items: stretch;
+        position: relative;
+      }
+      .imgrid::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: var(--line);
+        pointer-events: none;
+        z-index: 1;
+      }
+      .imgrid-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        min-width: 0;
+      }
+      .imgrid-col + .imgrid-col {
+        border-left: none;
+      }
+      .imgrid .img {
+        flex: 1;
+        border: none;
+        min-height: 0;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+      }
+      .imgrid .img + .img {
+        border-top: 1px solid var(--line);
+      }
+      .imgrid .img img {
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+        display: block;
+        object-fit: contain;
+      }
+      /* piece 1 (Spotify) — text + confidential panel */
+      .comp-1 {
+        grid-template-columns: 1.1fr 1fr;
+        gap: 20px;
+      }
+      .comp-1 .txt {
+        padding-right: 10px;
+      }
+      .comp-1 .withheld {
+        min-height: 220px;
+      }
+
+      /* CTA */
+      .cta {
+        margin-top: 64px;
+        padding: 36px 40px;
+        background: var(--ink);
+        color: var(--paper);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .cta p {
+        font-family: var(--narrow);
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1.25;
+        max-width: 560px;
+      }
+      .cta a {
+        font-family: var(--mono);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--ink);
+        background: var(--red);
+        padding: 13px 22px;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .cta a:hover {
+        background: var(--paper);
+      }
+
+      /* About */
+      .about {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 56px;
+        align-items: start;
+      }
+      .about-lead {
+        font-family: var(--narrow);
+        font-size: 24px;
+        line-height: 1.4;
+        font-weight: 500;
+      }
+      .about-body {
+        font-family: var(--narrow);
+        font-size: 16px;
+        line-height: 1.65;
+        color: #3a3a37;
+      }
+      .about-body p {
+        margin-bottom: 14px;
+      }
+      .about-body a {
+        color: var(--red);
+        text-decoration: none;
+        border-bottom: 1px solid var(--red);
+      }
+      .about-body strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .about-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-top: 28px;
+      }
+      .about-cols h3 {
+        font-family: var(--mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--red);
+        margin-bottom: 10px;
+      }
+      .about-cols ul {
+        list-style: none;
+        font-family: var(--narrow);
+        font-size: 15px;
+        line-height: 1.8;
+        color: #3a3a37;
+      }
+
+      /* Contact */
+      .contact {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 64px 0 100px;
+        margin-top: 64px;
+        border-top: 1px solid var(--ink);
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+      .contact h2 {
+        font-size: 60px;
+        font-weight: 800;
+        letter-spacing: -2px;
+        position: relative;
+        isolation: isolate;
+        display: inline-block;
+      }
+      .contact h2::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        background: var(--red);
+        width: 88px;
+        height: 88px;
+        left: -28px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .contact h2 em {
+        font-style: normal;
+      }
+      .contact-links {
+        display: flex;
+        gap: 26px;
+        font-family: var(--mono);
+        font-size: 13px;
+        align-self: flex-end;
+      }
+      .contact-links a {
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 2px;
+      }
+      .contact-links a:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+
+      @media (max-width: 860px) {
+        .wrap {
+          padding: 0 22px;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding: 48px 0 40px;
+        }
+        .hero h1 {
+          font-size: 46px;
+          letter-spacing: -1.5px;
+        }
+        .hero-side {
+          text-align: left;
+        }
+        .hero-role {
+          margin-left: 0;
+        }
+        .hero-facts {
+          margin-top: 32px;
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .hero-facts .fact + .fact {
+          border-left: none;
+          padding-left: 0;
+        }
+        .offer,
+        .about,
+        .two-col {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .clients-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        /* stack every piece: showcase (with its header) then description */
+        .comp,
+        .comp-1 {
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+        }
+        .comp.framed {
+          padding: 4px 16px 18px;
+        }
+        .comp .txt {
+          padding-right: 0 !important;
+          order: 2;
+        }
+        .comp .showcase {
+          order: 1;
+          width: 100%;
+        }
+        .comp-1 .withheld {
+          order: 2;
+          min-height: 200px;
+        }
+
+        /* images fill full width at natural aspect ratio */
+        .comp .img {
+          width: 100%;
+          height: auto !important;
+          min-height: 0;
+          aspect-ratio: unset;
+        }
+        .txt .zoom {
+          max-width: none;
+        }
+        .comp.vt-left > .vhead-anchor,
+        .comp.vt-right > .vhead-anchor {
+          order: 0;
+        }
+
+        /* header sizing */
+        .head .ttl {
+          font-size: 28px;
+        }
+        .head .sq,
+        .vhead-col .sq {
+          width: 96px;
+          height: 96px;
+        }
+
+        /* alternate header alignment on mobile for layout rhythm */
+        .piece:nth-of-type(even) .head {
+          text-align: right;
+        }
+        .piece:nth-of-type(even) .head .sq {
+          left: auto;
+          right: -10px;
+        }
+        .piece:nth-of-type(even) .vhead-col {
+          justify-content: flex-end;
+          text-align: right;
+        }
+        .piece:nth-of-type(even) .vhead-col .sq {
+          left: auto;
+          right: -14px;
+        }
+
+        /* vertical-header showcase: render header horizontally, stacked above images */
+        .showcase.row {
+          flex-direction: column;
+          gap: 12px;
+        }
+        .showcase.pair {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .showcase.row .figs {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .vhead-col {
+          align-items: flex-start;
+        }
+        .vhead-col .num,
+        .vhead-col .ttl {
+          writing-mode: horizontal-tb;
+          transform: none;
+        }
+        .vhead-col .ttl {
+          font-size: 28px;
+        }
+        .vhead-col .num {
+          display: block;
+          margin-bottom: 6px;
+        }
+
+        .contact h2 {
+          font-size: 38px;
+        }
+        .contact {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .contact-links {
+          align-self: flex-start;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        .cta {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <div class="wrap">
+      <div class="topbar">
+        <span class="mark"><span class="sq"></span> Patrick Wojda</span>
+        <nav class="topnav" aria-label="Primary">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <span class="loc">Stockholm · 2026</span>
+      </div>
+
+      <main id="main">
+        <section class="hero">
+          <h1>
+            Senior data visualisation<br /><span class="blk">engineer.</span>
+          </h1>
+          <div class="hero-side">
+            <p class="hero-role">
+              Interactive tools, dashboards, and data stories for research,
+              journalism, and mission-driven teams.
+            </p>
+            <p
+              style="
+                font-family: var(--mono);
+                font-size: 12px;
+                color: var(--red);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-top: 20px;
+              "
+            >
+              Available for freelance collaborations.
+            </p>
+          </div>
+        </section>
+        <div class="hero-facts">
+          <span class="fact"
+            ><span class="sqs"></span> 20+ years frontend · 10+ years
+            dataviz</span
+          >
+          <span class="fact"
+            ><span class="sqs"></span> Built Sweden's most-viewed COVID
+            dashboard</span
+          >
+          <span class="fact"
+            ><span class="sqs"></span> Previously Spotify, UN, Aftonbladet</span
+          >
+        </div>
+
+        <div class="section">
+          <div class="sec-head">
+            <h2>Client work</h2>
+            <span class="rule"></span>
+          </div>
+          <p class="clients-intro">
+            Most of what I build is internal:
+            <strong
+              >exploratory tools, dashboards, and analysis interfaces</strong
+            >
+            that teams use to find answers rather than read conclusions. The
+            work is confidential; the clients are not.
+          </p>
+          <div class="clients-grid">
+            <div class="client">
+              <div class="client-tag">2021—23</div>
+              <div class="client-name">Spotify</div>
+              <div class="client-desc">
+                Built the financial analytics tools used across Spotify Finance,
+                plus the company's most-used Tableau dashboards.
+              </div>
+            </div>
+            <div class="client">
+              <div class="client-tag">2016—21</div>
+              <div class="client-name">Aftonbladet</div>
+              <div class="client-desc">
+                Built Sweden's most-viewed COVID dashboard during the pandemic,
+                plus tools and widgets for long-form journalism.
+              </div>
+            </div>
+            <div class="client">
+              <div class="client-tag">2009—11</div>
+              <div class="client-name">United Nations</div>
+              <div class="client-desc">
+                Intranet knowledge management applications for UNOPS.
+              </div>
+            </div>
+            <div class="client">
+              <div class="client-tag">2024—now</div>
+              <div class="client-name">Datastory</div>
+              <div class="client-desc">
+                Senior engineer on a SaaS platform for data management and data
+                storytelling.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="sec-head">
+            <h2>What I do</h2>
+            <span class="rule"></span>
+          </div>
+          <section class="offer">
+            <p class="offer-lead">
+              I design and build interactive data products, — from internal
+              analysis tools to public-facing data stories, — helping
+              organisations turn complex data into things people can act on.
+            </p>
+            <ul class="offer-list">
+              <li>
+                Interactive graphics that explain difficult topics to broad
+                audiences
+              </li>
+              <li>
+                Decision-support tools for analysts, researchers, and policy
+                teams
+              </li>
+              <li>
+                Narrative reports that combine analysis, maps, and interactive
+                graphics
+              </li>
+              <li>
+                Production-ready data-driven frontends from concept to launch
+              </li>
+            </ul>
+          </section>
+          <div class="skills">
+            <span class="skill">React</span><span class="skill">Svelte</span
+            ><span class="skill">TypeScript</span><span class="skill">D3js</span
+            ><span class="skill">Three.js</span
+            ><span class="skill">Observable</span
+            ><span class="skill">Vega-Lite</span
+            ><span class="skill">Tableau</span
+            ><span class="skill">Datawrapper</span
+            ><span class="skill">Flourish</span
+            ><span class="skill">Python · Pandas</span
+            ><span class="skill">Figma</span>
+          </div>
+
+          <div class="two-col" style="margin-top: 48px">
+            <div>
+              <h3>Why clients bring me in</h3>
+              <ul class="checklist">
+                <li>Turn messy datasets into clear visual explanations</li>
+                <li>
+                  Build production-ready interactive tools, not just mockups
+                </li>
+                <li>
+                  Work comfortably with researchers, journalists, and analysts
+                </li>
+                <li>Senior frontend engineer who understands design</li>
+                <li>
+                  Take projects from concept through to shipped application
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3>How I work</h3>
+              <ul class="checklist">
+                <li>
+                  Join existing product or editorial teams as a specialist
+                </li>
+                <li>Collaborate directly with data scientists and designers</li>
+                <li>Production-ready React and Svelte code</li>
+                <li>Accessible, responsive visualisations</li>
+                <li>
+                  Available for fixed-scope projects or embedded engagements
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="two-col" style="margin-top: 48px">
+            <div>
+              <h3>Typical engagements</h3>
+              <ul class="checklist">
+                <li>
+                  Interactive reports and explainers for public-facing audiences
+                </li>
+                <li>Data exploration tools for analysts and researchers</li>
+                <li>Custom dashboards beyond off-the-shelf BI tools</li>
+                <li>
+                  Embedded senior dataviz / frontend engineering on a team
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3>Sectors I've worked in</h3>
+              <ul class="checklist">
+                <li>Journalism and media</li>
+                <li>Research and academia</li>
+                <li>NGOs and international development</li>
+                <li>
+                  Finance, startups, elections, and infrastructure security
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" id="work">
+          <div class="sec-head">
+            <h2>Selected work</h2>
+            <span class="rule"></span>
+          </div>
+
+          <!-- 01 · Layout 1 — text left, showcase right -->
+          <div class="piece">
+            <div class="comp sc-right framed fr-bl">
+              <div class="txt">
+                <div class="head">
+                  <span class="sq"></span><span class="num">01</span>
+                  <h3 class="ttl">Covid-19 Dashboard</h3>
+                </div>
+                <div class="piece-meta" style="margin-top: 16px">
+                  Aftonbladet · data journalism · public
+                </div>
+                <p class="piece-body" style="margin-top: 14px">
+                  Sweden's <strong>most-viewed</strong> COVID dashboard,
+                  maintained across the full arc of the pandemic. As the public
+                  story shifted, the dashboard was continually rebuilt to track
+                  what mattered at each stage, — a live data product that had to
+                  keep evolving for years.
+                </p>
+                <div class="piece-foot"><a href="#">View →</a></div>
+              </div>
+              <div class="showcase">
+                <div class="imgrid">
+                  <div class="imgrid-col">
+                    <div class="img contain">
+                      <img src="assets/covid1.jpg" alt="COVID-19 dashboard — an earlier iteration" />
+                    </div>
+                    <div class="img contain">
+                      <img src="assets/covid4.jpg" alt="COVID-19 dashboard — another view" />
+                    </div>
+                  </div>
+                  <div class="imgrid-col">
+                    <div class="img contain">
+                      <img src="assets/covid2.jpg" alt="COVID-19 dashboard — map view" />
+                    </div>
+                    <div class="img contain">
+                      <img src="assets/covid6.png" alt="COVID-19 dashboard — a later iteration" />
+                    </div>
+                  </div>
+                </div>
+                <div class="figcap">
+                  Fig. 01 — covid-19 dashboard, successive iterations
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 02 · Layout 2 — flip, vertical title anchored left -->
+          <div class="piece">
+            <div class="comp sc-right framed fr-br flip vt-left">
+              <div class="vhead-col vhead-anchor">
+                <span class="sq"></span><span class="num">02</span>
+                <h3 class="ttl">Anomaly Front Page</h3>
+              </div>
+              <div class="showcase">
+                <div class="withheld" style="min-height: 240px; height: 100%">
+                  <span class="wl">Confidential</span>
+                  <span class="wn"
+                    >Much of my best work supports internal decision-making
+                    and can't be shown publicly. Happy to discuss
+                    architecture, design decisions, and my role during a
+                    call.</span
+                  >
+                </div>
+              </div>
+              <div class="txt">
+                <div class="piece-meta">
+                  Spotify · product · with data science
+                </div>
+                <p class="piece-body" style="margin-top: 14px">
+                  <em style="color: var(--muted)">The problem:</em> surfacing
+                  the anomalies that matter from terabytes of mostly time-series
+                  data.<br /><em style="color: var(--muted)">The approach:</em>
+                  a monitoring tool structured as a
+                  <strong>newspaper front page</strong>, — auto-generated text
+                  turns detected outliers into ranked, readable stories, some
+                  shared across teams, some personalised, each linked to a
+                  root-cause view.<br /><em style="color: var(--muted)"
+                    >Built</em
+                  >
+                  with data scientists and engineers on the underlying outlier
+                  detection.
+                </p>
+                <div class="piece-foot">
+                  <span>React · D3js</span><span>Confidential</span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="annot"
+              data-target=".withheld"
+              style="top: -16px; left: 34px; max-width: 210px"
+            >
+              <span class="note"
+                >the good stuff is under NDA — <em>ask me about it</em></span
+              >
+            </div>
+          </div>
+
+          <!-- 03 · Layout 1 — text left, showcase right -->
+          <div class="piece">
+            <div class="comp sc-right framed fr-bl">
+              <div class="txt">
+                <div class="head">
+                  <span class="sq"></span><span class="num">03</span>
+                  <h3 class="ttl">Disputed Borders</h3>
+                </div>
+                <div class="piece-meta" style="margin-top: 16px">
+                  Cartography · D3js · Observable
+                </div>
+                <p class="piece-body" style="margin-top: 14px">
+                  Makes disputed territories comparable at a glance for
+                  researchers and journalists covering geopolitics.
+                  <strong>Small multiples</strong> over one crowded map, — each
+                  region normalised so sparse continents stay legible.
+                </p>
+                <div class="piece-foot"><a href="#">View →</a></div>
+              </div>
+              <div class="showcase">
+                <div class="main figunit">
+                  <div class="img contain">
+                    <img src="assets/disputedareas.jpg" alt="Disputed Borders — small multiples overview of all contested regions" />
+                  </div>
+                  <div class="figcap">
+                    Fig. 03 — disputed borders and territories
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 04 · Layout 2 — flip, zoom in text column -->
+          <div class="piece">
+            <div class="comp sc-right framed fr-br flip">
+              <div class="showcase showcase-split">
+                <div class="main figunit">
+                  <div class="img contain on-dark">
+                    <img
+                      src="assets/erosion1.jpg"
+                      alt="Erosion of European democracy — diverging heatmap of year-on-year democratic score changes by region, 1980–2022"
+                    />
+                  </div>
+                </div>
+                <p class="build-line">
+                  The last decade saw more nations decline in democratic score
+                  than any period since the second world war.
+                </p>
+                <div class="figcap">
+                  Fig. 04 — erosion of european democracy
+                </div>
+              </div>
+              <div class="txt">
+                <div class="head">
+                  <span class="sq"></span><span class="num">04</span>
+                  <h3 class="ttl">Erosion of European Democracy</h3>
+                </div>
+                <div class="piece-meta" style="margin-top: 16px">
+                  V-Dem · data exploration · explained.media
+                </div>
+                <p class="piece-body" style="margin-top: 14px">
+                  A <strong>V-Dem exploration</strong> — not one chart but a
+                  series of views built to answer different questions. Europe's
+                  democratic high point was <strong>2011</strong>; since then,
+                  33 of 39 countries have lost ground. A diverging
+                  <strong>heatmap</strong> makes year-on-year change scannable
+                  by region; a slope chart pulls out the decade's winners and
+                  losers — 32 countries backsliding, 11 improving between 2012
+                  and 2022.
+                </p>
+                <div class="piece-foot"><a href="#">View →</a></div>
+                <div class="zoom figunit">
+                  <div class="img contain on-dark">
+                    <img
+                      src="assets/democracy2.png"
+                      alt="Europe's democratic backsliding — slope chart comparing liberal democracy scores in 2012 and 2022"
+                    />
+                  </div>
+                  <div class="figcap">2012 vs 2022</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 05 · Layout 1 — text left, zoom in text column -->
+          <div class="piece">
+            <div class="comp sc-right framed fr-bl">
+              <div class="txt">
+                <div class="head">
+                  <span class="sq"></span><span class="num">05</span>
+                  <h3 class="ttl">Stockholm New Builds</h3>
+                </div>
+                <div class="piece-meta" style="margin-top: 16px">
+                  3D geospatial · Three.js · Mapbox
+                </div>
+                <p class="piece-body" style="margin-top: 14px">
+                  <strong>3D extrusion</strong> to make a decade of building
+                  data immediate and legible. Turns abstract permit records into
+                  a physical landscape that a broad, non-expert audience can
+                  explore and understand. The detail view reads as both a
+                  <strong>city silhouette and a bar chart</strong> — geography
+                  and volume in the same shape.
+                </p>
+                <div class="piece-foot"><span>Unpublished</span></div>
+                <div class="zoom figunit">
+                  <div class="img contain on-dark">
+                    <img
+                      src="assets/3dmapDetail.png"
+                      alt="Stockholm New Builds — city silhouette of building data, read simultaneously as a bar chart"
+                    />
+                  </div>
+                  <div class="figcap">Zoom: silhouette as bar chart</div>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="main figunit">
+                  <div class="img contain on-dark">
+                    <img src="assets/3dmap.jpg" alt="Stockholm New Builds — 3D extrusion map showing a decade of new buildings" />
+                  </div>
+                  <div class="figcap">Fig. 05 — stockholm new builds</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 06 · Layout 2 — flip, vertical title anchored right -->
+          <div class="piece">
+            <div class="comp sc-right framed fr-br flip vt-right">
+              <div class="showcase showcase-split">
+                <div class="main figunit">
+                  <div class="img contain">
+                    <img
+                      src="assets/radialbarchart.jpg"
+                      alt="Fantasy and War Dominate Board Games — radial grouped bar chart overview"
+                    />
+                  </div>
+                </div>
+                <p class="piece-body showcase-body">
+                  After trying layouts that were clearly too complex, this
+                  settled as a <strong>radial grouped bar chart</strong> —
+                  readable enough, but with visual pull. The "sea shell
+                  porcupine" layout was one of the first things I tried. I
+                  spent real effort on the annotations and inset chart: for
+                  static visualisations, if the goal is communication rather
+                  than exploration, context has to live in the chart.
+                </p>
+                <div class="figcap">
+                  Fig. 06 — fantasy and war dominate board games
+                </div>
+              </div>
+              <div class="txt">
+                <div class="piece-meta">BoardGameGeek · personal · D3.js · Observable</div>
+                <p class="piece-body" style="margin-top: 14px">
+                  A long-held idea, finally built. BoardGameGeek's dataset is
+                  <strong>large, opinion-driven, and messy</strong> — I wanted
+                  to see how the games I play relate to the roughly 30,000 on
+                  the site. Given how inconsistent the data is, starting with
+                  categories felt like a sensible first step... ha!
+                </p>
+                <div class="piece-foot">
+                  <span>BGG data · hand-cleaned · all code</span>
+                  <a
+                    href="https://observablehq.com/d/33703039e1484511"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >View →</a
+                  >
+                </div>
+                <div class="zoom figunit">
+                  <div class="img contain">
+                    <img
+                      src="assets/radialbarchartdetail.png"
+                      alt="Fantasy and War Dominate Board Games — annotation detail on Fantasy/War sectors"
+                    />
+                  </div>
+                  <div class="figcap">Zoom: annotation detail</div>
+                </div>
+              </div>
+              <div class="vhead-col vhead-right vhead-anchor">
+                <span class="sq"></span><span class="num">06</span>
+                <h3 class="ttl">Fantasy &amp; War Dominate Board Games</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- 07 · Layout 1 — text left, zoom in text column -->
+          <div class="piece">
+            <div class="comp sc-right framed fr-bl">
+              <div class="txt">
+                <div class="head">
+                  <span class="sq"></span><span class="num">07</span>
+                  <h3 class="ttl">Dependencies Graph</h3>
+                </div>
+                <div class="piece-meta" style="margin-top: 16px">
+                  Product · dependency mapping · exploratory
+                </div>
+                <p class="piece-body" style="margin-top: 14px">
+                  Maps <strong>who depends on whom</strong> across initiatives
+                  — not just what's next on the roadmap. A first sketch took
+                  under an hour and surfaced connections a timeline couldn't;
+                  you lose the time dimension, but gain a view of the
+                  relationships that actually shape delivery. Highlighting
+                  incoming links lets you follow everything that feeds a single
+                  node.
+                </p>
+                <div class="piece-foot"><a href="#">View →</a></div>
+                <div class="zoom figunit">
+                  <div class="img contain">
+                    <img
+                      src="assets/network2.png"
+                      alt="Radial network chart — highlighting incoming connections to Grass"
+                    />
+                  </div>
+                  <div class="figcap">Highlighting</div>
+                </div>
+              </div>
+              <div class="showcase showcase-split">
+                <div class="main figunit">
+                  <div class="img contain">
+                    <img
+                      src="assets/network1.png"
+                      alt="Radial network chart — full ecosystem with carnivores, herbivores, producers, and decomposers"
+                    />
+                  </div>
+                </div>
+                <p class="build-line">
+                  roadmaps show what's next — this shows what depends on what
+                </p>
+                <div class="figcap">Fig. 07 — dependency network</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta">
+          <p>
+            Need an experienced data visualisation specialist? I collaborate
+            with studios, research teams, and mission-driven organisations on
+            projects from exploratory tools to public-facing interactive
+            stories.
+          </p>
+          <a href="mailto:patrickwojda@yahoo.com">Get in touch</a>
+        </div>
+
+        <div class="section" id="about">
+          <div class="sec-head">
+            <h2>About</h2>
+            <span class="rule"></span>
+          </div>
+          <section class="about">
+            <div>
+              <p class="about-lead">
+                My background combines software engineering, journalism, machine
+                learning, and disaster management. That mix has naturally led me
+                toward projects where data affects public understanding and
+                decision-making.
+              </p>
+            </div>
+            <div class="about-body">
+              <p>
+                Over the years I've built data visualisation systems across
+                newspapers, financial analytics, knowledge management, and
+                network analysis, — from Sweden's most-viewed COVID dashboard at
+                Aftonbladet to financial analytics tools at Spotify. Most of
+                that work happens inside companies and can't be shown publicly;
+                the personal projects here reflect the range of what I do
+                independently.
+              </p>
+              <p>
+                I work best where standard dashboards or off-the-shelf BI tools
+                aren't enough, collaborating closely with researchers, data
+                scientists, and journalists. In senior roles I've led teams,
+                mentored developers, and taught data visualisation courses.
+              </p>
+              <div class="about-cols">
+                <div>
+                  <h3>Also</h3>
+                  <ul>
+                    <li>Founder, Explained studio</li>
+                    <li>Organiser, DataViz Stockholm</li>
+                    <li>Senior engineer, Datastory</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3>Education</h3>
+                  <ul>
+                    <li>MSc Machine Learning, UCL</li>
+                    <li>MA Disaster Mgmt, KU</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="contact" id="contact">
+          <h2>Let's <em>talk.</em></h2>
+          <div class="contact-links">
+            <a href="mailto:patrickwojda@yahoo.com">Email</a>
+            <a href="https://www.linkedin.com/in/patrickwojda/"
+              >LinkedIn / CV</a
+            >
+            <a href="https://www.instagram.com/patwo_infodesign">Instagram</a>
+            <a href="https://observablehq.com/@gitnoise">Observable</a>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      (function () {
+        function rel(el, base) {
+          var r = el.getBoundingClientRect(),
+            b = base.getBoundingClientRect();
+          return {
+            x: r.left - b.left,
+            y: r.top - b.top,
+            w: r.width,
+            h: r.height,
+            cx: r.left - b.left + r.width / 2,
+            cy: r.top - b.top + r.height / 2,
+          };
+        }
+        function clamp(v, lo, hi) {
+          return Math.max(lo, Math.min(hi, v));
+        }
+        function draw() {
+          document
+            .querySelectorAll(".annot[data-target]")
+            .forEach(function (annot) {
+              var piece = annot.closest(".piece");
+              if (!piece) return;
+              if (annot.offsetParent === null) {
+                if (annot._svg) annot._svg.innerHTML = "";
+                return;
+              }
+              var target = piece.querySelector(
+                annot.getAttribute("data-target"),
+              );
+              var note = annot.querySelector(".note");
+              if (!target || !note) return;
+              var svg = annot._svg;
+              if (!svg) {
+                svg = document.createElementNS(
+                  "http://www.w3.org/2000/svg",
+                  "svg",
+                );
+                svg.setAttribute("class", "arrow-svg");
+                piece.appendChild(svg);
+                annot._svg = svg;
+              }
+              var n = rel(note, piece),
+                t = rel(target, piece);
+              // start: point on the note's border nearest the target centre
+              var sx = clamp(t.cx, n.x, n.x + n.w);
+              var sy = clamp(t.cy, n.y, n.y + n.h);
+              // end: point on the target's border nearest the note centre, nudged just outside
+              var ex = clamp(n.cx, t.x, t.x + t.w);
+              var ey = clamp(n.cy, t.y, t.y + t.h);
+              var vx = ex - n.cx,
+                vy = ey - n.cy,
+                vl = Math.hypot(vx, vy) || 1;
+              ex += (vx / vl) * 8;
+              ey += (vy / vl) * 8;
+              // curved control point (perpendicular offset → hand-drawn swirl)
+              var mx = (sx + ex) / 2,
+                my = (sy + ey) / 2,
+                len = Math.hypot(ex - sx, ey - sy) || 1;
+              var off = Math.min(55, len * 0.26);
+              var cpx = mx + (-(ey - sy) / len) * off,
+                cpy = my + ((ex - sx) / len) * off;
+              var ang = Math.atan2(ey - cpy, ex - cpx),
+                ah = 10;
+              var a1x = ex - ah * Math.cos(ang - 0.42),
+                a1y = ey - ah * Math.sin(ang - 0.42);
+              var a2x = ex - ah * Math.cos(ang + 0.42),
+                a2y = ey - ah * Math.sin(ang + 0.42);
+              var d =
+                "M" +
+                sx +
+                " " +
+                sy +
+                " Q " +
+                cpx +
+                " " +
+                cpy +
+                " " +
+                ex +
+                " " +
+                ey +
+                " M" +
+                ex +
+                " " +
+                ey +
+                " L" +
+                a1x +
+                " " +
+                a1y +
+                " M" +
+                ex +
+                " " +
+                ey +
+                " L" +
+                a2x +
+                " " +
+                a2y;
+              svg.innerHTML = '<path d="' + d + '"/>';
+            });
+        }
+        window.addEventListener("load", draw);
+        var t;
+        window.addEventListener("resize", function () {
+          clearTimeout(t);
+          t = setTimeout(draw, 120);
+        });
+      })();
+    </script>
+  </body>
+</html>

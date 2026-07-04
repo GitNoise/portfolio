@@ -838,12 +838,12 @@
       }
       .comp .showcase.showcase-split .showcase-body,
       .comp .showcase.showcase-split > .build-line {
-        margin-top: 22px;
+        margin-top: auto;
+        padding-top: 22px;
         max-width: 42ch;
       }
-      .comp .showcase.showcase-split > .figcap {
-        margin-top: auto;
-        padding-top: 16px;
+      .comp .showcase.showcase-split .main .figcap {
+        margin-top: 0;
       }
       .comp .main .img,
       .comp .zoom .img {
@@ -1438,18 +1438,30 @@
                 <div class="imgrid">
                   <div class="imgrid-col">
                     <div class="img contain">
-                      <img src="assets/covid1.jpg" alt="COVID-19 dashboard — an earlier iteration" />
+                      <img
+                        src="assets/covid1.jpg"
+                        alt="COVID-19 dashboard — an earlier iteration"
+                      />
                     </div>
                     <div class="img contain">
-                      <img src="assets/covid4.jpg" alt="COVID-19 dashboard — another view" />
+                      <img
+                        src="assets/covid4.jpg"
+                        alt="COVID-19 dashboard — another view"
+                      />
                     </div>
                   </div>
                   <div class="imgrid-col">
                     <div class="img contain">
-                      <img src="assets/covid2.jpg" alt="COVID-19 dashboard — map view" />
+                      <img
+                        src="assets/covid2.jpg"
+                        alt="COVID-19 dashboard — map view"
+                      />
                     </div>
                     <div class="img contain">
-                      <img src="assets/covid6.png" alt="COVID-19 dashboard — a later iteration" />
+                      <img
+                        src="assets/covid6.png"
+                        alt="COVID-19 dashboard — a later iteration"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1471,10 +1483,9 @@
                 <div class="withheld" style="min-height: 240px; height: 100%">
                   <span class="wl">Confidential</span>
                   <span class="wn"
-                    >Much of my best work supports internal decision-making
-                    and can't be shown publicly. Happy to discuss
-                    architecture, design decisions, and my role during a
-                    call.</span
+                    >Much of my best work supports internal decision-making and
+                    can't be shown publicly. Happy to discuss architecture,
+                    design decisions, and my role during a call.</span
                   >
                 </div>
               </div>
@@ -1534,7 +1545,10 @@
               <div class="showcase">
                 <div class="main figunit">
                   <div class="img contain">
-                    <img src="assets/disputedareas.jpg" alt="Disputed Borders — small multiples overview of all contested regions" />
+                    <img
+                      src="assets/disputedareas.jpg"
+                      alt="Disputed Borders — small multiples overview of all contested regions"
+                    />
                   </div>
                   <div class="figcap">
                     Fig. 03 — disputed borders and territories
@@ -1555,14 +1569,14 @@
                       alt="Erosion of European democracy — diverging heatmap of year-on-year democratic score changes by region, 1980–2022"
                     />
                   </div>
+                  <div class="figcap">
+                    Fig. 04 — erosion of european democracy
+                  </div>
                 </div>
                 <p class="build-line">
                   The last decade saw more nations decline in democratic score
                   than any period since the second world war.
                 </p>
-                <div class="figcap">
-                  Fig. 04 — erosion of european democracy
-                </div>
               </div>
               <div class="txt">
                 <div class="head">
@@ -1629,7 +1643,10 @@
               <div class="showcase">
                 <div class="main figunit">
                   <div class="img contain on-dark">
-                    <img src="assets/3dmap.jpg" alt="Stockholm New Builds — 3D extrusion map showing a decade of new buildings" />
+                    <img
+                      src="assets/3dmap.jpg"
+                      alt="Stockholm New Builds — 3D extrusion map showing a decade of new buildings"
+                    />
                   </div>
                   <div class="figcap">Fig. 05 — stockholm new builds</div>
                 </div>
@@ -1648,22 +1665,24 @@
                       alt="Fantasy and War Dominate Board Games — radial grouped bar chart overview"
                     />
                   </div>
+                  <div class="figcap">
+                    Fig. 06 — fantasy and war dominate board games
+                  </div>
                 </div>
                 <p class="piece-body showcase-body">
                   After trying layouts that were clearly too complex, this
                   settled as a <strong>radial grouped bar chart</strong> —
                   readable enough, but with visual pull. The "sea shell
-                  porcupine" layout was one of the first things I tried. I
-                  spent real effort on the annotations and inset chart: for
-                  static visualisations, if the goal is communication rather
-                  than exploration, context has to live in the chart.
+                  porcupine" layout was one of the first things I tried. I spent
+                  real effort on the annotations and inset chart: for static
+                  visualisations, if the goal is communication rather than
+                  exploration, context has to live in the chart.
                 </p>
-                <div class="figcap">
-                  Fig. 06 — fantasy and war dominate board games
-                </div>
               </div>
               <div class="txt">
-                <div class="piece-meta">BoardGameGeek · personal · D3.js · Observable</div>
+                <div class="piece-meta">
+                  BoardGameGeek · personal · D3.js · Observable
+                </div>
                 <p class="piece-body" style="margin-top: 14px">
                   A long-held idea, finally built. BoardGameGeek's dataset is
                   <strong>large, opinion-driven, and messy</strong> — I wanted
@@ -1709,13 +1728,12 @@
                   Product · dependency mapping · exploratory
                 </div>
                 <p class="piece-body" style="margin-top: 14px">
-                  Maps <strong>who depends on whom</strong> across initiatives
-                  — not just what's next on the roadmap. A first sketch took
-                  under an hour and surfaced connections a timeline couldn't;
-                  you lose the time dimension, but gain a view of the
-                  relationships that actually shape delivery. Highlighting
-                  incoming links lets you follow everything that feeds a single
-                  node.
+                  Maps <strong>who depends on whom</strong> across initiatives —
+                  not just what's next on the roadmap. A first sketch took under
+                  an hour and surfaced connections a timeline couldn't; you lose
+                  the time dimension, but gain a view of the relationships that
+                  actually shape delivery. Highlighting incoming links lets you
+                  follow everything that feeds a single node.
                 </p>
                 <div class="piece-foot"><a href="#">View →</a></div>
                 <div class="zoom figunit">
@@ -1736,11 +1754,11 @@
                       alt="Radial network chart — full ecosystem with carnivores, herbivores, producers, and decomposers"
                     />
                   </div>
+                  <div class="figcap">Fig. 07 — dependency network</div>
                 </div>
                 <p class="build-line">
                   roadmaps show what's next — this shows what depends on what
                 </p>
-                <div class="figcap">Fig. 07 — dependency network</div>
               </div>
             </div>
           </div>

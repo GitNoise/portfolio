@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Patrick Wojda — Data Visualization</title>
+    <title>Patrick Wojda, Data Visualization</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
@@ -19,6 +19,7 @@
         --paper: #f4f1ea;
         --ink: #1a1a18;
         --red: #e2216a;
+        --red-block: color-mix(in srgb, var(--red) 80%, transparent);
         --line: #cfcdc4;
         --muted: #62615b;
         --disp: "Archivo", sans-serif;
@@ -101,7 +102,7 @@
       .sq {
         width: 12px;
         height: 12px;
-        background: var(--red);
+        background: var(--red-block);
         flex-shrink: 0;
       }
 
@@ -121,7 +122,7 @@
       }
       .hero h1 .blk {
         display: inline-block;
-        background: var(--red);
+        background: var(--red-block);
         color: var(--paper);
         padding: 0 12px;
       }
@@ -160,7 +161,7 @@
       .hero-facts .sqs {
         width: 8px;
         height: 8px;
-        background: var(--red);
+        background: var(--red-block);
         flex-shrink: 0;
         margin-top: 3px;
       }
@@ -232,7 +233,7 @@
         top: 15px;
         width: 8px;
         height: 8px;
-        background: var(--red);
+        background: var(--red-block);
       }
       .build-line {
         font-family: var(--mono);
@@ -240,9 +241,16 @@
         line-height: 1.6;
         color: #2f2f2c;
         margin-top: 28px;
-        padding-left: 15px;
-        border-left: 3px solid var(--red);
         max-width: 640px;
+        display: flex;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .build-line::before {
+        content: "";
+        width: 3px;
+        flex-shrink: 0;
+        background: var(--red);
       }
       .skills {
         display: flex;
@@ -344,13 +352,13 @@
         color: #3a3a37;
       }
 
-      /* ===== Gallery — editorial compositions ===== */
+      /* ===== Gallery, editorial compositions ===== */
       .piece {
         position: relative;
         padding: 64px 0;
       }
 
-      /* annotation — hand-drawn arrow + note, the communication layer */
+      /* annotation, hand-drawn arrow + note, the communication layer */
       .annot {
         position: absolute;
         z-index: 6;
@@ -378,6 +386,44 @@
         stroke-width: 1.6;
         fill: none;
         stroke-linecap: round;
+      }
+      .withheld-block {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+      .withheld-block .annot {
+        position: relative;
+        align-self: center;
+        margin-bottom: 14px;
+        max-width: 220px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .zoom-block {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        overflow: visible;
+      }
+      .zoom-media {
+        position: relative;
+        width: 100%;
+        overflow: visible;
+      }
+      .zoom-media .annot {
+        position: absolute;
+        left: 100%;
+        top: 66.666%;
+        right: auto;
+        transform: translate(14px, -50%);
+        max-width: 190px;
+        text-align: left;
+      }
+      .comp:has(.zoom-media) > .txt {
+        overflow: visible;
       }
       .arrow-svg {
         position: absolute;
@@ -444,6 +490,21 @@
       .piece-foot a:hover {
         text-decoration: underline;
       }
+      .piece-link {
+        margin-top: 14px;
+        font-family: var(--mono);
+        font-size: 11px;
+      }
+      .piece-link a {
+        color: var(--red);
+        text-decoration: none;
+      }
+      .piece-link a:hover {
+        text-decoration: underline;
+      }
+      .piece-link + .piece-foot {
+        margin-top: 10px;
+      }
 
       /* image placeholder */
       .img {
@@ -474,7 +535,7 @@
         object-fit: contain;
       }
 
-      /* showcase — the image group */
+      /* showcase, the image group */
       .showcase {
         display: flex;
         flex-direction: column;
@@ -510,7 +571,7 @@
         color: #85837a;
       }
 
-      /* figure caption — quiet margin note */
+      /* figure caption, quiet margin note */
       .figcap {
         background: transparent;
         font-family: var(--mono);
@@ -522,7 +583,7 @@
         display: block;
       }
 
-      /* header — lives INSIDE the showcase; red square connected behind the title */
+      /* header, lives INSIDE the showcase; red square connected behind the title */
       .head {
         position: relative;
         isolation: isolate;
@@ -533,7 +594,7 @@
         position: absolute;
         width: 88px;
         height: 88px;
-        background: var(--red);
+        background: var(--red-block);
         z-index: 0;
         top: -4px;
         left: -10px;
@@ -562,7 +623,7 @@
         max-width: 12em;
       }
 
-      /* vertical header variant — square connected, title runs vertically */
+      /* vertical header variant, square connected, title runs vertically */
       .vhead-col {
         position: relative;
         isolation: isolate;
@@ -575,7 +636,7 @@
         position: absolute;
         width: 88px;
         height: 88px;
-        background: var(--red);
+        background: var(--red-block);
         z-index: 0;
         top: -6px;
         left: -14px;
@@ -654,7 +715,7 @@
         letter-spacing: -3px;
       }
 
-      /* layouts — showcase is the dominant column; text is capped narrow */
+      /* layouts, showcase is the dominant column; text is capped narrow */
       .comp {
         display: grid;
         gap: 36px 72px;
@@ -663,11 +724,14 @@
       .figunit {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 6px;
       }
       .figunit .img {
         flex: 0 0 auto;
         min-height: 0;
+      }
+      .figunit .figcap {
+        flex: 0 0 auto;
       }
       /* showcase images keep their natural aspect ratio */
       .comp .img {
@@ -684,8 +748,10 @@
         display: flex;
         flex-direction: column;
       }
-      /* pin foot to bottom-left / bottom-right when column is taller than copy */
-      .comp:not(:has(.zoom)) > .txt > .piece-foot {
+      /* pin foot to column bottom on flip / vertical-title layouts only */
+      .comp.flip > .txt > .piece-foot,
+      .comp.vt-left > .txt > .piece-foot,
+      .comp.vt-right > .txt > .piece-foot {
         margin-top: auto;
         padding-top: 32px;
       }
@@ -710,7 +776,7 @@
         border: none;
         padding: 0;
       }
-      /* flip — showcase on the left */
+      /* flip, showcase on the left */
       .comp.flip {
         grid-template-columns: minmax(0, 1.72fr) minmax(280px, 1fr);
       } /* showcase | text */
@@ -721,7 +787,7 @@
         left: auto;
         right: -10px;
       }
-      /* vertical anchor — three-column editorial grid */
+      /* vertical anchor, three-column editorial grid */
       .comp.vt-left {
         grid-template-columns: auto minmax(0, 1.72fr) minmax(280px, 1fr);
         align-items: stretch;
@@ -736,8 +802,12 @@
         align-self: stretch;
         display: flex;
         flex-direction: column;
+        position: relative;
       }
-      .comp.vt-left .withheld {
+      .comp.vt-left .withheld-block {
+        flex: 1;
+      }
+      .comp.vt-left .withheld-block .withheld {
         flex: 1;
       }
       .comp.vt-left > .txt {
@@ -802,6 +872,16 @@
         align-self: flex-start;
         padding-top: 40px;
       }
+      .comp:has(.zoom-block) .txt:not(.txt-vhead) .zoom-block {
+        margin-top: auto;
+        align-self: flex-start;
+        padding-top: 28px;
+      }
+      .comp:has(.zoom-block) .txt:not(.txt-vhead) .zoom-block > .zoom {
+        margin-top: 0;
+        padding-top: 0;
+        align-self: flex-start;
+      }
       .comp.flip:has(.zoom) .txt:not(.txt-vhead) .zoom {
         align-self: flex-end;
       }
@@ -811,23 +891,24 @@
       .comp:has(.zoom) .txt:not(.txt-vhead) .piece-foot {
         margin-top: 20px;
       }
-      /* showcase: hero top, caption bottom — pins opposite corners to zoom/title */
-      .comp > .showcase:not(.row):has(.main.figunit) {
+      .comp:has(.zoom) .txt:not(.txt-vhead) .piece-link + .piece-foot {
+        margin-top: 10px;
+      }
+      /* showcase, each figunit is image + caption, moved as one block */
+      .comp > .showcase:not(.row) {
         display: flex;
         flex-direction: column;
         min-height: 100%;
       }
-      .comp > .showcase .main.figunit {
-        flex: 1;
+      .comp > .showcase .main.figunit,
+      .comp > .showcase > .figunit.plate {
+        flex: 0 0 auto;
         display: flex;
         flex-direction: column;
-        min-height: 0;
       }
-      .comp > .showcase .main .figcap {
+      .comp:has(.zoom) .showcase:not(.showcase-split) .main.figunit {
         margin-top: auto;
-        padding-top: 10px;
       }
-      /* split copy — second paragraph under hero, caption pinned bottom */
       .comp .showcase.showcase-split {
         display: flex;
         flex-direction: column;
@@ -839,11 +920,7 @@
       .comp .showcase.showcase-split .showcase-body,
       .comp .showcase.showcase-split > .build-line {
         margin-top: auto;
-        padding-top: 22px;
         max-width: 42ch;
-      }
-      .comp .showcase.showcase-split .main .figcap {
-        margin-top: 0;
       }
       .comp .main .img,
       .comp .zoom .img {
@@ -855,7 +932,7 @@
         display: block;
       }
       /* grid of screenshots (evolution over time) */
-      /* contact-sheet collage — one plate, columns stack independently */
+      /* contact-sheet collage, one plate, columns stack independently */
       .imgrid {
         display: flex;
         gap: 0;
@@ -885,7 +962,12 @@
       .imgrid-col + .imgrid-col {
         border-left: none;
       }
-      .imgrid .img {
+      .imgrid .figunit {
+        flex: 1;
+        min-height: 0;
+        gap: 0;
+      }
+      .imgrid .figunit .img {
         flex: 1;
         border: none;
         min-height: 0;
@@ -895,17 +977,17 @@
         justify-content: center;
         padding: 0;
       }
-      .imgrid .img + .img {
+      .imgrid .figunit + .figunit {
         border-top: 1px solid var(--line);
       }
-      .imgrid .img img {
+      .imgrid .figunit .img img {
         width: 100%;
         height: auto;
         max-height: 100%;
         display: block;
         object-fit: contain;
       }
-      /* piece 1 (Spotify) — text + confidential panel */
+      /* piece 1 (Spotify), text + confidential panel */
       .comp-1 {
         grid-template-columns: 1.1fr 1fr;
         gap: 20px;
@@ -939,16 +1021,18 @@
       .cta a {
         font-family: var(--mono);
         font-size: 13px;
+        font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 1px;
-        color: var(--ink);
-        background: var(--red);
+        color: var(--paper);
+        background: var(--red-block);
         padding: 13px 22px;
         text-decoration: none;
         white-space: nowrap;
       }
       .cta a:hover {
         background: var(--paper);
+        color: var(--ink);
       }
 
       /* About */
@@ -1027,7 +1111,7 @@
         content: "";
         position: absolute;
         z-index: -1;
-        background: var(--red);
+        background: var(--red-block);
         width: 88px;
         height: 88px;
         left: -28px;
@@ -1272,7 +1356,7 @@
           </p>
           <div class="clients-grid">
             <div class="client">
-              <div class="client-tag">2021—23</div>
+              <div class="client-tag">2021-23</div>
               <div class="client-name">Spotify</div>
               <div class="client-desc">
                 Built the financial analytics tools used across Spotify Finance,
@@ -1280,7 +1364,7 @@
               </div>
             </div>
             <div class="client">
-              <div class="client-tag">2016—21</div>
+              <div class="client-tag">2016-21</div>
               <div class="client-name">Aftonbladet</div>
               <div class="client-desc">
                 Built Sweden's most-viewed COVID dashboard during the pandemic,
@@ -1288,14 +1372,14 @@
               </div>
             </div>
             <div class="client">
-              <div class="client-tag">2009—11</div>
+              <div class="client-tag">2009-11</div>
               <div class="client-name">United Nations</div>
               <div class="client-desc">
                 Intranet knowledge management applications for UNOPS.
               </div>
             </div>
             <div class="client">
-              <div class="client-tag">2024—now</div>
+              <div class="client-tag">2024-now</div>
               <div class="client-name">Datastory</div>
               <div class="client-desc">
                 Senior engineer on a SaaS platform for data management and data
@@ -1312,8 +1396,8 @@
           </div>
           <section class="offer">
             <p class="offer-lead">
-              I design and build interactive data products, — from internal
-              analysis tools to public-facing data stories, — helping
+              I design and build interactive data products, from internal
+              analysis tools to public-facing data stories, helping
               organisations turn complex data into things people can act on.
             </p>
             <ul class="offer-list">
@@ -1414,7 +1498,7 @@
             <span class="rule"></span>
           </div>
 
-          <!-- 01 · Layout 1 — text left, showcase right -->
+          <!-- 01 · Layout 1, text left, showcase right -->
           <div class="piece">
             <div class="comp sc-right framed fr-bl">
               <div class="txt">
@@ -1429,50 +1513,60 @@
                   Sweden's <strong>most-viewed</strong> COVID dashboard,
                   maintained across the full arc of the pandemic. As the public
                   story shifted, the dashboard was continually rebuilt to track
-                  what mattered at each stage, — a live data product that had to
+                  what mattered at each stage, a live data product that had to
                   keep evolving for years.
                 </p>
                 <div class="piece-foot"><a href="#">View →</a></div>
               </div>
               <div class="showcase">
-                <div class="imgrid">
-                  <div class="imgrid-col">
-                    <div class="img contain">
-                      <img
-                        src="assets/covid1.jpg"
-                        alt="COVID-19 dashboard — an earlier iteration"
-                      />
+                <div class="figunit plate">
+                  <div class="imgrid">
+                    <div class="imgrid-col">
+                      <div class="figunit">
+                        <div class="img contain">
+                          <img
+                            src="assets/covid1.jpg"
+                            alt="COVID-19 dashboard, an earlier iteration"
+                          />
+                        </div>
+                      </div>
+                      <div class="figunit">
+                        <div class="img contain">
+                          <img
+                            src="assets/covid4.jpg"
+                            alt="COVID-19 dashboard, another view"
+                          />
+                        </div>
+                      </div>
                     </div>
-                    <div class="img contain">
-                      <img
-                        src="assets/covid4.jpg"
-                        alt="COVID-19 dashboard — another view"
-                      />
+                    <div class="imgrid-col">
+                      <div class="figunit">
+                        <div class="img contain">
+                          <img
+                            src="assets/covid2.jpg"
+                            alt="COVID-19 dashboard, map view"
+                          />
+                        </div>
+                      </div>
+                      <div class="figunit">
+                        <div class="img contain">
+                          <img
+                            src="assets/covid6.png"
+                            alt="COVID-19 dashboard, a later iteration"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="imgrid-col">
-                    <div class="img contain">
-                      <img
-                        src="assets/covid2.jpg"
-                        alt="COVID-19 dashboard — map view"
-                      />
-                    </div>
-                    <div class="img contain">
-                      <img
-                        src="assets/covid6.png"
-                        alt="COVID-19 dashboard — a later iteration"
-                      />
-                    </div>
+                  <div class="figcap">
+                    covid-19 dashboard, successive iterations
                   </div>
-                </div>
-                <div class="figcap">
-                  Fig. 01 — covid-19 dashboard, successive iterations
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 02 · Layout 2 — flip, vertical title anchored left -->
+          <!-- 02 · Layout 2, flip, vertical title anchored left -->
           <div class="piece">
             <div class="comp sc-right framed fr-br flip vt-left">
               <div class="vhead-col vhead-anchor">
@@ -1480,13 +1574,20 @@
                 <h3 class="ttl">Anomaly Front Page</h3>
               </div>
               <div class="showcase">
-                <div class="withheld" style="min-height: 240px; height: 100%">
-                  <span class="wl">Confidential</span>
-                  <span class="wn"
-                    >Much of my best work supports internal decision-making and
-                    can't be shown publicly. Happy to discuss architecture,
-                    design decisions, and my role during a call.</span
-                  >
+                <div class="withheld-block">
+                  <div class="annot" data-target=".withheld">
+                    <span class="note"
+                      >the good stuff is under NDA; <em>ask me about it</em></span
+                    >
+                  </div>
+                  <div class="withheld" style="min-height: 240px; height: 100%">
+                    <span class="wl">Confidential</span>
+                    <span class="wn"
+                      >Much of my best work supports internal decision-making and
+                      can't be shown publicly. Happy to discuss architecture,
+                      design decisions, and my role during a call.</span
+                    >
+                  </div>
                 </div>
               </div>
               <div class="txt">
@@ -1496,9 +1597,11 @@
                 <p class="piece-body" style="margin-top: 14px">
                   <em style="color: var(--muted)">The problem:</em> surfacing
                   the anomalies that matter from terabytes of mostly time-series
-                  data.<br /><em style="color: var(--muted)">The approach:</em>
+                  data.<br /><br /><em style="color: var(--muted)"
+                    >The approach:</em
+                  >
                   a monitoring tool structured as a
-                  <strong>newspaper front page</strong>, — auto-generated text
+                  <strong>newspaper front page</strong>, auto-generated text
                   turns detected outliers into ranked, readable stories, some
                   shared across teams, some personalised, each linked to a
                   root-cause view.<br /><em style="color: var(--muted)"
@@ -1508,22 +1611,13 @@
                   detection.
                 </p>
                 <div class="piece-foot">
-                  <span>React · D3js</span><span>Confidential</span>
+                  <span>NextJs · React · D3js</span><span>Confidential</span>
                 </div>
               </div>
             </div>
-            <div
-              class="annot"
-              data-target=".withheld"
-              style="top: -16px; left: 34px; max-width: 210px"
-            >
-              <span class="note"
-                >the good stuff is under NDA — <em>ask me about it</em></span
-              >
-            </div>
           </div>
 
-          <!-- 03 · Layout 1 — text left, showcase right -->
+          <!-- 03 · Layout 1, text left, showcase right -->
           <div class="piece">
             <div class="comp sc-right framed fr-bl">
               <div class="txt">
@@ -1537,7 +1631,7 @@
                 <p class="piece-body" style="margin-top: 14px">
                   Makes disputed territories comparable at a glance for
                   researchers and journalists covering geopolitics.
-                  <strong>Small multiples</strong> over one crowded map, — each
+                  <strong>Small multiples</strong> over one crowded map, each
                   region normalised so sparse continents stay legible.
                 </p>
                 <div class="piece-foot"><a href="#">View →</a></div>
@@ -1547,18 +1641,18 @@
                   <div class="img contain">
                     <img
                       src="assets/disputedareas.jpg"
-                      alt="Disputed Borders — small multiples overview of all contested regions"
+                      alt="Disputed Borders, small multiples overview of all contested regions"
                     />
                   </div>
                   <div class="figcap">
-                    Fig. 03 — disputed borders and territories
+                    disputed borders and territories
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 04 · Layout 2 — flip, zoom in text column -->
+          <!-- 04 · Layout 2, flip, zoom in text column -->
           <div class="piece">
             <div class="comp sc-right framed fr-br flip">
               <div class="showcase showcase-split">
@@ -1566,11 +1660,11 @@
                   <div class="img contain on-dark">
                     <img
                       src="assets/erosion1.jpg"
-                      alt="Erosion of European democracy — diverging heatmap of year-on-year democratic score changes by region, 1980–2022"
+                      alt="Erosion of European democracy, diverging heatmap of year-on-year democratic score changes by region, 1980-2022"
                     />
                   </div>
                   <div class="figcap">
-                    Fig. 04 — erosion of european democracy
+                    erosion of european democracy
                   </div>
                 </div>
                 <p class="build-line">
@@ -1587,13 +1681,13 @@
                   V-Dem · data exploration · explained.media
                 </div>
                 <p class="piece-body" style="margin-top: 14px">
-                  A <strong>V-Dem exploration</strong> — not one chart but a
+                  A <strong>V-Dem exploration</strong>; not one chart but a
                   series of views built to answer different questions. Europe's
                   democratic high point was <strong>2011</strong>; since then,
                   33 of 39 countries have lost ground. A diverging
                   <strong>heatmap</strong> makes year-on-year change scannable
                   by region; a slope chart pulls out the decade's winners and
-                  losers — 32 countries backsliding, 11 improving between 2012
+                  losers; 32 countries backsliding, 11 improving between 2012
                   and 2022.
                 </p>
                 <div class="piece-foot"><a href="#">View →</a></div>
@@ -1601,7 +1695,7 @@
                   <div class="img contain on-dark">
                     <img
                       src="assets/democracy2.png"
-                      alt="Europe's democratic backsliding — slope chart comparing liberal democracy scores in 2012 and 2022"
+                      alt="Europe's democratic backsliding, slope chart comparing liberal democracy scores in 2012 and 2022"
                     />
                   </div>
                   <div class="figcap">2012 vs 2022</div>
@@ -1610,7 +1704,7 @@
             </div>
           </div>
 
-          <!-- 05 · Layout 1 — text left, zoom in text column -->
+          <!-- 05 · Layout 1, text left, zoom in text column -->
           <div class="piece">
             <div class="comp sc-right framed fr-bl">
               <div class="txt">
@@ -1626,7 +1720,7 @@
                   data immediate and legible. Turns abstract permit records into
                   a physical landscape that a broad, non-expert audience can
                   explore and understand. The detail view reads as both a
-                  <strong>city silhouette and a bar chart</strong> — geography
+                  <strong>city silhouette and a bar chart</strong>; geography
                   and volume in the same shape.
                 </p>
                 <div class="piece-foot"><span>Unpublished</span></div>
@@ -1634,7 +1728,7 @@
                   <div class="img contain on-dark">
                     <img
                       src="assets/3dmapDetail.png"
-                      alt="Stockholm New Builds — city silhouette of building data, read simultaneously as a bar chart"
+                      alt="Stockholm New Builds, city silhouette of building data, read simultaneously as a bar chart"
                     />
                   </div>
                   <div class="figcap">Zoom: silhouette as bar chart</div>
@@ -1645,16 +1739,16 @@
                   <div class="img contain on-dark">
                     <img
                       src="assets/3dmap.jpg"
-                      alt="Stockholm New Builds — 3D extrusion map showing a decade of new buildings"
+                      alt="Stockholm New Builds, 3D extrusion map showing a decade of new buildings"
                     />
                   </div>
-                  <div class="figcap">Fig. 05 — stockholm new builds</div>
+                  <div class="figcap">stockholm new builds</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 06 · Layout 2 — flip, vertical title anchored right -->
+          <!-- 06 · Layout 2, flip, vertical title anchored right -->
           <div class="piece">
             <div class="comp sc-right framed fr-br flip vt-right">
               <div class="showcase showcase-split">
@@ -1662,16 +1756,16 @@
                   <div class="img contain">
                     <img
                       src="assets/radialbarchart.jpg"
-                      alt="Fantasy and War Dominate Board Games — radial grouped bar chart overview"
+                      alt="Fantasy and War Dominate Board Games, radial grouped bar chart overview"
                     />
                   </div>
                   <div class="figcap">
-                    Fig. 06 — fantasy and war dominate board games
+                    fantasy and war dominate board games
                   </div>
                 </div>
                 <p class="piece-body showcase-body">
                   After trying layouts that were clearly too complex, this
-                  settled as a <strong>radial grouped bar chart</strong> —
+                  settled as a <strong>radial grouped bar chart</strong>;
                   readable enough, but with visual pull. The "sea shell
                   porcupine" layout was one of the first things I tried. I spent
                   real effort on the annotations and inset chart: for static
@@ -1685,13 +1779,12 @@
                 </div>
                 <p class="piece-body" style="margin-top: 14px">
                   A long-held idea, finally built. BoardGameGeek's dataset is
-                  <strong>large, opinion-driven, and messy</strong> — I wanted
-                  to see how the games I play relate to the roughly 30,000 on
-                  the site. Given how inconsistent the data is, starting with
+                  <strong>large, opinion-driven, and messy</strong>; I wanted to
+                  see how the games I play relate to the roughly 30,000 on the
+                  site. Given how inconsistent the data is, starting with
                   categories felt like a sensible first step... ha!
                 </p>
-                <div class="piece-foot">
-                  <span>BGG data · hand-cleaned · all code</span>
+                <div class="piece-link">
                   <a
                     href="https://observablehq.com/d/33703039e1484511"
                     target="_blank"
@@ -1699,11 +1792,14 @@
                     >View →</a
                   >
                 </div>
+                <div class="piece-foot">
+                  <span>BGG data · hand-cleaned · all code</span>
+                </div>
                 <div class="zoom figunit">
                   <div class="img contain">
                     <img
                       src="assets/radialbarchartdetail.png"
-                      alt="Fantasy and War Dominate Board Games — annotation detail on Fantasy/War sectors"
+                      alt="Fantasy and War Dominate Board Games, annotation detail on Fantasy/War sectors"
                     />
                   </div>
                   <div class="figcap">Zoom: annotation detail</div>
@@ -1716,7 +1812,7 @@
             </div>
           </div>
 
-          <!-- 07 · Layout 1 — text left, zoom in text column -->
+          <!-- 07 · Layout 1, text left, zoom in text column -->
           <div class="piece">
             <div class="comp sc-right framed fr-bl">
               <div class="txt">
@@ -1728,7 +1824,7 @@
                   Product · dependency mapping · exploratory
                 </div>
                 <p class="piece-body" style="margin-top: 14px">
-                  Maps <strong>who depends on whom</strong> across initiatives —
+                  Maps <strong>who depends on whom</strong> across initiatives;
                   not just what's next on the roadmap. A first sketch took under
                   an hour and surfaced connections a timeline couldn't; you lose
                   the time dimension, but gain a view of the relationships that
@@ -1736,14 +1832,24 @@
                   follow everything that feeds a single node.
                 </p>
                 <div class="piece-foot"><a href="#">View →</a></div>
-                <div class="zoom figunit">
-                  <div class="img contain">
-                    <img
-                      src="assets/network2.png"
-                      alt="Radial network chart — highlighting incoming connections to Grass"
-                    />
+                <div class="zoom-block">
+                  <div class="zoom figunit">
+                    <div class="zoom-media">
+                      <div class="annot" data-target=".zoom-highlight">
+                        <span class="note"
+                          >interactive version;
+                          <em>click to highlight deps</em></span
+                        >
+                      </div>
+                      <div class="img contain zoom-highlight">
+                        <img
+                          src="assets/network2.png"
+                          alt="Radial network chart, highlighting incoming connections to Grass"
+                        />
+                      </div>
+                    </div>
+                    <div class="figcap">Highlighting</div>
                   </div>
-                  <div class="figcap">Highlighting</div>
                 </div>
               </div>
               <div class="showcase showcase-split">
@@ -1751,13 +1857,13 @@
                   <div class="img contain">
                     <img
                       src="assets/network1.png"
-                      alt="Radial network chart — full ecosystem with carnivores, herbivores, producers, and decomposers"
+                      alt="Radial network chart, full ecosystem with carnivores, herbivores, producers, and decomposers"
                     />
                   </div>
-                  <div class="figcap">Fig. 07 — dependency network</div>
+                  <div class="figcap">dependency network</div>
                 </div>
                 <p class="build-line">
-                  roadmaps show what's next — this shows what depends on what
+                  roadmaps show what's next; this shows what depends on what
                 </p>
               </div>
             </div>
@@ -1792,7 +1898,7 @@
               <p>
                 Over the years I've built data visualisation systems across
                 newspapers, financial analytics, knowledge management, and
-                network analysis, — from Sweden's most-viewed COVID dashboard at
+                network analysis, from Sweden's most-viewed COVID dashboard at
                 Aftonbladet to financial analytics tools at Spotify. Most of
                 that work happens inside companies and can't be shown publicly;
                 the personal projects here reflect the range of what I do
@@ -1829,11 +1935,24 @@
           <h2>Let's <em>talk.</em></h2>
           <div class="contact-links">
             <a href="mailto:patrickwojda@yahoo.com">Email</a>
-            <a href="https://www.linkedin.com/in/patrickwojda/"
+            <a
+              href="https://www.linkedin.com/in/patrickwojda/"
+              target="_blank"
+              rel="noopener noreferrer"
               >LinkedIn / CV</a
             >
-            <a href="https://www.instagram.com/patwo_infodesign">Instagram</a>
-            <a href="https://observablehq.com/@gitnoise">Observable</a>
+            <a
+              href="https://www.instagram.com/patwo_infodesign/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Instagram</a
+            >
+            <a
+              href="https://observablehq.com/@gitnoise"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Observable</a
+            >
           </div>
         </div>
       </main>

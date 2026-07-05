@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- Hand-built: vanilla HTML/CSS/JS, no framework. Newsreader / Familjen Grotesk / Fragment Mono. Stockholm, 2026. -->
+<!-- Hand-built: vanilla HTML/CSS, no framework, minimal JS. Newsreader / Inter / Fragment Mono. Stockholm, 2026. -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Patrick Wojda — Data Visualisation Engineer, Stockholm</title>
+    <title>Patrick Wojda – Data Visualisation Engineer, Stockholm</title>
     <meta
       name="description"
       content="Senior data visualisation and frontend engineer. Interactive tools, dashboards, and data stories for NGOs, research teams, and newsrooms. Previously Spotify, UN, Aftonbladet."
@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://gitnoise.github.io/portfolio/" />
     <meta
       property="og:title"
-      content="Patrick Wojda — Data Visualisation Engineer"
+      content="Patrick Wojda – Data Visualisation Engineer"
     />
     <meta
       property="og:description"
@@ -24,7 +24,7 @@
       content="https://gitnoise.github.io/portfolio/assets/erosion1.jpg"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800;900&family=Fragment+Mono&family=Familjen+Grotesk:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800;900&family=Fragment+Mono&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -44,21 +44,29 @@
         --disp: "Newsreader", Georgia, serif;
         --narrow: "Inter", system-ui, sans-serif;
         --mono: "Fragment Mono", monospace;
-        --grot: "Familjen Grotesk", "Archivo", sans-serif;
       }
 
+      html {
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
       body {
         font-family: var(--disp);
         background: var(--paper);
         color: var(--ink);
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
-        overflow-x: hidden;
       }
       .wrap {
         max-width: 1080px;
         margin: 0 auto;
         padding: 0 44px;
+      }
+      mark {
+        background: transparent;
+        color: var(--red);
+        font-weight: 700;
+        font-style: normal;
       }
 
       /* Topbar */
@@ -116,9 +124,6 @@
         outline: 2px solid var(--red);
         outline-offset: 3px;
       }
-      html {
-        scroll-behavior: smooth;
-      }
       .sq {
         width: 12px;
         height: 12px;
@@ -157,6 +162,17 @@
         line-height: 1.4;
         color: #333333;
         margin-left: auto;
+      }
+      .hero-avail {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--red);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 20px;
+      }
+      .k {
+        color: var(--muted);
       }
       .hero-facts {
         margin-top: 48px;
@@ -202,21 +218,6 @@
         margin-top: 120px;
         scroll-margin-top: 80px;
         position: relative;
-      }
-      .ghost {
-        position: absolute;
-        top: -40px;
-        right: -60px;
-        font-family: var(--disp);
-        font-style: italic;
-        font-weight: 700;
-        font-size: clamp(120px, 18vw, 220px);
-        line-height: 1;
-        color: color-mix(in srgb, var(--ink) 5%, transparent);
-        pointer-events: none;
-        user-select: none;
-        z-index: 0;
-        white-space: nowrap;
       }
       #contact {
         scroll-margin-top: 80px;
@@ -340,48 +341,11 @@
         padding: 64px 0;
       }
 
-      /* annotation, hand-drawn arrow + note, the communication layer */
-      .annot {
-        position: absolute;
-        z-index: 6;
-        display: block;
-        pointer-events: none;
-        max-width: 190px;
-      }
-      .annot .note {
-        font-family: var(--mono);
-        font-size: 11px;
-        line-height: 1.4;
-        color: var(--ink);
-        display: block;
-      }
-      .annot .note em {
-        font-style: normal;
-        color: var(--red);
-      }
-      .annot svg {
-        display: block;
-        overflow: visible;
-      }
-      .annot svg path {
-        stroke: var(--red);
-        stroke-width: 1.6;
-        fill: none;
-        stroke-linecap: round;
-      }
       .withheld-block {
         flex: 1;
         display: flex;
         flex-direction: column;
         min-height: 0;
-      }
-      .withheld-block .annot {
-        position: relative;
-        align-self: center;
-        margin-bottom: 14px;
-        max-width: 220px;
-        text-align: center;
-        flex-shrink: 0;
       }
       .zoom-block {
         position: relative;
@@ -395,39 +359,9 @@
         width: 100%;
         overflow: visible;
       }
-      .zoom-media .annot {
-        position: absolute;
-        left: 100%;
-        top: 66.666%;
-        right: auto;
-        transform: translate(14px, -50%);
-        max-width: 190px;
-        text-align: left;
-      }
       .comp:has(.zoom-media) > .txt {
         overflow: visible;
       }
-      .arrow-svg {
-        position: absolute;
-        left: 0;
-        top: 0;
-        overflow: visible;
-        pointer-events: none;
-        z-index: 6;
-      }
-      .arrow-svg path {
-        stroke: var(--red);
-        stroke-width: 1.7;
-        fill: none;
-        stroke-linecap: round;
-      }
-      @media (max-width: 860px) {
-        .annot,
-        .arrow-svg {
-          display: none;
-        }
-      }
-
       .piece-meta {
         font-family: var(--mono);
         font-size: 11px;
@@ -459,7 +393,7 @@
         color: var(--red);
         text-decoration: none;
         display: inline-block;
-        transition: transform 100ms ease;
+        transition: transform 100ms cubic-bezier(0.25, 1, 0.5, 1);
       }
       .piece-foot a:hover {
         text-decoration: underline;
@@ -474,7 +408,7 @@
         color: var(--red);
         text-decoration: none;
         display: inline-block;
-        transition: transform 100ms ease;
+        transition: transform 100ms cubic-bezier(0.25, 1, 0.5, 1);
       }
       .piece-link a:hover {
         text-decoration: underline;
@@ -539,7 +473,6 @@
         flex: 1;
       }
 
-
       /* figure caption, quiet margin note */
       .figcap {
         background: transparent;
@@ -572,7 +505,7 @@
         position: relative;
         z-index: 1;
         display: block;
-        font-family: var(--grot);
+        font-family: var(--mono);
         font-size: 13px;
         font-weight: 600;
         letter-spacing: 1px;
@@ -615,7 +548,7 @@
         z-index: 1;
         writing-mode: vertical-rl;
         transform: rotate(180deg);
-        font-family: var(--grot);
+        font-family: var(--mono);
         font-size: 13px;
         font-weight: 600;
         letter-spacing: 1px;
@@ -653,7 +586,10 @@
         justify-content: space-between;
         gap: 14px;
       }
-      .withheld-fill { min-height: 240px; height: 100%; }
+      .withheld-fill {
+        min-height: 240px;
+        height: 100%;
+      }
       .withheld .wl {
         font-family: var(--mono);
         font-size: 10px;
@@ -677,27 +613,26 @@
         padding: 24px 0 40px;
       }
 
-      /* stat block */
-      .stat-block { margin-top: 20px; }
-      .bignum {
-        font-family: var(--grot);
-        font-size: clamp(96px, 14vw, 180px);
-        font-weight: 700;
-        line-height: 0.8;
-        letter-spacing: -4px;
-        color: var(--red);
-        display: block;
+      /* Lightbox */
+      .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.9);
+        cursor: zoom-out;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
       }
-      .bignum .of { font-size: 0.45em; color: var(--ink); letter-spacing: -2px; }
-      .stat-cap {
-        font-family: var(--mono);
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: var(--muted);
-        display: block;
-        max-width: 30ch;
-        margin-top: 10px;
+      .lightbox.is-open {
+        display: flex;
+      }
+      .lightbox img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 2px;
       }
 
       /* layouts, showcase is the dominant column; text is capped narrow */
@@ -722,11 +657,17 @@
       .comp .img {
         display: block;
         min-height: 0;
+        overflow: hidden;
       }
       .comp .img img {
         width: 100%;
         height: auto;
-        object-fit: contain;
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        cursor: zoom-in;
+        object-fit: cover;
+      }
+      .comp .img:hover img {
+        transform: scale(1.03);
       }
       .txt {
         max-width: 100%;
@@ -742,10 +683,13 @@
       .piece-body {
         max-width: 38ch;
       }
-      .head + .piece-meta, .vhead-col ~ .txt .piece-meta { margin-top: 16px; }
-      .piece-meta + .piece-body { margin-top: 14px; }
-      .piece-meta + .stat-block { margin-top: 16px; }
-      .stat-block + .piece-body { margin-top: 14px; }
+      .head + .piece-meta,
+      .vhead-col ~ .txt .piece-meta {
+        margin-top: 16px;
+      }
+      .piece-meta + .piece-body {
+        margin-top: 14px;
+      }
       .comp.sc-left,
       .comp.sc-right {
         grid-template-columns: minmax(280px, 1fr) minmax(0, 1.72fr);
@@ -906,7 +850,7 @@
       /* contact-sheet collage, one plate, columns stack independently */
       .imgrid {
         display: flex;
-        gap: 0;
+        gap: 10px;
         border: 1px solid var(--line);
         background: #fff;
         align-items: stretch;
@@ -930,9 +874,6 @@
         gap: 0;
         min-width: 0;
       }
-      .imgrid-col + .imgrid-col {
-        border-left: none;
-      }
       .imgrid .figunit {
         flex: 1;
         min-height: 0;
@@ -947,9 +888,6 @@
         align-items: center;
         justify-content: center;
         padding: 0;
-      }
-      .imgrid .figunit + .figunit {
-        border-top: 1px solid var(--line);
       }
       .imgrid .figunit .img img {
         width: 100%;
@@ -972,25 +910,40 @@
         color: var(--muted);
         margin-bottom: 24px;
       }
-      .also-row {
+      .also-grid {
         display: grid;
-        grid-template-columns: 200px 1fr;
-        gap: 16px 28px;
-        align-items: start;
-        padding: 28px 0;
-        border-bottom: 1px solid var(--line);
+        grid-template-columns: 1fr 1fr;
+        gap: 32px 40px;
+      }
+      .also-row {
         position: relative;
       }
       .also-row .img {
-        min-height: 0;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        position: relative;
+        background-color: #f0f0f0;
         border: 1px solid var(--line);
-        grid-row: 1 / 3;
+        cursor: zoom-in;
       }
-      .also-row .img img {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: contain;
+      .also-row .img::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--bg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: transform 0.3s ease;
+      }
+      .also-row .img:hover::before {
+        transform: scale(1.05);
+      }
+      .also-row .img.on-dark {
+        background-color: #1a1a1a;
+      }
+      .also-info {
+        margin-top: 12px;
       }
       .also-info .also-head {
         display: flex;
@@ -999,14 +952,14 @@
         flex-wrap: wrap;
       }
       .also-info .also-num {
-        font-family: var(--grot);
+        font-family: var(--mono);
         font-size: 13px;
         font-weight: 600;
         letter-spacing: 1px;
         color: var(--red);
       }
       .also-info .also-title {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 800;
         letter-spacing: -0.5px;
       }
@@ -1020,10 +973,10 @@
       }
       .also-info .also-desc {
         font-family: var(--narrow);
-        font-size: 15px;
+        font-size: 14px;
         line-height: 1.5;
         color: #444444;
-        margin-top: 10px;
+        margin-top: 8px;
       }
       .also-link {
         font-family: var(--mono);
@@ -1032,59 +985,110 @@
         letter-spacing: 0.5px;
         color: var(--muted);
         white-space: nowrap;
-        margin-top: 10px;
+        margin-top: 8px;
       }
       .also-link a {
         color: var(--red);
         text-decoration: none;
         display: inline-block;
-        transition: transform 100ms ease;
+        transition: transform 100ms cubic-bezier(0.25, 1, 0.5, 1);
       }
       .also-link a:hover {
         text-decoration: underline;
         transform: translateX(3px);
       }
       @media (max-width: 860px) {
-        .also-row {
-          grid-template-columns: 140px 1fr;
-          gap: 12px 20px;
+        .also-grid {
+          grid-template-columns: 1fr;
+          gap: 28px;
         }
       }
 
-      /* CTA */
-      .cta {
-        margin-top: 64px;
-        padding: 36px 40px;
-        background: var(--ink);
-        color: var(--paper);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        flex-wrap: wrap;
+      /* Thumbnail strip */
+      .thumb-strip {
+        margin-top: 48px;
       }
-      .cta p {
-        font-family: var(--narrow);
-        font-size: 24px;
-        font-weight: 500;
-        line-height: 1.25;
-        max-width: 560px;
+      .thumb-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px 20px;
       }
-      .cta a {
-        font-family: var(--mono);
-        font-size: 13px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: var(--paper);
-        background: var(--red-block);
-        padding: 13px 22px;
+      .thumb-item {
         text-decoration: none;
-        white-space: nowrap;
+        color: inherit;
+        display: block;
       }
-      .cta a:hover {
-        background: var(--paper);
-        color: var(--ink);
+      .thumb-item .thumb-img {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        position: relative;
+        background-color: #f0f0f0;
+        border: 1px solid var(--line);
+        cursor: zoom-in;
+      }
+      .thumb-item .thumb-img::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--bg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: transform 0.3s ease;
+      }
+      .thumb-item .thumb-img:hover::before {
+        transform: scale(1.05);
+      }
+      .thumb-item .thumb-img.on-dark {
+        background-color: #1a1a1a;
+      }
+      .thumb-item .thumb-num {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        color: var(--red);
+        display: block;
+        margin-top: 8px;
+      }
+      .thumb-item .thumb-title {
+        font-family: var(--narrow);
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 4px;
+        line-height: 1.3;
+      }
+      .thumb-item .thumb-meta {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 4px;
+      }
+      a.thumb-item .thumb-title::after {
+        content: " →";
+        color: var(--red);
+      }
+      @media (max-width: 860px) {
+        .thumb-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px 12px;
+        }
+        .thumb-item .thumb-title {
+          font-size: 13px;
+        }
+      }
+
+      /* Outro */
+      .outro-line {
+        font-size: 22px;
+        line-height: 1.5;
+        max-width: 30em;
+        margin-top: 120px;
+      }
+      .outro-line a {
+        color: var(--red);
       }
 
       /* About */
@@ -1094,6 +1098,13 @@
         gap: 56px;
         align-items: start;
       }
+      .portrait {
+        border-radius: 50%;
+        filter: grayscale(1);
+        margin-bottom: 20px;
+        display: block;
+      }
+
       .about-lead {
         font-family: var(--narrow);
         font-size: 24px;
@@ -1164,9 +1175,9 @@
         position: absolute;
         z-index: -1;
         background: var(--red-block);
-        width: 88px;
-        height: 88px;
-        left: -28px;
+        width: 1.1em;
+        height: 1.1em;
+        left: -0.2em;
         top: 50%;
         transform: translateY(-50%);
       }
@@ -1189,6 +1200,11 @@
       .contact-links a:hover {
         border-color: var(--red);
         color: var(--red);
+      }
+      .contact-addr {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--muted);
       }
 
       @media (max-width: 860px) {
@@ -1219,7 +1235,6 @@
           border-left: none;
           padding-left: 0;
         }
-        .offer,
         .about,
         .two-col {
           grid-template-columns: 1fr;
@@ -1266,8 +1281,6 @@
         .txt .zoom {
           max-width: none;
         }
-        .stat-block { margin-top: 14px; }
-        .bignum { font-size: clamp(72px, 20vw, 96px); letter-spacing: -3px; }
         .comp.vt-left > .vhead-anchor {
           order: 0;
         }
@@ -1340,10 +1353,6 @@
           flex-wrap: wrap;
           gap: 16px;
         }
-        .cta {
-          flex-direction: column;
-          align-items: flex-start;
-        }
       }
       @media (max-width: 560px) {
         .clients-grid {
@@ -1376,16 +1385,7 @@
               Interactive tools, dashboards, and data stories for NGOs, research
               teams, and newsrooms working with consequential data.
             </p>
-            <p
-              style="
-                font-family: var(--mono);
-                font-size: 12px;
-                color: var(--red);
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                margin-top: 20px;
-              "
-            >
+            <p class="hero-avail">
               Taking on fixed-scope freelance projects alongside my role at
               Datastory.
             </p>
@@ -1411,9 +1411,7 @@
           </div>
           <p class="clients-intro">
             Most of what I build is internal:
-            <strong
-              >exploratory tools, dashboards, and analysis interfaces</strong
-            >
+            <mark>exploratory tools, dashboards, and analysis interfaces</mark>
             that teams use to find answers rather than read conclusions. The
             work is confidential; the clients are not.
           </p>
@@ -1466,14 +1464,16 @@
               <div class="client-tag">2009–11</div>
               <div class="client-name">United Nations</div>
               <div class="client-desc">
-                Intranet knowledge management applications for UNOPS.
+                Knowledge management and data-transparency systems for UNOPS:
+                financial visualisation and project-management support used
+                across country offices. Familiar with UN procurement and working
+                rhythms from the inside.
               </div>
             </div>
           </div>
         </div>
 
         <div class="section" id="work">
-          <span class="ghost" aria-hidden="true">Work</span>
           <div class="sec-head">
             <h2>Selected work</h2>
           </div>
@@ -1487,14 +1487,14 @@
                   <h3 class="ttl">Erosion of European Democracy</h3>
                 </div>
                 <div class="piece-meta">
-                  V-Dem · data exploration · explained.media
+                  governance · V-Dem · data exploration · explained.media
                 </div>
                 <p class="piece-body">
-                  A <strong>V-Dem exploration</strong>: a series of views built
-                  to answer different questions rather than one chart. A
-                  diverging <strong>heatmap</strong> makes year-on-year change
-                  scannable by country. A slope chart widens the lens to the
-                  full <strong>Europe-and-Caucasus region</strong>: 32 countries
+                  A <mark>V-Dem exploration</mark>: a series of views built to
+                  answer different questions rather than one chart. A diverging
+                  <mark>heatmap</mark> makes year-on-year change scannable by
+                  country. A slope chart widens the lens to the full
+                  <mark>Europe-and-Caucasus region</mark>: 32 countries
                   backsliding, 11 improving, between 2012 and 2022.
                 </p>
                 <div class="piece-foot">
@@ -1522,12 +1522,12 @@
                   </div>
                   <!-- TODO: re-export image without stray warning icon; add legend swatch for black cells ("no data — state not yet independent") -->
                   <div class="figcap">
-                    erosion of european democracy — 39 european countries,
+                    erosion of european democracy – 39 european countries,
                     change since 2011
                   </div>
                 </div>
                 <p class="build-line">
-                  Same dataset, two views — each built to answer a different
+                  Same dataset, two views – each built to answer a different
                   question about democratic decline.
                 </p>
               </div>
@@ -1572,14 +1572,17 @@
                   <h3 class="ttl">Covid-19 Dashboard</h3>
                 </div>
                 <div class="piece-meta">
-                  Aftonbladet · data journalism · public
+                  public health · Aftonbladet · crisis communication · public
                 </div>
                 <p class="piece-body">
-                  Sweden's <strong>most-viewed</strong> COVID dashboard,
-                  maintained across the full arc of the pandemic. As the public
-                  story shifted, the dashboard was continually rebuilt to track
-                  what mattered at each stage, a live data product that had to
-                  keep evolving for years.
+                  Sweden's <mark>most-viewed</mark> COVID dashboard, maintained
+                  across the full arc of the pandemic. As the public story
+                  shifted, the dashboard was continually rebuilt to track what
+                  mattered at each stage, a live data product that had to keep
+                  evolving for years. Built and maintained under crisis
+                  conditions: shifting data definitions, daily source changes,
+                  and a general audience that needed clarity, not dashboards for
+                  analysts.
                 </p>
                 <div class="piece-foot">
                   <a
@@ -1593,7 +1596,7 @@
             </div>
           </div>
 
-          <!-- 03 · Infrastructure Security Map — Omny · text left, withheld right -->
+          <!-- 03 · Infrastructure Security Map – Omny · text left, withheld right -->
           <div class="piece">
             <div class="comp sc-right framed fr-bl">
               <div class="txt">
@@ -1601,20 +1604,16 @@
                   <span class="sq"></span><span class="num">03</span>
                   <h3 class="ttl">Infrastructure Security Map</h3>
                 </div>
-                <div class="piece-meta">
-                  Omny · freelance · fixed-scope
-                </div>
+                <div class="piece-meta">Omny · freelance · fixed-scope</div>
                 <p class="piece-body">
-                  The <strong>Zones and Conduits</strong> diagram inside Omny's
-                  security platform: a live network map that automatically
-                  categorises assets and visualises their communication
-                  pathways, built to enforce and audit segmentation under the
-                  <strong>ISA/IEC 62443</strong>
-                  industrial cybersecurity standard. Built in
-                  Svelte and D3 with a custom treemap layout
-                  algorithm for nesting multiple asset levels inside zones, plus
-                  zoom, pan, and dependency highlighting. Delivered freelance,
-                  concept to production.
+                  Industrial networks are segmented into zones for safety, but
+                  most teams audit that segmentation in spreadsheets. The
+                  <mark>Zones and Conduits</mark> diagram inside Omny's platform
+                  turns it into a live, interactive map: assets are
+                  automatically categorised and their communication pathways
+                  visualised against the <mark>ISA/IEC 62443</mark> standard. A
+                  custom treemap layout nests multiple asset levels inside
+                  zones. Delivered freelance, concept to production.
                 </p>
                 <div class="piece-foot">
                   <span>Svelte · D3 · custom treemap layout</span>
@@ -1657,23 +1656,19 @@
               <div class="txt">
                 <div class="piece-meta">
                   Spotify · product · with data science ·
-                  <strong style="color: var(--red)"
-                    >the good stuff is under NDA; ask me about it</strong
-                  >
+                  <mark>the good stuff is under NDA; ask me about it</mark>
                 </div>
                 <p class="piece-body">
-                  <em style="color: var(--muted)">The problem:</em> surfacing
-                  the anomalies that matter from terabytes of mostly time-series
-                  data.<br /><br /><em style="color: var(--muted)"
+                  <em class="k">The problem:</em> surfacing the anomalies that
+                  matter from terabytes of mostly time-series data.<br /><br /><em
+                    class="k"
                     >The approach:</em
                   >
                   a monitoring tool structured as a
-                  <strong>newspaper front page</strong>, auto-generated text
-                  turns detected outliers into ranked, readable stories, some
-                  shared across teams, some personalised, each linked to a
-                  root-cause view.<br /><em style="color: var(--muted)"
-                    >Built</em
-                  >
+                  <mark>newspaper front page</mark>, auto-generated text turns
+                  detected outliers into ranked, readable stories, some shared
+                  across teams, some personalised, each linked to a root-cause
+                  view.<br /><em class="k">Built</em>
                   with data scientists and engineers on the underlying outlier
                   detection.
                 </p>
@@ -1704,18 +1699,18 @@
                   <h3 class="ttl">Disputed Borders</h3>
                 </div>
                 <div class="piece-meta">
-                  Cartography · D3 · Observable
+                  geopolitics · cartography · D3 · Observable
                 </div>
                 <p class="piece-body">
                   Makes disputed territories comparable at a glance for
                   researchers and journalists covering geopolitics. Every
-                  contested region on one page, normalised so the reader
-                  can compare <strong>scale, shape, and context</strong>
+                  contested region on one page, normalised so the reader can
+                  compare <mark>scale, shape, and context</mark>
                   without switching between zoomed-in views.
                 </p>
                 <p class="build-line">
-                  Small multiples instead of one dense map — each region
-                  at its own scale so sparse continents stay legible.
+                  Small multiples instead of one dense map – each region at its
+                  own scale so sparse continents stay legible.
                 </p>
                 <div class="piece-foot">
                   <a
@@ -1731,46 +1726,204 @@
 
           <div class="also-built">
             <h3>Also built</h3>
-            <div class="also-row">
-              <div class="img contain on-dark">
-                <img src="assets/3dmap.jpg" alt="Stockholm New Builds, 3D extrusion map" />
-              </div>
-              <div class="also-info">
-                <div class="also-head">
-                  <span class="also-num">06</span>
-                  <span class="also-title">Stockholm New Builds</span>
+            <div class="also-grid">
+              <div class="also-row">
+                <div
+                  class="img on-dark"
+                  style="--bg: url(assets/3dmap.jpg)"
+                  role="img"
+                  aria-label="Stockholm New Builds, 3D extrusion map"
+                  data-src="assets/3dmap.jpg"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">06</span>
+                    <span class="also-title">Stockholm New Builds</span>
+                  </div>
+                  <div class="also-meta">
+                    urban policy · 3D geospatial · Three.js · Svelte
+                  </div>
+                  <div class="also-desc">
+                    Nearly 9,000 new buildings over a decade as an explorable 3D
+                    landscape. The challenge was making abstract records
+                    physical: the detail view deliberately reads as both city
+                    silhouette and bar chart.
+                  </div>
+                  <div class="also-link">Demo on request</div>
                 </div>
-                <div class="also-meta">3D geospatial · Three.js · Svelte</div>
-                <div class="also-desc">Nearly 9,000 new buildings over a decade as an explorable 3D landscape. The challenge was making abstract records physical: the detail view deliberately reads as both city silhouette and bar chart.</div>
-                <div class="also-link">Demo on request</div>
+              </div>
+              <div class="also-row">
+                <div
+                  class="img"
+                  style="--bg: url(assets/network1.png)"
+                  role="img"
+                  aria-label="Network Explorer, reusable radial network component"
+                  data-src="assets/network1.png"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">07</span>
+                    <span class="also-title">Network Explorer</span>
+                  </div>
+                  <div class="also-meta">Product · reusable component · D3</div>
+                  <div class="also-desc">
+                    When a product has dozens of interconnected services, the
+                    question changes depending on who's looking. One layout
+                    needed to answer all of them: fixed node positions across
+                    views, a category colour system, and highlight states that
+                    make the same graph serve different audiences. Deployed
+                    internally to map product architecture.
+                  </div>
+                  <div class="also-link">
+                    Production views under NDA · demo on request
+                  </div>
+                </div>
+              </div>
+              <div class="also-row">
+                <div
+                  class="img"
+                  style="--bg: url(assets/radialbarchart.png)"
+                  role="img"
+                  aria-label="Fantasy &amp; War Dominate Board Games, radial grouped bar chart"
+                  data-src="assets/radialbarchart.png"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">08</span>
+                    <span class="also-title">Board Game Taxonomy</span>
+                  </div>
+                  <div class="also-meta">Data study · D3 · Observable</div>
+                  <div class="also-desc">
+                    A study in annotation and static communication, built on
+                    30,000 messy, overlapping BoardGameGeek categories. When the
+                    goal is explanation rather than exploration, the context has
+                    to live in the chart.
+                  </div>
+                  <div class="also-link">
+                    <a
+                      href="https://observablehq.com/d/33703039e1484511"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >View →</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="also-row">
+                <div
+                  class="img"
+                  style="--bg: url(assets/ungamordare.png)"
+                  role="img"
+                  aria-label="Unga Mördare, force-directed investigation showing 58 convicted teenage murderers"
+                  data-src="assets/ungamordare.png"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">09</span>
+                    <span class="also-title">Unga Mördare</span>
+                  </div>
+                  <div class="also-meta">
+                    Aftonbladet · investigation · data journalism
+                  </div>
+                  <div class="also-desc">
+                    Small data, not big data: 58 teenagers convicted of murder
+                    in Sweden, each represented by a hand-drawn dot to make
+                    every case visually distinct. A force-directed layout layers
+                    prior convictions, drug problems, school failures, and
+                    social services contact to expose the systemic patterns
+                    behind the cases.
+                  </div>
+                  <div class="also-link">
+                    <a
+                      href="https://static.aftonbladet-cdn.se/special/unga-mordare/tonaringarna/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >View →</a
+                    >
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="also-row">
-              <div class="img contain">
-                <img src="assets/network1.png" alt="Dependencies Graph, radial network chart" />
+          </div>
+
+          <div class="thumb-strip">
+            <div class="thumb-grid">
+              <a
+                class="thumb-item"
+                href="https://static.aftonbladet-cdn.se/special/de-som-kom/statistik/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div
+                  class="thumb-img"
+                  style="--bg: url(assets/desomkom.png)"
+                  role="img"
+                  aria-label="De Som Kom, welfare and integration statistics for 2015 refugees"
+                  data-src="assets/desomkom.png"
+                ></div>
+                <span class="thumb-num">10</span>
+                <div class="thumb-title">De Som Kom 2015</div>
+                <div class="thumb-meta">Aftonbladet · data journalism</div>
+              </a>
+              <div class="thumb-item">
+                <div
+                  class="thumb-img"
+                  style="--bg: url(assets/electioncompass.png)"
+                  role="img"
+                  aria-label="Valkompass, Swedish election party matcher"
+                  data-src="assets/electioncompass.png"
+                ></div>
+                <span class="thumb-num">11</span>
+                <div class="thumb-title">Valkompass</div>
+                <div class="thumb-meta">Aftonbladet · election tool</div>
               </div>
-              <div class="also-info">
-                <div class="also-head">
-                  <span class="also-num">07</span>
-                  <span class="also-title">Dependencies Graph</span>
-                </div>
-                <div class="also-meta">Product · reusable component · D3</div>
-                <div class="also-desc">A network component designed as a system, not a chart: fixed node positions across views, a category colour system, and highlight states that let one layout answer many questions. Documented with an ecosystem dataset; deployed internally to map product architecture.</div>
-                <div class="also-link">Production views under NDA · demo on request</div>
+              <div class="thumb-item">
+                <div
+                  class="thumb-img"
+                  style="--bg: url(assets/gretatracker.png)"
+                  role="img"
+                  aria-label="Greta Thunberg Atlantic crossing, live position tracker"
+                  data-src="assets/gretatracker.png"
+                ></div>
+                <span class="thumb-num">12</span>
+                <div class="thumb-title">Atlantic Crossing Tracker</div>
+                <div class="thumb-meta">Aftonbladet · live tracking</div>
               </div>
-            </div>
-            <div class="also-row">
-              <div class="img contain">
-                <img src="assets/radialbarchart.jpg" alt="Fantasy & War Dominate Board Games, radial grouped bar chart" />
+              <div class="thumb-item">
+                <div
+                  class="thumb-img on-dark"
+                  style="--bg: url(assets/skrap.png)"
+                  role="img"
+                  aria-label="Skräp i Gamla Stan, 3D visualisation of how much trash would fill Stockholm's old town"
+                  data-src="assets/skrap.png"
+                ></div>
+                <span class="thumb-num">13</span>
+                <div class="thumb-title">Skräp i Gamla Stan</div>
+                <div class="thumb-meta">Aftonbladet · 3D · environment</div>
               </div>
-              <div class="also-info">
-                <div class="also-head">
-                  <span class="also-num">08</span>
-                  <span class="also-title">Board Game Taxonomy</span>
-                </div>
-                <div class="also-meta">Data study · D3 · Observable</div>
-                <div class="also-desc">A study in annotation and static communication, built on 30,000 messy, overlapping BoardGameGeek categories. When the goal is explanation rather than exploration, the context has to live in the chart.</div>
-                <div class="also-link"><a href="https://observablehq.com/d/33703039e1484511" target="_blank" rel="noopener noreferrer">View →</a></div>
+              <div class="thumb-item">
+                <div
+                  class="thumb-img"
+                  style="--bg: url(assets/personalsnow.png)"
+                  role="img"
+                  aria-label="Was there more snow when I was a kid, comparing winters 1979–1986 vs 2013–2020"
+                  data-src="assets/personalsnow.png"
+                ></div>
+                <span class="thumb-num">14</span>
+                <div class="thumb-title">Was There More Snow?</div>
+                <div class="thumb-meta">Data study</div>
+              </div>
+              <div class="thumb-item">
+                <div
+                  class="thumb-img"
+                  style="--bg: url(assets/trendchange.png)"
+                  role="img"
+                  aria-label="Trend change detection for MAU actuals"
+                  data-src="assets/trendchange.png"
+                ></div>
+                <span class="thumb-num">15</span>
+                <div class="thumb-title">Trend Detection</div>
+                <div class="thumb-meta">Sample data · analytics</div>
               </div>
             </div>
           </div>
@@ -1840,19 +1993,15 @@
           </div>
         </div>
 
-        <div class="cta">
-          <p>
-            Working on data the public needs to understand? I collaborate with
-            NGOs, research teams, and newsrooms on everything from exploratory
-            tools to public-facing interactive stories, directly or as a
-            specialist embedded in your team. Studios and agencies: I also take
-            on subcontracted dataviz and frontend work.
+        <div class="section outro">
+          <p class="outro-line">
+            Working on data the public needs to understand?
+            <a href="mailto:patrickwojda@yahoo.com">Email me</a> – directly, or
+            through your studio.
           </p>
-          <a href="mailto:patrickwojda@yahoo.com">Get in touch</a>
         </div>
 
         <div class="section" id="about">
-          <span class="ghost" aria-hidden="true">About</span>
           <div class="sec-head">
             <h2>About</h2>
           </div>
@@ -1861,36 +2010,26 @@
               <p class="about-lead">
                 Data visualisation is never neutral. Every dataset has
                 boundaries someone drew, and every tool carries the assumptions
-                of its design. That belief shapes the work I choose.
+                of its design. That belief shapes the work I do.
               </p>
             </div>
             <div class="about-body">
               <p>
-                My background combines software engineering, journalism, machine
-                learning, and disaster management: fields that meet wherever
-                data and human consequence intersect. I've built humanitarian
-                knowledge systems for the United Nations, Sweden's most-viewed
-                COVID dashboard for Aftonbladet, and the financial analytics
-                tools used across Spotify Finance. Today I lead the
-                visualisation layer at Datastory, a platform for public-interest
-                data storytelling.
+                Hi, I'm Patrick. I've built humanitarian knowledge systems for
+                the United Nations, Sweden's most-viewed COVID dashboard for
+                Aftonbladet, and the financial analytics tools used across
+                Spotify Finance. Today I lead the visualisation layer at
+                Datastory. Most of that work is internal; the projects here show
+                the range.
               </p>
               <p>
-                Most of that work happens inside organisations and can't be
-                shown publicly; the independent projects here show the range of
-                what I build. I work best where off-the-shelf BI
-                tools stop being enough, collaborating closely with researchers,
-                data scientists, and journalists. In senior roles I've led
-                teams, mentored developers, and taught data visualisation
-                courses.
-              </p>
-              <p>
-                I selectively work with NGOs, mission-driven organisations, and
-                teams handling complex or consequential data, in Sweden and
-                internationally. Alongside building tools, I organise
-                conversations about who data serves and how visualisation
-                practice shapes understanding. I work in English, Swedish,
-                Polish, and French.
+                I work best where off-the-shelf BI tools stop being enough,
+                collaborating with researchers, data scientists, and journalists
+                on complex or consequential data. I've also worked inside the UN
+                system (UNOPS, 2009–11), hold a Master of Disaster Management,
+                and build to the constraints that matter in the field:
+                accessibility, low-bandwidth performance, and multilingual
+                audiences. I work in English, Swedish, Polish, and French.
               </p>
               <div class="about-cols">
                 <div>
@@ -1905,7 +2044,9 @@
                   <h3>Education</h3>
                   <ul>
                     <li>MSc Intelligent Systems, UCL</li>
-                    <li>Master of Disaster Management, University of Copenhagen</li>
+                    <li>
+                      Master of Disaster Management, University of Copenhagen
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -1921,7 +2062,7 @@
               href="https://www.linkedin.com/in/patrickwojda/"
               target="_blank"
               rel="noopener noreferrer"
-              >LinkedIn / CV</a
+              >LinkedIn</a
             >
             <a
               href="https://www.instagram.com/patwo_infodesign/"
@@ -1937,116 +2078,52 @@
             >
           </div>
         </div>
-        <p class="colophon">Hand-built in vanilla HTML, CSS &amp; JS · set in Newsreader, Familjen Grotesk &amp; Fragment Mono · Stockholm 2026</p>
+        <p class="colophon">
+          Hand-built in vanilla HTML, CSS &amp; minimal JS · set in Newsreader,
+          Inter &amp; Fragment Mono · Stockholm 2026
+        </p>
       </main>
     </div>
+
+    <div class="lightbox" id="lightbox">
+      <img id="lightbox-img" src="" alt="" />
+    </div>
+
     <script>
-      (function () {
-        function rel(el, base) {
-          var r = el.getBoundingClientRect(),
-            b = base.getBoundingClientRect();
-          return {
-            x: r.left - b.left,
-            y: r.top - b.top,
-            w: r.width,
-            h: r.height,
-            cx: r.left - b.left + r.width / 2,
-            cy: r.top - b.top + r.height / 2,
-          };
-        }
-        function clamp(v, lo, hi) {
-          return Math.max(lo, Math.min(hi, v));
-        }
-        function draw() {
-          document
-            .querySelectorAll(".annot[data-target]")
-            .forEach(function (annot) {
-              var piece = annot.closest(".piece, .also-row");
-              if (!piece) return;
-              if (annot.offsetParent === null) {
-                if (annot._svg) annot._svg.innerHTML = "";
-                return;
-              }
-              var target = piece.querySelector(
-                annot.getAttribute("data-target"),
-              );
-              var note = annot.querySelector(".note");
-              if (!target || !note) return;
-              var svg = annot._svg;
-              if (!svg) {
-                svg = document.createElementNS(
-                  "http://www.w3.org/2000/svg",
-                  "svg",
-                );
-                svg.setAttribute("class", "arrow-svg");
-                piece.appendChild(svg);
-                annot._svg = svg;
-              }
-              var n = rel(note, piece),
-                t = rel(target, piece);
-              // start: point on the note's border nearest the target centre
-              var sx = clamp(t.cx, n.x, n.x + n.w);
-              var sy = clamp(t.cy, n.y, n.y + n.h);
-              // end: point on the target's border nearest the note centre, nudged just outside
-              var ex = clamp(n.cx, t.x, t.x + t.w);
-              var ey = clamp(n.cy, t.y, t.y + t.h);
-              var vx = ex - n.cx,
-                vy = ey - n.cy,
-                vl = Math.hypot(vx, vy) || 1;
-              ex += (vx / vl) * 8;
-              ey += (vy / vl) * 8;
-              // curved control point (perpendicular offset → hand-drawn swirl)
-              var mx = (sx + ex) / 2,
-                my = (sy + ey) / 2,
-                len = Math.hypot(ex - sx, ey - sy) || 1;
-              var off = Math.min(55, len * 0.26);
-              var cpx = mx + (-(ey - sy) / len) * off,
-                cpy = my + ((ex - sx) / len) * off;
-              var ang = Math.atan2(ey - cpy, ex - cpx),
-                ah = 10;
-              var a1x = ex - ah * Math.cos(ang - 0.42),
-                a1y = ey - ah * Math.sin(ang - 0.42);
-              var a2x = ex - ah * Math.cos(ang + 0.42),
-                a2y = ey - ah * Math.sin(ang + 0.42);
-              var d =
-                "M" +
-                sx +
-                " " +
-                sy +
-                " Q " +
-                cpx +
-                " " +
-                cpy +
-                " " +
-                ex +
-                " " +
-                ey +
-                " M" +
-                ex +
-                " " +
-                ey +
-                " L" +
-                a1x +
-                " " +
-                a1y +
-                " M" +
-                ex +
-                " " +
-                ey +
-                " L" +
-                a2x +
-                " " +
-                a2y;
-              svg.innerHTML = '<path d="' + d + '"/>';
-            });
-        }
-        window.addEventListener("load", draw);
-        var t;
-        window.addEventListener("resize", function () {
-          clearTimeout(t);
-          t = setTimeout(draw, 120);
+      const lb = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lightbox-img");
+      function openLb(src, alt) {
+        lbImg.src = src;
+        lbImg.alt = alt;
+        lb.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLb() {
+        lb.classList.remove("is-open");
+        document.body.style.overflow = "";
+        if (document.activeElement) document.activeElement.blur();
+      }
+      document
+        .querySelectorAll(".showcase img, .zoom-media img")
+        .forEach((img) => {
+          img.style.cursor = "zoom-in";
+          img.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openLb(img.src, img.alt);
+          });
         });
-      })();
+      document.querySelectorAll("[data-src]").forEach((div) => {
+        div.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          openLb(div.dataset.src, div.getAttribute("aria-label") || "");
+        });
+      });
+      lb.addEventListener("click", closeLb);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLb();
+      });
     </script>
   </body>
 </html>

@@ -36,10 +36,7 @@
       name="twitter:image"
       content="https://gitnoise.github.io/portfolio/assets/erosion1.jpg"
     />
-    <link
-      rel="canonical"
-      href="https://gitnoise.github.io/portfolio/"
-    />
+    <link rel="canonical" href="https://gitnoise.github.io/portfolio/" />
     <link
       rel="icon"
       type="image/svg+xml"
@@ -157,7 +154,7 @@
 
       /* Hero */
       .hero {
-        padding: 80px 0 64px;
+        padding: 80px 0 48px;
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 40px;
@@ -175,17 +172,18 @@
         color: var(--paper);
         padding: 0 12px;
       }
-      .hero-side {
-        text-align: right;
+      .hero-col {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
       }
       .hero-role {
         font-family: var(--narrow);
         font-size: 20px;
         font-weight: 500;
-        max-width: 340px;
+        max-width: 640px;
         line-height: 1.4;
         color: #333333;
-        margin-left: auto;
       }
       .hero-avail {
         font-family: var(--mono);
@@ -193,13 +191,29 @@
         color: var(--red);
         text-transform: uppercase;
         letter-spacing: 1px;
-        margin-top: 20px;
+      }
+      .hero-side {
+        position: relative;
+        min-width: 300px;
+      }
+      .hero-side .portrait-img {
+        position: absolute;
+        top: -480px;
+        right: -20px;
+        width: 175%;
+        max-width: 607px;
+        height: auto;
+        pointer-events: none;
+        opacity: 0.1;
+        filter: grayscale(1) contrast(1.8) brightness(1.15);
+        mix-blend-mode: multiply;
       }
       .k {
         color: var(--muted);
       }
       .hero-facts {
-        margin-top: 48px;
+        margin-top: 38px;
+        padding-bottom: 10px;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 0;
@@ -425,7 +439,9 @@
         display: flex;
         align-items: flex-end;
         min-height: 80px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 8px rgba(0, 0, 0, 0.03);
+        box-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.04),
+          0 1px 8px rgba(0, 0, 0, 0.03);
       }
       .img img {
         width: 100%;
@@ -440,7 +456,9 @@
       }
       .img.contain.on-dark {
         background: #0a0a0a;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 8px rgba(0, 0, 0, 0.06);
+        box-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.08),
+          0 1px 8px rgba(0, 0, 0, 0.06);
       }
       .img.contain img {
         height: auto;
@@ -508,7 +526,7 @@
         font-size: 13px;
         font-weight: 600;
         letter-spacing: 1px;
-        color: var(--ink);
+        color: var(--paper);
         margin-bottom: 8px;
       }
       .head .ttl {
@@ -551,7 +569,7 @@
         font-size: 13px;
         font-weight: 600;
         letter-spacing: 1px;
-        color: var(--ink);
+        color: var(--paper);
       }
       .vhead-col .ttl {
         position: relative;
@@ -881,7 +899,9 @@
         flex-direction: column;
         gap: 0;
         min-width: 0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 8px rgba(0, 0, 0, 0.03);
+        box-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.04),
+          0 1px 8px rgba(0, 0, 0, 0.03);
         background: #fff;
       }
       .imgrid .figunit {
@@ -933,7 +953,9 @@
         overflow: hidden;
         position: relative;
         background-color: #f0f0f0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 8px rgba(0, 0, 0, 0.03);
+        box-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.04),
+          0 1px 8px rgba(0, 0, 0, 0.03);
         cursor: zoom-in;
       }
       .also-row .img::before {
@@ -1034,7 +1056,9 @@
         overflow: hidden;
         position: relative;
         background-color: #f0f0f0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 8px rgba(0, 0, 0, 0.03);
+        box-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.04),
+          0 1px 8px rgba(0, 0, 0, 0.03);
         cursor: zoom-in;
       }
       .thumb-item .thumb-img::before {
@@ -1219,10 +1243,14 @@
           letter-spacing: -1.5px;
         }
         .hero-side {
-          text-align: left;
+          min-width: 0;
+          min-height: 200px;
         }
-        .hero-role {
-          margin-left: 0;
+        .hero-side .portrait-img {
+          width: 70%;
+          max-width: 280px;
+          top: -60px;
+          right: 0;
         }
         .hero-facts {
           margin-top: 32px;
@@ -1418,7 +1446,9 @@
     <a href="#main" class="skip-link">Skip to content</a>
     <div class="wrap">
       <header class="topbar">
-        <span class="mark"><span class="sq" aria-hidden="true"></span> Patrick Wojda</span>
+        <span class="mark"
+          ><span class="sq" aria-hidden="true"></span> Patrick Wojda</span
+        >
         <nav class="topnav" aria-label="Primary">
           <a href="#work">Work</a>
           <a href="#about">About</a>
@@ -1429,10 +1459,10 @@
 
       <main id="main">
         <section class="hero">
-          <h1>
-            Senior data visualisation<br /><span class="blk">engineer.</span>
-          </h1>
-          <div class="hero-side">
+          <div class="hero-col">
+            <h1>
+              Senior data visualisation<br /><span class="blk">engineer.</span>
+            </h1>
             <p class="hero-role">
               Interactive tools, dashboards, and data stories for NGOs, research
               teams, and newsrooms working with consequential data.
@@ -1442,19 +1472,28 @@
               Datastory.
             </p>
           </div>
+          <div class="hero-side">
+            <img
+              class="portrait-img"
+              src="assets/portrait.png"
+              alt="Patrick Wojda"
+              width="800"
+              height="1067"
+            />
+          </div>
         </section>
         <div class="hero-facts">
           <span class="fact"
-            ><span class="sqs" aria-hidden="true"></span> 20+ years frontend · 10+ years
-            dataviz</span
+            ><span class="sqs" aria-hidden="true"></span> 20+ years frontend ·
+            10+ years dataviz</span
           >
           <span class="fact"
-            ><span class="sqs" aria-hidden="true"></span> Built Sweden's most-viewed COVID
-            dashboard</span
+            ><span class="sqs" aria-hidden="true"></span> Built Sweden's
+            most-viewed COVID dashboard</span
           >
           <span class="fact"
-            ><span class="sqs" aria-hidden="true"></span> Previously Spotify, UN, Aftonbladet
-            (Sweden's largest news site)</span
+            ><span class="sqs" aria-hidden="true"></span> Previously Spotify,
+            UN, Aftonbladet (Sweden's largest news site)</span
           >
         </div>
 
@@ -1482,7 +1521,9 @@
           <h2 class="sr-only">Clients</h2>
           <p class="clients-intro">
             Most of what I build is internal:
-            <strong>exploratory tools, dashboards, and analysis interfaces</strong>
+            <strong
+              >exploratory tools, dashboards, and analysis interfaces</strong
+            >
             that teams use to find answers rather than read conclusions. The
             work is confidential; the clients are not.
           </p>
@@ -1551,18 +1592,19 @@
             <div class="comp sc-right">
               <div class="txt">
                 <div class="head">
-                  <span class="sq" aria-hidden="true"></span><span class="num">01</span>
+                  <span class="sq" aria-hidden="true"></span
+                  ><span class="num">01</span>
                   <h3 class="ttl">Erosion of European Democracy</h3>
                 </div>
                 <div class="piece-meta">
                   governance · V-Dem · data exploration · explained.media
                 </div>
                 <p class="piece-body">
-                  A <strong>V-Dem exploration</strong>: a series of views built to
-                  answer different questions rather than one chart. A diverging
-                  <strong>heatmap</strong> makes year-on-year change scannable by
-                  country. A slope chart widens the lens to the full
-                  <strong>Europe-and-Caucasus region</strong>: 32 countries
+                  A <strong>V-Dem exploration</strong>: a series of views built
+                  to answer different questions rather than one chart. A
+                  diverging <strong>heatmap</strong> makes year-on-year change
+                  scannable by country. A slope chart widens the lens to the
+                  full <strong>Europe-and-Caucasus region</strong>: 32 countries
                   backsliding, 11 improving, between 2012 and 2022.
                 </p>
                 <div class="piece-foot">
@@ -1586,13 +1628,13 @@
               <div class="showcase showcase-split">
                 <div class="main figunit">
                   <div class="img contain on-dark">
-                      <img
-                        src="assets/erosion1.jpg"
-                        alt="Erosion of European democracy, diverging heatmap of year-on-year democratic score changes by region, 1980–2022"
-                        width="1080"
-                        height="1349"
-                        loading="lazy"
-                      />
+                    <img
+                      src="assets/erosion1.jpg"
+                      alt="Erosion of European democracy, diverging heatmap of year-on-year democratic score changes by region, 1980–2022"
+                      width="1080"
+                      height="1349"
+                      loading="lazy"
+                    />
                   </div>
                   <div class="figcap">
                     erosion of european democracy – 39 european countries,
@@ -1647,18 +1689,19 @@
               </div>
               <div class="txt">
                 <div class="head">
-                  <span class="sq" aria-hidden="true"></span><span class="num">02</span>
+                  <span class="sq" aria-hidden="true"></span
+                  ><span class="num">02</span>
                   <h3 class="ttl">Covid-19 Dashboard</h3>
                 </div>
                 <div class="piece-meta">
                   public health · Aftonbladet · crisis communication · public
                 </div>
                 <p class="piece-body">
-                  Sweden's <strong>most-viewed</strong> COVID dashboard, maintained
-                  across the full arc of the pandemic. As the public story
-                  shifted, the dashboard was continually rebuilt to track what
-                  mattered at each stage, a live data product that had to keep
-                  evolving for years. Built and maintained under crisis
+                  Sweden's <strong>most-viewed</strong> COVID dashboard,
+                  maintained across the full arc of the pandemic. As the public
+                  story shifted, the dashboard was continually rebuilt to track
+                  what mattered at each stage, a live data product that had to
+                  keep evolving for years. Built and maintained under crisis
                   conditions: shifting data definitions, daily source changes,
                   and a general audience that needed clarity, not dashboards for
                   analysts.
@@ -1680,19 +1723,21 @@
             <div class="comp sc-right">
               <div class="txt">
                 <div class="head">
-                  <span class="sq" aria-hidden="true"></span><span class="num">03</span>
+                  <span class="sq" aria-hidden="true"></span
+                  ><span class="num">03</span>
                   <h3 class="ttl">Infrastructure Security Map</h3>
                 </div>
                 <div class="piece-meta">Omny · freelance · fixed-scope</div>
                 <p class="piece-body">
                   Industrial networks are segmented into zones for safety, but
                   most teams audit that segmentation in spreadsheets. The
-                  <strong>Zones and Conduits</strong> diagram inside Omny's platform
-                  turns it into a live, interactive map: assets are
+                  <strong>Zones and Conduits</strong> diagram inside Omny's
+                  platform turns it into a live, interactive map: assets are
                   automatically categorised and their communication pathways
-                  visualised against the <strong>ISA/IEC 62443</strong> standard. A
-                  custom tree layout nests multiple asset levels inside zones.
-                  Delivered freelance, concept to production.
+                  visualised against the
+                  <strong>ISA/IEC 62443</strong> standard. A custom tree layout
+                  nests multiple asset levels inside zones. Delivered freelance,
+                  concept to production.
                 </p>
                 <div class="piece-foot">
                   <span>Svelte · D3 · custom tree layout</span>
@@ -1717,7 +1762,8 @@
           <div class="piece">
             <div class="comp sc-right vt-right">
               <div class="vhead-col vhead-anchor">
-                <span class="sq" aria-hidden="true"></span><span class="num">04</span>
+                <span class="sq" aria-hidden="true"></span
+                ><span class="num">04</span>
                 <h3 class="ttl">Anomaly Front Page</h3>
               </div>
               <div class="txt">
@@ -1731,10 +1777,10 @@
                     >The approach:</em
                   >
                   a monitoring tool structured as a
-                  <strong>newspaper front page</strong>, auto-generated text turns
-                  detected outliers into ranked, readable stories, some shared
-                  across teams, some personalised, each linked to a root-cause
-                  view.<br /><em class="k">Built</em>
+                  <strong>newspaper front page</strong>, auto-generated text
+                  turns detected outliers into ranked, readable stories, some
+                  shared across teams, some personalised, each linked to a
+                  root-cause view.<br /><em class="k">Built</em>
                   with data scientists and engineers on the underlying outlier
                   detection.
                 </p>
@@ -1776,7 +1822,8 @@
               </div>
               <div class="txt">
                 <div class="head">
-                  <span class="sq" aria-hidden="true"></span><span class="num">05</span>
+                  <span class="sq" aria-hidden="true"></span
+                  ><span class="num">05</span>
                   <h3 class="ttl">Disputed Borders</h3>
                 </div>
                 <div class="piece-meta">
@@ -2142,7 +2189,9 @@
 
     <div class="lightbox" id="lightbox" tabindex="-1">
       <img id="lightbox-img" src="" alt="" />
-      <button id="lightbox-close" class="sr-only" type="button">Close image preview</button>
+      <button id="lightbox-close" class="sr-only" type="button">
+        Close image preview
+      </button>
     </div>
 
     <script>
@@ -2201,7 +2250,9 @@
         });
       });
       lb.addEventListener("click", closeLb);
-      document.getElementById("lightbox-close").addEventListener("click", closeLb);
+      document
+        .getElementById("lightbox-close")
+        .addEventListener("click", closeLb);
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeLb();
         if (lb.classList.contains("is-open") && e.key === "Tab") {

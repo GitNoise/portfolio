@@ -240,20 +240,41 @@
         flex-shrink: 0;
         background: var(--red);
       }
-      .skills {
+      .stack-cloud {
+        margin-top: 16px;
         display: flex;
         flex-wrap: wrap;
-        gap: 7px;
-        margin-top: 26px;
+        gap: 4px 20px;
+        align-items: baseline;
+        justify-content: left;
+        line-height: 0.85;
       }
-      .skill {
-        font-family: var(--mono);
-        font-size: 11px;
+      .stack-cloud .sc {
+        font-family: var(--narrow);
+        font-weight: 800;
+        font-size: clamp(32px, 4.5vw, 50px);
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: #333333;
-        border: 1px solid var(--ink);
-        padding: 5px 10px;
+        color: color-mix(in srgb, var(--ink) 8%, transparent);
+        filter: url(#outline);
+      }
+      .stack-cloud .sc.primary {
+        font-size: clamp(48px, 6.5vw, 76px);
+        color: color-mix(in srgb, var(--ink) 12%, transparent);
+      }
+      .sc.t1 {
+        letter-spacing: -2.5px;
+      }
+      .sc.t2 {
+        letter-spacing: -0.5px;
+      }
+      .sc.t3 {
+        letter-spacing: 2px;
+      }
+      .sc.t4 {
+        letter-spacing: 4px;
+      }
+      .sc.t5 {
+        letter-spacing: 0.2em;
       }
 
       /* Why + How sections */
@@ -850,22 +871,9 @@
       /* contact-sheet collage, one plate, columns stack independently */
       .imgrid {
         display: flex;
-        gap: 10px;
-        border: 1px solid var(--line);
-        background: #fff;
+        gap: 24px;
         align-items: stretch;
         position: relative;
-      }
-      .imgrid::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 1px;
-        background: var(--line);
-        pointer-events: none;
-        z-index: 1;
       }
       .imgrid-col {
         flex: 1;
@@ -873,6 +881,8 @@
         flex-direction: column;
         gap: 0;
         min-width: 0;
+        border: 1px solid var(--line);
+        background: #fff;
       }
       .imgrid .figunit {
         flex: 1;
@@ -1363,6 +1373,17 @@
     </style>
   </head>
   <body>
+    <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+      <filter id="outline">
+        <feMorphology in="SourceAlpha" operator="dilate" radius="0.4" result="dilated"/>
+        <feFlood flood-color="#111" flood-opacity="0.7" result="outlineColor"/>
+        <feComposite in="outlineColor" in2="dilated" operator="in" result="outline"/>
+        <feMerge>
+          <feMergeNode in="outline"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </svg>
     <a href="#main" class="skip-link">Skip to content</a>
     <div class="wrap">
       <div class="topbar">
@@ -1401,8 +1422,29 @@
             dashboard</span
           >
           <span class="fact"
-            ><span class="sqs"></span> Previously Spotify, UN, Aftonbladet</span
+            ><span class="sqs"></span> Previously Spotify, UN, Aftonbladet
+            (Sweden's largest news site)</span
           >
+        </div>
+
+        <div class="section">
+          <div class="stack-cloud">
+            <span class="sc primary">D3</span>
+            <span class="sc primary">React</span>
+            <span class="sc primary">Svelte</span>
+            <span class="sc">TypeScript</span>
+            <span class="sc">Observable</span>
+            <span class="sc">Three.js</span>
+            <span class="sc primary">Data Storytelling</span>
+            <span class="sc">Tableau</span>
+            <span class="sc">UX</span>
+            <span class="sc">Vega-Lite</span>
+            <span class="sc">Datawrapper</span>
+            <span class="sc">Flourish</span>
+            <span class="sc">Geospatial</span>
+            <span class="sc">Figma</span>
+            <span class="sc">Agile</span>
+          </div>
         </div>
 
         <div class="section">
@@ -1447,8 +1489,9 @@
               <div class="client-tag">2016–21</div>
               <div class="client-name">Aftonbladet</div>
               <div class="client-desc">
-                Built Sweden's most-viewed COVID dashboard during the pandemic,
-                plus tools and widgets for long-form journalism.
+                Sweden's largest online newspaper. Built the country's
+                most-viewed COVID dashboard during the pandemic, plus tools and
+                widgets for long-form journalism.
               </div>
             </div>
             <div class="client">
@@ -1975,27 +2018,9 @@
           </div>
         </div>
 
-        <div class="section">
-          <div class="sec-head">
-            <h2>Tools & stack</h2>
-          </div>
-          <div class="skills">
-            <span class="skill">React</span><span class="skill">Svelte</span
-            ><span class="skill">TypeScript</span><span class="skill">D3</span
-            ><span class="skill">Three.js</span
-            ><span class="skill">Observable</span
-            ><span class="skill">Vega-Lite</span
-            ><span class="skill">Tableau</span
-            ><span class="skill">Datawrapper</span
-            ><span class="skill">Flourish</span
-            ><span class="skill">Python · Pandas</span
-            ><span class="skill">Figma</span>
-          </div>
-        </div>
-
         <div class="section outro">
           <p class="outro-line">
-            Working on data the public needs to understand?
+            Working on data that needs to be clear?
             <a href="mailto:patrickwojda@yahoo.com">Email me</a> – directly, or
             through your studio.
           </p>
@@ -2015,21 +2040,27 @@
             </div>
             <div class="about-body">
               <p>
-                Hi, I'm Patrick. I've built humanitarian knowledge systems for
-                the United Nations, Sweden's most-viewed COVID dashboard for
-                Aftonbladet, and the financial analytics tools used across
-                Spotify Finance. Today I lead the visualisation layer at
-                Datastory. Most of that work is internal; the projects here show
-                the range.
+                Hi, I'm Patrick. I've built
+                <mark>humanitarian knowledge systems</mark> for the
+                <mark>United Nations</mark>, Sweden's most-viewed
+                <mark>COVID dashboard</mark> for Aftonbladet, and the
+                <mark>financial analytics tools</mark> used across
+                <mark>Spotify</mark> Finance. Today I lead the visualisation
+                layer at <mark>Datastory</mark>.
               </p>
               <p>
-                I work best where off-the-shelf BI tools stop being enough,
-                collaborating with researchers, data scientists, and journalists
-                on complex or consequential data. I've also worked inside the UN
-                system (UNOPS, 2009–11), hold a Master of Disaster Management,
-                and build to the constraints that matter in the field:
-                accessibility, low-bandwidth performance, and multilingual
-                audiences. I work in English, Swedish, Polish, and French.
+                I work best where
+                <mark>off-the-shelf BI tools stop being enough</mark>,
+                collaborating with
+                <mark>researchers, data scientists, and journalists</mark>
+                on complex or consequential data. I've also worked inside the
+                <mark>UN system</mark> (UNOPS, 2009–11), hold a
+                <mark>Master of Disaster Management</mark>, and build to the
+                constraints that matter in the field:
+                <mark>accessibility</mark>,
+                <mark>low-bandwidth performance</mark>, and
+                <mark>multilingual audiences</mark>. I work in English, Swedish,
+                Polish, and French.
               </p>
               <div class="about-cols">
                 <div>
@@ -2078,10 +2109,6 @@
             >
           </div>
         </div>
-        <p class="colophon">
-          Hand-built in vanilla HTML, CSS &amp; minimal JS · set in Newsreader,
-          Inter &amp; Fragment Mono · Stockholm 2026
-        </p>
       </main>
     </div>
 

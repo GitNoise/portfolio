@@ -4,12 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Patrick Wojda — Data Visualisation Engineer, Stockholm</title>
-    <meta name="description" content="Senior data visualisation and frontend engineer. Interactive tools, dashboards, and data stories for NGOs, research teams, and newsrooms. Previously Spotify, UN, Aftonbladet.">
-    <meta property="og:title" content="Patrick Wojda — Data Visualisation Engineer">
-    <meta property="og:description" content="Interactive tools and data stories for NGOs, research teams, and newsrooms.">
-    <meta property="og:image" content="https://gitnoise.github.io/portfolio/assets/erosion1.jpg">
+    <meta
+      name="description"
+      content="Senior data visualisation and frontend engineer. Interactive tools, dashboards, and data stories for NGOs, research teams, and newsrooms. Previously Spotify, UN, Aftonbladet."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gitnoise.github.io/portfolio/" />
+    <meta
+      property="og:title"
+      content="Patrick Wojda — Data Visualisation Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Interactive tools and data stories for NGOs, research teams, and newsrooms."
+    />
+    <meta
+      property="og:image"
+      content="https://gitnoise.github.io/portfolio/assets/erosion1.jpg"
+    />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -20,14 +34,14 @@
       }
 
       :root {
-        --paper: #f4f1ea;
-        --ink: #1a1a18;
+        --paper: #fcfcfc;
+        --ink: #111111;
         --red: #e2216a;
         --red-block: color-mix(in srgb, var(--red) 80%, transparent);
-        --line: #cfcdc4;
-        --muted: #62615b;
-        --disp: "Archivo", sans-serif;
-        --narrow: "Archivo Narrow", sans-serif;
+        --line: #d4d4d4;
+        --muted: #555555;
+        --disp: "Newsreader", Georgia, serif;
+        --narrow: "Inter", system-ui, sans-serif;
         --mono: "JetBrains Mono", monospace;
       }
 
@@ -38,6 +52,15 @@
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.025;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+        z-index: 9999;
       }
       .wrap {
         max-width: 1080px;
@@ -139,7 +162,7 @@
         font-weight: 500;
         max-width: 340px;
         line-height: 1.4;
-        color: #333330;
+        color: #333333;
         margin-left: auto;
       }
       .hero-facts {
@@ -222,7 +245,7 @@
         font-family: var(--narrow);
         font-size: 16px;
         line-height: 1.5;
-        color: #2f2f2c;
+        color: #333333;
         padding: 9px 0 9px 22px;
         position: relative;
         border-top: 1px solid var(--line);
@@ -243,7 +266,7 @@
         font-family: var(--mono);
         font-size: 13px;
         line-height: 1.6;
-        color: #2f2f2c;
+        color: #333333;
         margin-top: 28px;
         max-width: 640px;
         display: flex;
@@ -267,7 +290,7 @@
         font-size: 11px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        color: #2f2f2c;
+        color: #333333;
         border: 1px solid var(--ink);
         padding: 5px 10px;
       }
@@ -294,7 +317,7 @@
         font-family: var(--narrow);
         font-size: 16px;
         line-height: 1.5;
-        color: #2f2f2c;
+        color: #333333;
         padding: 8px 0 8px 24px;
         position: relative;
         border-top: 1px solid var(--line);
@@ -316,7 +339,7 @@
         font-family: var(--narrow);
         font-size: 18px;
         line-height: 1.5;
-        color: #2f2f2c;
+        color: #333333;
         max-width: 640px;
         margin-bottom: 30px;
       }
@@ -326,7 +349,7 @@
       }
       .clients-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         border-top: 1px solid var(--ink);
         border-left: 1px solid var(--line);
       }
@@ -353,7 +376,7 @@
         font-family: var(--narrow);
         font-size: 14px;
         line-height: 1.45;
-        color: #3a3a37;
+        color: #444444;
       }
 
       /* ===== Gallery, editorial compositions ===== */
@@ -472,7 +495,7 @@
         font-family: var(--narrow);
         font-size: 16px;
         line-height: 1.5;
-        color: #2f2f2c;
+        color: #333333;
       }
       .piece-body strong {
         font-weight: 600;
@@ -490,9 +513,12 @@
       .piece-foot a {
         color: var(--red);
         text-decoration: none;
+        display: inline-block;
+        transition: transform 100ms ease;
       }
       .piece-foot a:hover {
         text-decoration: underline;
+        transform: translateX(3px);
       }
       .piece-link {
         margin-top: 14px;
@@ -502,9 +528,12 @@
       .piece-link a {
         color: var(--red);
         text-decoration: none;
+        display: inline-block;
+        transition: transform 100ms ease;
       }
       .piece-link a:hover {
         text-decoration: underline;
+        transform: translateX(3px);
       }
       .piece-link + .piece-foot {
         margin-top: 10px;
@@ -512,7 +541,7 @@
 
       /* image placeholder */
       .img {
-        background: #d9d6cd;
+        background: #e5e5e5;
         overflow: hidden;
         position: relative;
         display: flex;
@@ -533,6 +562,7 @@
       }
       .img.contain.on-dark {
         background: #0a0a0a;
+        border: 1px solid var(--ink);
       }
       .img.contain img {
         height: auto;
@@ -572,7 +602,7 @@
         letter-spacing: 0.5px;
         padding: 14px;
         line-height: 1.4;
-        color: #85837a;
+        color: #888888;
       }
 
       /* figure caption, quiet margin note */
@@ -1003,6 +1033,98 @@
         min-height: 220px;
       }
 
+      /* Also built strip */
+      .also-built {
+        margin-top: 48px;
+      }
+      .also-built h3 {
+        font-family: var(--mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--muted);
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+      .also-row {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 16px 24px;
+        align-items: start;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .also-row .img {
+        min-height: 0;
+        border: 1px solid var(--line);
+        grid-row: 1 / 3;
+      }
+      .also-row .img img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .also-info .also-head {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .also-info .also-num {
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        color: var(--red);
+      }
+      .also-info .also-title {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+      .also-info .also-meta {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 6px;
+      }
+      .also-info .also-desc {
+        font-family: var(--narrow);
+        font-size: 15px;
+        line-height: 1.5;
+        color: #444444;
+        margin-top: 10px;
+      }
+      .also-link {
+        font-family: var(--mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--muted);
+        white-space: nowrap;
+        margin-top: 10px;
+      }
+      .also-link a {
+        color: var(--red);
+        text-decoration: none;
+        display: inline-block;
+        transition: transform 100ms ease;
+      }
+      .also-link a:hover {
+        text-decoration: underline;
+        transform: translateX(3px);
+      }
+      @media (max-width: 860px) {
+        .also-row {
+          grid-template-columns: 100px 1fr;
+          gap: 12px 16px;
+        }
+      }
+
       /* CTA */
       .cta {
         margin-top: 64px;
@@ -1056,7 +1178,7 @@
         font-family: var(--narrow);
         font-size: 16px;
         line-height: 1.65;
-        color: #3a3a37;
+        color: #444444;
       }
       .about-body p {
         margin-bottom: 14px;
@@ -1089,7 +1211,7 @@
         font-family: var(--narrow);
         font-size: 15px;
         line-height: 1.8;
-        color: #3a3a37;
+        color: #444444;
       }
 
       /* Contact */
@@ -1178,7 +1300,22 @@
           gap: 28px;
         }
         .clients-grid {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .client {
+          padding: 14px 14px 18px;
+        }
+        .client-name {
+          font-size: 16px;
+          margin-bottom: 6px;
+        }
+        .client-tag {
+          font-size: 9px;
+          margin-bottom: 8px;
+        }
+        .client-desc {
+          font-size: 12px;
+          line-height: 1.4;
         }
 
         /* stack every piece: showcase (with its header) then description */
@@ -1292,6 +1429,11 @@
           align-items: flex-start;
         }
       }
+      @media (max-width: 560px) {
+        .clients-grid {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1304,7 +1446,7 @@
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
-        <span class="loc">Stockholm · 2026</span>
+        <span class="loc">Stockholm</span>
       </div>
 
       <main id="main">
@@ -1314,8 +1456,8 @@
           </h1>
           <div class="hero-side">
             <p class="hero-role">
-              Interactive tools, dashboards, and data stories for NGOs,
-              research teams, and newsrooms working with consequential data.
+              Interactive tools, dashboards, and data stories for NGOs, research
+              teams, and newsrooms working with consequential data.
             </p>
             <p
               style="
@@ -1327,7 +1469,8 @@
                 margin-top: 20px;
               "
             >
-              Taking on fixed-scope freelance projects alongside my role at Datastory.
+              Taking on fixed-scope freelance projects alongside my role at
+              Datastory.
             </p>
           </div>
         </section>
@@ -1373,9 +1516,8 @@
               <div class="client-tag">2024</div>
               <div class="client-name">Omny</div>
               <div class="client-desc">
-                Freelance: designed and built a hierarchical network security
-                map of physical infrastructure. Svelte, D3, custom tree layout
-                with zoom, pan, and dependency highlighting. Fixed-scope,
+                Freelance: built the Zones and Conduits diagram, an interactive
+                segmentation-audit map under ISA/IEC 62443. Svelte and D3,
                 concept to production.
               </div>
             </div>
@@ -1396,63 +1538,20 @@
               </div>
             </div>
             <div class="client">
+              <div class="client-tag">2011–16</div>
+              <div class="client-name">Consulting</div>
+              <div class="client-desc">
+                Senior consultant at Capgemini and Consid: led agile teams and
+                built systems for Swedish government agencies. Comfortable
+                embedded in client organisations.
+              </div>
+            </div>
+            <div class="client">
               <div class="client-tag">2009–11</div>
               <div class="client-name">United Nations</div>
               <div class="client-desc">
                 Intranet knowledge management applications for UNOPS.
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="sec-head">
-            <h2>What I do</h2>
-            <span class="rule"></span>
-          </div>
-          <div class="skills">
-            <span class="skill">React</span><span class="skill">Svelte</span
-            ><span class="skill">TypeScript</span><span class="skill">D3js</span
-            ><span class="skill">Three.js</span
-            ><span class="skill">Observable</span
-            ><span class="skill">Vega-Lite</span
-            ><span class="skill">Tableau</span
-            ><span class="skill">Datawrapper</span
-            ><span class="skill">Flourish</span
-            ><span class="skill">Python · Pandas</span
-            ><span class="skill">Figma</span>
-          </div>
-
-          <div class="two-col" style="margin-top: 48px">
-            <div>
-              <h3>Why clients bring me in</h3>
-              <ul class="checklist">
-                <li>Turn messy, high-stakes datasets into clear visual explanations</li>
-                <li>Build production-ready interactive tools in React or Svelte, from concept to launch</li>
-                <li>Go beyond what off-the-shelf BI and dashboard tools can do</li>
-                <li>Work directly with researchers, journalists, analysts, and data scientists</li>
-                <li>Accessible, responsive visualisations that hold up on low-bandwidth connections</li>
-              </ul>
-            </div>
-            <div>
-              <h3>How we'd work together</h3>
-              <ul class="checklist">
-                <li>Fixed-scope projects: an interactive report, explainer, dashboard, or exploration tool with a defined deliverable</li>
-                <li>Embedded engagements: joining your product or editorial team as a senior specialist</li>
-                <li>Direct with NGOs and research teams, or as a subcontractor through studios and agencies</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="two-col" style="margin-top: 48px">
-            <div>
-              <h3>Sectors</h3>
-              <ul class="checklist">
-                <li>NGOs and international development</li>
-                <li>Research and academia</li>
-                <li>Journalism and media</li>
-                <li>Finance, elections, and infrastructure security</li>
-              </ul>
             </div>
           </div>
         </div>
@@ -1484,15 +1583,24 @@
                   full <strong>Europe-and-Caucasus region</strong>: 32 countries
                   backsliding, 11 improving, between 2012 and 2022.
                 </p>
-                <div class="piece-foot"><a href="#">View →</a></div>
-                <div class="zoom figunit">
-                  <div class="img contain on-dark">
-                    <img
-                      src="assets/democracy2.png"
-                      alt="Europe's democratic backsliding, slope chart comparing liberal democracy scores in 2012 and 2022"
-                    />
+                <div class="piece-foot">
+                  <span>Observable · coming soon</span>
+                </div>
+                <div class="zoom-block">
+                  <div class="zoom figunit">
+                    <div class="zoom-media">
+                      <div class="annot" data-target=".zoom-slope">
+                        <span class="note">Poland: <em>−62 places</em> in global rankings</span>
+                      </div>
+                      <div class="img contain zoom-slope">
+                        <img
+                          src="assets/democracy2.png"
+                          alt="Europe's democratic backsliding, slope chart comparing liberal democracy scores in 2012 and 2022"
+                        />
+                      </div>
+                    </div>
+                    <div class="figcap">2012 vs 2022</div>
                   </div>
-                  <div class="figcap">2012 vs 2022</div>
                 </div>
               </div>
               <div class="showcase showcase-split">
@@ -1505,7 +1613,8 @@
                   </div>
                   <!-- TODO: re-export image without stray warning icon; add legend swatch for black cells ("no data — state not yet independent") -->
                   <div class="figcap">
-                    erosion of european democracy — 39 european countries, change since 2011
+                    erosion of european democracy — 39 european countries,
+                    change since 2011
                   </div>
                 </div>
                 <p class="build-line">
@@ -1527,15 +1636,7 @@
                         <div class="img contain">
                           <img
                             src="assets/covid1.jpg"
-                            alt="COVID-19 dashboard, an earlier iteration"
-                          />
-                        </div>
-                      </div>
-                      <div class="figunit">
-                        <div class="img contain">
-                          <img
-                            src="assets/covid4.jpg"
-                            alt="COVID-19 dashboard, another view"
+                            alt="COVID-19 dashboard, earliest iteration"
                           />
                         </div>
                       </div>
@@ -1544,16 +1645,8 @@
                       <div class="figunit">
                         <div class="img contain">
                           <img
-                            src="assets/covid2.jpg"
-                            alt="COVID-19 dashboard, map view"
-                          />
-                        </div>
-                      </div>
-                      <div class="figunit">
-                        <div class="img contain">
-                          <img
                             src="assets/covid6.png"
-                            alt="COVID-19 dashboard, a later iteration"
+                            alt="COVID-19 dashboard, final iteration"
                           />
                         </div>
                       </div>
@@ -1573,14 +1666,20 @@
                   Aftonbladet · data journalism · public
                 </div>
                 <p class="piece-body" style="margin-top: 14px">
-                  Sweden's <strong>most-viewed</strong> COVID dashboard:
-                  [X] million views over [Y] years, maintained across the full
-                  arc of the pandemic. As the public story shifted, the
-                  dashboard was continually rebuilt to track what mattered at
-                  each stage, a live data product that had to keep evolving
-                  for years.
+                  Sweden's <strong>most-viewed</strong> COVID dashboard,
+                  maintained across the full arc of the pandemic. As the public
+                  story shifted, the dashboard was continually rebuilt to track
+                  what mattered at each stage, a live data product that had to
+                  keep evolving for years.
                 </p>
-                <div class="piece-foot"><a href="#">View →</a></div>
+                <div class="piece-foot">
+                  <a
+                    href="https://www.aftonbladet.se/nyheter/a/y3rdeA/coronaviruset-har-ar-de-senaste-siffrorna"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >View →</a
+                  >
+                </div>
               </div>
             </div>
           </div>
@@ -1597,30 +1696,29 @@
                   Omny · freelance · fixed-scope
                 </div>
                 <p class="piece-body" style="margin-top: 14px">
-                  A hierarchical map of physical infrastructure networks for a
-                  security platform: which systems connect where, and what
-                  depends on what. Built in <strong>Svelte and D3</strong> with
-                  a custom tree layout strategy, zooming, panning, and
-                  node/link highlighting. Delivered freelance, concept to
-                  production.
+                  The <strong>Zones and Conduits</strong> diagram inside Omny's
+                  security platform: a live network map that automatically
+                  categorises assets and visualises their communication
+                  pathways, built to enforce and audit segmentation under the
+                  <strong>ISA/IEC 62443</strong>
+                  industrial cybersecurity standard. Built in
+                  <strong>Svelte and D3</strong> with a custom treemap layout
+                  algorithm for nesting multiple asset levels inside zones, plus
+                  zoom, pan, and dependency highlighting. Delivered freelance,
+                  concept to production.
                 </p>
                 <div class="piece-foot">
-                  <span>Svelte · D3 · custom tree layout</span><span>Confidential</span>
+                  <span>Svelte · D3 · custom treemap layout</span>
                 </div>
               </div>
               <div class="showcase">
                 <div class="withheld-block">
-                  <div class="annot" data-target=".withheld">
-                    <span class="note"
-                      >client work under NDA; <em>abstracted screenshots on request</em></span
-                    >
-                  </div>
                   <div class="withheld" style="min-height: 240px; height: 100%">
                     <span class="wl">Confidential</span>
                     <span class="wn"
-                      >Client work under NDA. Happy to walk through the
-                      architecture, layout strategy, and interaction design
-                      during a call.</span
+                      >Client work under NDA. Abstracted walkthrough of the
+                      layout strategy and interaction design available on a
+                      call.</span
                     >
                   </div>
                 </div>
@@ -1628,51 +1726,31 @@
             </div>
           </div>
 
-          <!-- 04 · Disputed Borders · flip, showcase left -->
+          <!-- 04 · Anomaly Front Page · vertical title left, withheld right -->
           <div class="piece">
-            <div class="comp sc-right framed fr-br flip">
+            <div class="comp sc-right framed fr-br vt-left">
+              <div class="vhead-col vhead-anchor">
+                <span class="sq"></span><span class="num">04</span>
+                <h3 class="ttl">Anomaly Front Page</h3>
+              </div>
               <div class="showcase">
-                <div class="main figunit">
-                  <div class="img contain">
-                    <img
-                      src="assets/disputedareas.jpg"
-                      alt="Disputed Borders, small multiples overview of all contested regions"
-                    />
-                  </div>
-                  <div class="figcap">
-                    disputed borders and territories
+                <div class="withheld-block">
+                  <div class="withheld" style="min-height: 240px; height: 100%">
+                    <span class="wl">Confidential</span>
+                    <span class="wn"
+                      >Much of my best work supports internal decision-making
+                      and can't be shown publicly. Happy to discuss
+                      architecture, design decisions, and my role.</span
+                    >
                   </div>
                 </div>
               </div>
               <div class="txt">
-                <div class="head">
-                  <span class="sq"></span><span class="num">04</span>
-                  <h3 class="ttl">Disputed Borders</h3>
-                </div>
-                <div class="piece-meta" style="margin-top: 16px">
-                  Cartography · D3js · Observable
-                </div>
-                <p class="piece-body" style="margin-top: 14px">
-                  Makes disputed territories comparable at a glance for
-                  researchers and journalists covering geopolitics.
-                  <strong>Small multiples</strong> over one crowded map, each
-                  region normalised so sparse continents stay legible.
-                </p>
-                <div class="piece-foot"><a href="#">View →</a></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 05 · Anomaly Front Page · text left, withheld right -->
-          <div class="piece">
-            <div class="comp sc-right framed fr-bl">
-              <div class="txt">
-                <div class="head">
-                  <span class="sq"></span><span class="num">05</span>
-                  <h3 class="ttl">Anomaly Front Page</h3>
-                </div>
-                <div class="piece-meta" style="margin-top: 16px">
-                  Spotify · product · with data science · under NDA, ask me about it
+                <div class="piece-meta">
+                  Spotify · product · with data science ·
+                  <strong style="color: var(--red)"
+                    >the good stuff is under NDA; ask me about it</strong
+                  >
                 </div>
                 <p class="piece-body" style="margin-top: 14px">
                   <em style="color: var(--muted)">The problem:</em> surfacing
@@ -1691,195 +1769,161 @@
                   detection.
                 </p>
                 <div class="piece-foot">
-                  <span>Next.js · React · D3js</span><span>Confidential</span>
-                </div>
-              </div>
-              <div class="showcase">
-                <div class="withheld-block">
-                  <div class="annot" data-target=".withheld">
-                    <span class="note"
-                      >the good stuff is under NDA; <em>ask me about it</em></span
-                    >
-                  </div>
-                  <div class="withheld" style="min-height: 240px; height: 100%">
-                    <span class="wl">Confidential</span>
-                    <span class="wn"
-                      >Much of my best work supports internal decision-making and
-                      can't be shown publicly. Happy to discuss architecture,
-                      design decisions, and my role during a call.</span
-                    >
-                  </div>
+                  <span>Next.js · React · D3</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 06 · Stockholm New Builds · flip, showcase left -->
+          <!-- 05 · Disputed Borders · flip, showcase left -->
           <div class="piece">
-            <div class="comp sc-right framed fr-br flip">
+            <div class="comp sc-right framed fr-bl flip">
               <div class="showcase">
                 <div class="main figunit">
-                  <div class="img contain on-dark">
+                  <div class="img contain">
                     <img
-                      src="assets/3dmap.jpg"
-                      alt="Stockholm New Builds, 3D extrusion map showing a decade of new buildings"
+                      src="assets/disputedareas.jpg"
+                      alt="Disputed Borders, small multiples overview of all contested regions"
                     />
                   </div>
-                  <div class="figcap">stockholm new builds</div>
+                  <div class="figcap">disputed borders and territories</div>
                 </div>
               </div>
               <div class="txt">
                 <div class="head">
-                  <span class="sq"></span><span class="num">06</span>
-                  <h3 class="ttl">Stockholm New Builds</h3>
+                  <span class="sq"></span><span class="num">05</span>
+                  <h3 class="ttl">Disputed Borders</h3>
                 </div>
                 <div class="piece-meta" style="margin-top: 16px">
-                  3D geospatial · Three.js · Mapbox
+                  Cartography · D3 · Observable
                 </div>
                 <p class="piece-body" style="margin-top: 14px">
-                  Nearly 9,000 new buildings over a decade, heavily concentrated
-                  in the outer suburbs. <strong>3D extrusion</strong> turns
-                  abstract permit records into a physical landscape a non-expert
-                  audience can explore; the detail view reads as both a
-                  <strong>city silhouette and a bar chart</strong>.
+                  Makes disputed territories comparable at a glance for
+                  researchers and journalists covering geopolitics.
+                  <strong>Small multiples</strong> over one crowded map, each
+                  region normalised so sparse continents stay legible.
                 </p>
-                <div class="piece-foot"><span>Personal project · demo on request</span></div>
-                <div class="zoom figunit">
-                  <div class="img contain on-dark">
-                    <img
-                      src="assets/3dmapDetail.png"
-                      alt="Stockholm New Builds, city silhouette of building data, read simultaneously as a bar chart"
-                    />
-                  </div>
-                  <div class="figcap">Zoom: silhouette as bar chart</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 07 · Dependencies Graph · text left, showcase right -->
-          <div class="piece">
-            <div class="comp sc-right framed fr-bl">
-              <div class="txt">
-                <div class="head">
-                  <span class="sq"></span><span class="num">07</span>
-                  <h3 class="ttl">Dependencies Graph</h3>
-                </div>
-                <div class="piece-meta" style="margin-top: 16px">
-                  Product · dependency mapping · exploratory
-                </div>
-                <p class="piece-body" style="margin-top: 14px">
-                  Maps <strong>who depends on whom</strong> across initiatives;
-                  not just what's next on the roadmap. A first sketch took under
-                  an hour and surfaced connections a timeline couldn't; you lose
-                  the time dimension, but gain a view of the relationships that
-                  actually shape delivery. Highlighting incoming links lets you
-                  follow everything that feeds a single node.
-                </p>
-                <p class="piece-body" style="margin-top: 10px; font-style: italic; color: var(--muted)">
-                  Production version built for a product organisation (NDA);
-                  shown here with an ecosystem dataset. Layout, centrality
-                  sizing, and dependency highlighting are identical.
-                </p>
-                <div class="piece-foot"><a href="#">View →</a></div>
-                <div class="zoom-block">
-                  <div class="zoom figunit">
-                    <div class="zoom-media">
-                      <div class="annot" data-target=".zoom-highlight">
-                        <span class="note"
-                          >interactive version;
-                          <em>click to highlight deps</em></span
-                        >
-                      </div>
-                      <div class="img contain zoom-highlight">
-                        <img
-                          src="assets/network2.png"
-                          alt="Radial network chart, highlighting incoming connections to Grass"
-                        />
-                      </div>
-                    </div>
-                    <div class="figcap">Highlighting</div>
-                  </div>
-                </div>
-              </div>
-              <div class="showcase showcase-split">
-                <div class="main figunit">
-                  <div class="img contain">
-                    <img
-                      src="assets/network1.png"
-                      alt="Radial network chart, full ecosystem with carnivores, herbivores, producers, and decomposers"
-                    />
-                  </div>
-                  <div class="figcap">dependency network</div>
-                </div>
-                <p class="build-line">
-                  roadmaps show what's next; this shows what depends on what
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- 08 · Fantasy & War Dominate Board Games · flip, vertical title right -->
-          <div class="piece">
-            <div class="comp sc-right framed fr-br flip vt-right">
-              <div class="vhead-col vhead-right vhead-anchor">
-                <span class="sq"></span><span class="num">08</span>
-                <h3 class="ttl">Fantasy &amp; War Dominate Board Games</h3>
-              </div>
-              <div class="showcase showcase-split">
-                <div class="main figunit">
-                  <div class="img contain">
-                    <img
-                      src="assets/radialbarchart.jpg"
-                      alt="Fantasy and War Dominate Board Games, radial grouped bar chart overview"
-                    />
-                  </div>
-                  <div class="figcap">
-                    fantasy and war dominate board games
-                  </div>
-                </div>
-                <p class="piece-body showcase-body">
-                  A study in annotation and static communication: when the goal
-                  is explanation rather than exploration, the context has to live
-                  in the chart. After trying layouts that were clearly too
-                  complex, this settled as a
-                  <strong>radial grouped bar chart</strong>; readable enough,
-                  but with visual pull.
-                </p>
-              </div>
-              <div class="txt">
-                <div class="piece-meta">
-                  BoardGameGeek · personal · D3.js · Observable
-                </div>
-                <p class="piece-body" style="margin-top: 14px">
-                  A long-held idea, finally built. BoardGameGeek's dataset is
-                  <strong>large, opinion-driven, and messy</strong>; I wanted to
-                  see how the games I play relate to the roughly 30,000 on the
-                  site. Given how inconsistent the data is, starting with
-                  categories felt like a sensible first step... ha!
-                </p>
-                <div class="piece-link">
+                <div class="piece-foot">
                   <a
-                    href="https://observablehq.com/d/33703039e1484511"
+                    href="https://observablehq.com/d/a959ea8e5b1aa989"
                     target="_blank"
                     rel="noopener noreferrer"
                     >View →</a
                   >
                 </div>
-                <div class="piece-foot">
-                  <span>BGG data · hand-cleaned · all code</span>
-                </div>
-                <div class="zoom figunit">
-                  <div class="img contain">
-                    <img
-                      src="assets/radialbarchartdetail.png"
-                      alt="Fantasy and War Dominate Board Games, annotation detail on Fantasy/War sectors"
-                    />
-                  </div>
-                  <div class="figcap">Zoom: annotation detail</div>
-                </div>
               </div>
             </div>
+          </div>
+
+          <div class="also-built">
+            <h3>Also built</h3>
+            <div class="also-row">
+              <div class="img contain on-dark">
+                <img src="assets/3dmap.jpg" alt="Stockholm New Builds, 3D extrusion map" />
+              </div>
+              <div class="also-info">
+                <div class="also-head">
+                  <span class="also-num">06</span>
+                  <span class="also-title">Stockholm New Builds</span>
+                </div>
+                <div class="also-meta">3D geospatial · Three.js · Svelte</div>
+                <div class="also-desc">Nearly 9,000 new buildings over a decade as an explorable 3D landscape. The challenge was making abstract records physical: the detail view deliberately reads as both city silhouette and bar chart.</div>
+                <div class="also-link">Demo on request</div>
+              </div>
+            </div>
+            <div class="also-row">
+              <div class="img contain">
+                <img src="assets/network1.png" alt="Dependencies Graph, radial network chart" />
+              </div>
+              <div class="also-info">
+                <div class="also-head">
+                  <span class="also-num">07</span>
+                  <span class="also-title">Dependencies Graph</span>
+                </div>
+                <div class="also-meta">Product · reusable component · D3</div>
+                <div class="also-desc">A network component designed as a system, not a chart: fixed node positions across views, a category colour system, and highlight states that let one layout answer many questions. Documented with an ecosystem dataset; deployed internally to map product architecture.</div>
+                <div class="also-link">Production views under NDA · demo on request</div>
+              </div>
+            </div>
+            <div class="also-row">
+              <div class="img contain">
+                <img src="assets/radialbarchart.jpg" alt="Fantasy & War Dominate Board Games, radial grouped bar chart" />
+              </div>
+              <div class="also-info">
+                <div class="also-head">
+                  <span class="also-num">08</span>
+                  <span class="also-title">Board Game Taxonomy</span>
+                </div>
+                <div class="also-meta">Data study · D3 · Observable</div>
+                <div class="also-desc">A study in annotation and static communication, built on 30,000 messy, overlapping BoardGameGeek categories. When the goal is explanation rather than exploration, the context has to live in the chart.</div>
+                <div class="also-link"><a href="https://observablehq.com/d/33703039e1484511" target="_blank" rel="noopener noreferrer">View →</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="two-col">
+            <div>
+              <h3>Why clients bring me in</h3>
+              <ul class="checklist">
+                <li>
+                  Turn messy, high-stakes datasets into clear visual
+                  explanations
+                </li>
+                <li>
+                  Build production-ready interactive tools in React or Svelte,
+                  from concept to launch
+                </li>
+                <li>
+                  Go beyond what off-the-shelf BI and dashboard tools can do
+                </li>
+                <li>
+                  Work directly with researchers, journalists, analysts, and
+                  data scientists
+                </li>
+                <li>
+                  Accessible, responsive visualisations that hold up on
+                  low-bandwidth connections
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3>How we'd work together</h3>
+              <ul class="checklist">
+                <li>
+                  Fixed-scope projects: an interactive report, explainer,
+                  dashboard, or exploration tool with a defined deliverable
+                </li>
+                <li>
+                  Embedded engagements: joining your product or editorial team
+                  as a senior specialist
+                </li>
+                <li>
+                  Direct with NGOs and research teams, or as a subcontractor
+                  through studios and agencies
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="sec-head">
+            <h2>Tools & stack</h2>
+            <span class="rule"></span>
+          </div>
+          <div class="skills">
+            <span class="skill">React</span><span class="skill">Svelte</span
+            ><span class="skill">TypeScript</span><span class="skill">D3</span
+            ><span class="skill">Three.js</span
+            ><span class="skill">Observable</span
+            ><span class="skill">Vega-Lite</span
+            ><span class="skill">Tableau</span
+            ><span class="skill">Datawrapper</span
+            ><span class="skill">Flourish</span
+            ><span class="skill">Python · Pandas</span
+            ><span class="skill">Figma</span>
           </div>
         </div>
 
@@ -1920,8 +1964,8 @@
               </p>
               <p>
                 Most of that work happens inside organisations and can't be
-                shown publicly; the personal projects here show the range of
-                what I do independently. I work best where off-the-shelf BI
+                shown publicly; the independent projects here show the range of
+                what I build. I work best where off-the-shelf BI
                 tools stop being enough, collaborating closely with researchers,
                 data scientists, and journalists. In senior roles I've led
                 teams, mentored developers, and taught data visualisation
@@ -1930,22 +1974,25 @@
               <p>
                 I selectively work with NGOs, mission-driven organisations, and
                 teams handling complex or consequential data, in Sweden and
-                internationally. I work in English, Swedish, Polish, and French.
+                internationally. Alongside building tools, I organise
+                conversations about who data serves and how visualisation
+                practice shapes understanding. I work in English, Swedish,
+                Polish, and French.
               </p>
               <div class="about-cols">
                 <div>
                   <h3>Also</h3>
                   <ul>
                     <li>Founder, Explained studio</li>
-                    <li>Organiser, DataViz Stockholm</li>
-                    <li>Certified: PREP (Preparedness and Response Effectiveness Programme)</li>
+                    <li>Organiser, DataViz Stockholm meetup</li>
+                    <li>PREP certified (disaster preparedness)</li>
                   </ul>
                 </div>
                 <div>
                   <h3>Education</h3>
                   <ul>
                     <li>MSc Intelligent Systems, UCL</li>
-                    <li>MSc Disaster Management, University of Copenhagen</li>
+                    <li>Master of Disaster Management, University of Copenhagen</li>
                   </ul>
                 </div>
               </div>

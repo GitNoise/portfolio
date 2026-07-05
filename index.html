@@ -202,18 +202,6 @@
         margin-top: 3px;
       }
 
-      /* Section head */
-      .sec-head {
-        margin: 0 0 34px;
-        position: relative;
-        z-index: 1;
-      }
-      .sec-head h2 {
-        font-size: 13px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
       .section {
         margin-top: 120px;
         scroll-margin-top: 80px;
@@ -261,22 +249,6 @@
         font-size: clamp(48px, 6.5vw, 76px);
         color: color-mix(in srgb, var(--ink) 12%, transparent);
       }
-      .sc.t1 {
-        letter-spacing: -2.5px;
-      }
-      .sc.t2 {
-        letter-spacing: -0.5px;
-      }
-      .sc.t3 {
-        letter-spacing: 2px;
-      }
-      .sc.t4 {
-        letter-spacing: 4px;
-      }
-      .sc.t5 {
-        letter-spacing: 0.2em;
-      }
-
       /* Why + How sections */
       .two-col {
         display: grid;
@@ -419,24 +391,6 @@
       .piece-foot a:hover {
         text-decoration: underline;
         transform: translateX(3px);
-      }
-      .piece-link {
-        margin-top: 14px;
-        font-family: var(--mono);
-        font-size: 11px;
-      }
-      .piece-link a {
-        color: var(--red);
-        text-decoration: none;
-        display: inline-block;
-        transition: transform 100ms cubic-bezier(0.25, 1, 0.5, 1);
-      }
-      .piece-link a:hover {
-        text-decoration: underline;
-        transform: translateX(3px);
-      }
-      .piece-link + .piece-foot {
-        margin-top: 10px;
       }
 
       /* image placeholder */
@@ -625,15 +579,6 @@
         color: #d8d6cc;
       }
 
-      .colophon {
-        font-family: var(--mono);
-        font-size: 10px;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        padding: 24px 0 40px;
-      }
-
       /* Lightbox */
       .lightbox {
         display: none;
@@ -697,7 +642,8 @@
       }
       /* pin foot to column bottom on flip / vertical-title layouts only */
       .comp.flip > .txt > .piece-foot,
-      .comp.vt-left > .txt > .piece-foot {
+      .comp.vt-left > .txt > .piece-foot,
+      .comp.vt-right > .txt > .piece-foot {
         margin-top: auto;
         padding-top: 32px;
       }
@@ -767,6 +713,33 @@
         grid-column: 3;
         align-self: stretch;
       }
+      .comp.vt-right {
+        grid-template-columns: minmax(0, 1.72fr) minmax(280px, 1fr) auto;
+        align-items: stretch;
+      }
+      .comp.vt-right > .showcase {
+        grid-column: 1;
+        grid-row: 1 / -1;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      .comp.vt-right > .txt {
+        grid-column: 2;
+        grid-row: 1 / -1;
+        align-self: stretch;
+      }
+      .comp.vt-right > .vhead-anchor {
+        grid-column: 3;
+        grid-row: 1 / -1;
+      }
+      .comp.vt-right .withheld-block {
+        flex: 1;
+      }
+      .comp.vt-right .withheld-block .withheld {
+        flex: 1;
+      }
       /* zoom/detail under text; hero spans full height beside the text column */
       .txt .zoom {
         max-width: min(300px, 100%);
@@ -826,9 +799,6 @@
       }
       .comp:has(.zoom) .txt:not(.txt-vhead) .piece-foot {
         margin-top: 20px;
-      }
-      .comp:has(.zoom) .txt:not(.txt-vhead) .piece-link + .piece-foot {
-        margin-top: 10px;
       }
       /* showcase, each figunit is image + caption, moved as one block */
       .comp > .showcase:not(.row) {
@@ -1016,7 +986,7 @@
 
       /* Thumbnail strip */
       .thumb-strip {
-        margin-top: 48px;
+        margin-top: 96px;
       }
       .thumb-grid {
         display: grid;
@@ -1108,13 +1078,6 @@
         gap: 56px;
         align-items: start;
       }
-      .portrait {
-        border-radius: 50%;
-        filter: grayscale(1);
-        margin-bottom: 20px;
-        display: block;
-      }
-
       .about-lead {
         font-family: var(--narrow);
         font-size: 24px;
@@ -1211,12 +1174,6 @@
         border-color: var(--red);
         color: var(--red);
       }
-      .contact-addr {
-        font-family: var(--mono);
-        font-size: 13px;
-        color: var(--muted);
-      }
-
       @media (max-width: 860px) {
         .wrap {
           padding: 0 22px;
@@ -1291,7 +1248,8 @@
         .txt .zoom {
           max-width: none;
         }
-        .comp.vt-left > .vhead-anchor {
+        .comp.vt-left > .vhead-anchor,
+        .comp.vt-right > .vhead-anchor {
           order: 0;
         }
 
@@ -1373,14 +1331,24 @@
     </style>
   </head>
   <body>
-    <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <svg width="0" height="0" aria-hidden="true" style="position: absolute">
       <filter id="outline">
-        <feMorphology in="SourceAlpha" operator="dilate" radius="0.4" result="dilated"/>
-        <feFlood flood-color="#111" flood-opacity="0.7" result="outlineColor"/>
-        <feComposite in="outlineColor" in2="dilated" operator="in" result="outline"/>
+        <feMorphology
+          in="SourceAlpha"
+          operator="dilate"
+          radius="0.4"
+          result="dilated"
+        />
+        <feFlood flood-color="#111" flood-opacity="0.7" result="outlineColor" />
+        <feComposite
+          in="outlineColor"
+          in2="dilated"
+          operator="in"
+          result="outline"
+        />
         <feMerge>
-          <feMergeNode in="outline"/>
-          <feMergeNode in="SourceGraphic"/>
+          <feMergeNode in="outline" />
+          <feMergeNode in="SourceGraphic" />
         </feMerge>
       </filter>
     </svg>
@@ -1648,11 +1616,11 @@
                   turns it into a live, interactive map: assets are
                   automatically categorised and their communication pathways
                   visualised against the <mark>ISA/IEC 62443</mark> standard. A
-                  custom treemap layout nests multiple asset levels inside
-                  zones. Delivered freelance, concept to production.
+                  custom tree layout nests multiple asset levels inside zones.
+                  Delivered freelance, concept to production.
                 </p>
                 <div class="piece-foot">
-                  <span>Svelte · D3 · custom treemap layout</span>
+                  <span>Svelte · D3 · custom tree layout</span>
                 </div>
               </div>
               <div class="showcase">
@@ -1670,29 +1638,16 @@
             </div>
           </div>
 
-          <!-- 04 · Anomaly Front Page · vertical title left, withheld right -->
+          <!-- 04 · Anomaly Front Page · vertical title right -->
           <div class="piece">
-            <div class="comp sc-right framed fr-br vt-left">
+            <div class="comp sc-right framed fr-br vt-right">
               <div class="vhead-col vhead-anchor">
                 <span class="sq"></span><span class="num">04</span>
                 <h3 class="ttl">Anomaly Front Page</h3>
               </div>
-              <div class="showcase">
-                <div class="withheld-block">
-                  <div class="withheld withheld-fill">
-                    <span class="wl">Confidential</span>
-                    <span class="wn"
-                      >Much of my best work supports internal decision-making
-                      and can't be shown publicly. Happy to discuss
-                      architecture, design decisions, and my role.</span
-                    >
-                  </div>
-                </div>
-              </div>
               <div class="txt">
                 <div class="piece-meta">
-                  Spotify · product · with data science ·
-                  <mark>the good stuff is under NDA; ask me about it</mark>
+                  Spotify · product · with data science
                 </div>
                 <p class="piece-body">
                   <em class="k">The problem:</em> surfacing the anomalies that
@@ -1710,6 +1665,18 @@
                 </p>
                 <div class="piece-foot">
                   <span>Next.js · React · D3</span>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="withheld-block">
+                  <div class="withheld withheld-fill">
+                    <span class="wl">Confidential</span>
+                    <span class="wn"
+                      >Much of my best work supports internal decision-making
+                      and can't be shown publicly. Happy to discuss
+                      architecture, design decisions, and my role.</span
+                    >
+                  </div>
                 </div>
               </div>
             </div>
@@ -1761,7 +1728,6 @@
           </div>
 
           <div class="also-built">
-            <h3>Also built</h3>
             <div class="also-grid">
               <div class="also-row">
                 <div
@@ -2014,8 +1980,7 @@
         <div class="section outro">
           <p class="outro-line">
             Working on data that needs to be clear?
-            <a href="mailto:patrickwojda@yahoo.com">Email me</a> – directly, or
-            through your studio.
+            <a href="mailto:patrickwojda@yahoo.com">Email me</a>
           </p>
         </div>
 
@@ -2023,34 +1988,27 @@
           <section class="about">
             <div>
               <p class="about-lead">
-                Data visualisation is never neutral. Every dataset has
+                Data visualisation is never neutral. <br />Every dataset has
                 boundaries someone drew, and every tool carries the assumptions
-                of its design. That belief shapes the work I do.
+                of its design.<br /><br />That belief shapes the work I do.
               </p>
             </div>
             <div class="about-body">
               <p>
-                Hi, I'm Patrick. I've built
-                <mark>humanitarian knowledge systems</mark> for the
-                <mark>United Nations</mark>, Sweden's most-viewed
-                <mark>COVID dashboard</mark> for Aftonbladet, and the
-                <mark>financial analytics tools</mark> used across
-                <mark>Spotify</mark> Finance. Today I lead the visualisation
-                layer at <mark>Datastory</mark>.
+                Hi, I'm Patrick. I've built humanitarian knowledge systems for
+                the United Nations, Sweden's most-viewed COVID dashboard for
+                Aftonbladet, and financial analytics tools used across Spotify
+                Finance. Today I lead the visualisation layer at Datastory.
               </p>
               <p>
                 I work best where
                 <mark>off-the-shelf BI tools stop being enough</mark>,
-                collaborating with
-                <mark>researchers, data scientists, and journalists</mark>
-                on complex or consequential data. I've also worked inside the
-                <mark>UN system</mark> (UNOPS, 2009–11), hold a
-                <mark>Master of Disaster Management</mark>, and build to the
-                constraints that matter in the field:
-                <mark>accessibility</mark>,
-                <mark>low-bandwidth performance</mark>, and
-                <mark>multilingual audiences</mark>. I work in English, Swedish,
-                Polish, and French.
+                collaborating with researchers, data scientists, and journalists
+                on complex or consequential data. I've also worked inside the UN
+                system (UNOPS, 2009–11), hold a Master of Disaster Management,
+                and build to the constraints that matter in the field:
+                accessibility, low-bandwidth performance, and multilingual
+                audiences. I work in English, Swedish, Polish, and French.
               </p>
               <div class="about-cols">
                 <div>

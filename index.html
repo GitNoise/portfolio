@@ -23,6 +23,28 @@
       property="og:image"
       content="https://gitnoise.github.io/portfolio/assets/erosion1.jpg"
     />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Patrick Wojda – Data Visualisation Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Interactive tools and data stories for NGOs, research teams, and newsrooms."
+    />
+    <meta
+      name="twitter:image"
+      content="https://gitnoise.github.io/portfolio/assets/erosion1.jpg"
+    />
+    <link
+      rel="canonical"
+      href="https://gitnoise.github.io/portfolio/"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='2' fill='%23e2216a'/></svg>"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800;900&family=Fragment+Mono&display=swap"
       rel="stylesheet"
@@ -62,7 +84,9 @@
         margin: 0 auto;
         padding: 0 44px;
       }
-      mark {
+      mark,
+      .piece-body strong,
+      .clients-intro strong {
         background: transparent;
         color: var(--red);
         font-weight: 700;
@@ -369,9 +393,9 @@
         line-height: 1.5;
         color: #333333;
       }
-      .piece-body strong {
-        font-weight: 600;
+      .about-body strong {
         color: var(--red);
+        font-weight: 700;
       }
       .piece-foot {
         font-family: var(--mono);
@@ -401,7 +425,7 @@
         display: flex;
         align-items: flex-end;
         min-height: 80px;
-        border: 1px solid var(--line);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 8px rgba(0, 0, 0, 0.03);
       }
       .img img {
         width: 100%;
@@ -416,7 +440,7 @@
       }
       .img.contain.on-dark {
         background: #0a0a0a;
-        border: 1px solid var(--ink);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 8px rgba(0, 0, 0, 0.06);
       }
       .img.contain img {
         height: auto;
@@ -580,6 +604,11 @@
       }
 
       /* Lightbox */
+      html.lb-open,
+      html.lb-open body {
+        overflow: hidden;
+        touch-action: none;
+      }
       .lightbox {
         display: none;
         position: fixed;
@@ -590,6 +619,7 @@
         align-items: center;
         justify-content: center;
         padding: 40px;
+        overscroll-behavior: contain;
       }
       .lightbox.is-open {
         display: flex;
@@ -851,7 +881,7 @@
         flex-direction: column;
         gap: 0;
         min-width: 0;
-        border: 1px solid var(--line);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 8px rgba(0, 0, 0, 0.03);
         background: #fff;
       }
       .imgrid .figunit {
@@ -903,7 +933,7 @@
         overflow: hidden;
         position: relative;
         background-color: #f0f0f0;
-        border: 1px solid var(--line);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 8px rgba(0, 0, 0, 0.03);
         cursor: zoom-in;
       }
       .also-row .img::before {
@@ -942,6 +972,7 @@
         font-size: 20px;
         font-weight: 800;
         letter-spacing: -0.5px;
+        margin: 0;
       }
       .also-info .also-meta {
         font-family: var(--mono);
@@ -1003,7 +1034,7 @@
         overflow: hidden;
         position: relative;
         background-color: #f0f0f0;
-        border: 1px solid var(--line);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 8px rgba(0, 0, 0, 0.03);
         cursor: zoom-in;
       }
       .thumb-item .thumb-img::before {
@@ -1328,6 +1359,38 @@
           gap: 32px 28px;
         }
       }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @media print {
+        .topbar {
+          position: static;
+          border-bottom: 1px solid #000;
+        }
+        .lightbox {
+          display: none !important;
+        }
+        .comp .img:hover img {
+          transform: none;
+        }
+        .also-row .img:hover::before {
+          transform: none;
+        }
+        body {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1354,15 +1417,15 @@
     </svg>
     <a href="#main" class="skip-link">Skip to content</a>
     <div class="wrap">
-      <div class="topbar">
-        <span class="mark"><span class="sq"></span> Patrick Wojda</span>
+      <header class="topbar">
+        <span class="mark"><span class="sq" aria-hidden="true"></span> Patrick Wojda</span>
         <nav class="topnav" aria-label="Primary">
           <a href="#work">Work</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
         <span class="loc">Stockholm</span>
-      </div>
+      </header>
 
       <main id="main">
         <section class="hero">
@@ -1382,15 +1445,15 @@
         </section>
         <div class="hero-facts">
           <span class="fact"
-            ><span class="sqs"></span> 20+ years frontend · 10+ years
+            ><span class="sqs" aria-hidden="true"></span> 20+ years frontend · 10+ years
             dataviz</span
           >
           <span class="fact"
-            ><span class="sqs"></span> Built Sweden's most-viewed COVID
+            ><span class="sqs" aria-hidden="true"></span> Built Sweden's most-viewed COVID
             dashboard</span
           >
           <span class="fact"
-            ><span class="sqs"></span> Previously Spotify, UN, Aftonbladet
+            ><span class="sqs" aria-hidden="true"></span> Previously Spotify, UN, Aftonbladet
             (Sweden's largest news site)</span
           >
         </div>
@@ -1416,9 +1479,10 @@
         </div>
 
         <div class="section">
+          <h2 class="sr-only">Clients</h2>
           <p class="clients-intro">
             Most of what I build is internal:
-            <mark>exploratory tools, dashboards, and analysis interfaces</mark>
+            <strong>exploratory tools, dashboards, and analysis interfaces</strong>
             that teams use to find answers rather than read conclusions. The
             work is confidential; the clients are not.
           </p>
@@ -1482,23 +1546,23 @@
         </div>
 
         <div class="section" id="work">
-          <!-- 01 · Erosion of European Democracy · text left, showcase right -->
+          <h2 class="sr-only">Selected work</h2>
           <div class="piece">
             <div class="comp sc-right">
               <div class="txt">
                 <div class="head">
-                  <span class="sq"></span><span class="num">01</span>
+                  <span class="sq" aria-hidden="true"></span><span class="num">01</span>
                   <h3 class="ttl">Erosion of European Democracy</h3>
                 </div>
                 <div class="piece-meta">
                   governance · V-Dem · data exploration · explained.media
                 </div>
                 <p class="piece-body">
-                  A <mark>V-Dem exploration</mark>: a series of views built to
+                  A <strong>V-Dem exploration</strong>: a series of views built to
                   answer different questions rather than one chart. A diverging
-                  <mark>heatmap</mark> makes year-on-year change scannable by
+                  <strong>heatmap</strong> makes year-on-year change scannable by
                   country. A slope chart widens the lens to the full
-                  <mark>Europe-and-Caucasus region</mark>: 32 countries
+                  <strong>Europe-and-Caucasus region</strong>: 32 countries
                   backsliding, 11 improving, between 2012 and 2022.
                 </p>
                 <div class="piece-foot">
@@ -1510,6 +1574,9 @@
                       <img
                         src="assets/democracy2.png"
                         alt="Europe's democratic backsliding, slope chart comparing liberal democracy scores in 2012 and 2022"
+                        width="1264"
+                        height="1184"
+                        loading="lazy"
                       />
                     </div>
                   </div>
@@ -1519,12 +1586,14 @@
               <div class="showcase showcase-split">
                 <div class="main figunit">
                   <div class="img contain on-dark">
-                    <img
-                      src="assets/erosion1.jpg"
-                      alt="Erosion of European democracy, diverging heatmap of year-on-year democratic score changes by region, 1980–2022"
-                    />
+                      <img
+                        src="assets/erosion1.jpg"
+                        alt="Erosion of European democracy, diverging heatmap of year-on-year democratic score changes by region, 1980–2022"
+                        width="1080"
+                        height="1349"
+                        loading="lazy"
+                      />
                   </div>
-                  <!-- TODO: re-export image without stray warning icon; add legend swatch for black cells ("no data — state not yet independent") -->
                   <div class="figcap">
                     erosion of european democracy – 39 european countries,
                     change since 2011
@@ -1550,6 +1619,9 @@
                           <img
                             src="assets/covid1.jpg"
                             alt="COVID-19 dashboard, earliest iteration"
+                            width="1080"
+                            height="1155"
+                            loading="lazy"
                           />
                         </div>
                       </div>
@@ -1560,6 +1632,9 @@
                           <img
                             src="assets/covid6.png"
                             alt="COVID-19 dashboard, final iteration"
+                            width="1328"
+                            height="1760"
+                            loading="lazy"
                           />
                         </div>
                       </div>
@@ -1572,14 +1647,14 @@
               </div>
               <div class="txt">
                 <div class="head">
-                  <span class="sq"></span><span class="num">02</span>
+                  <span class="sq" aria-hidden="true"></span><span class="num">02</span>
                   <h3 class="ttl">Covid-19 Dashboard</h3>
                 </div>
                 <div class="piece-meta">
                   public health · Aftonbladet · crisis communication · public
                 </div>
                 <p class="piece-body">
-                  Sweden's <mark>most-viewed</mark> COVID dashboard, maintained
+                  Sweden's <strong>most-viewed</strong> COVID dashboard, maintained
                   across the full arc of the pandemic. As the public story
                   shifted, the dashboard was continually rebuilt to track what
                   mattered at each stage, a live data product that had to keep
@@ -1605,17 +1680,17 @@
             <div class="comp sc-right">
               <div class="txt">
                 <div class="head">
-                  <span class="sq"></span><span class="num">03</span>
+                  <span class="sq" aria-hidden="true"></span><span class="num">03</span>
                   <h3 class="ttl">Infrastructure Security Map</h3>
                 </div>
                 <div class="piece-meta">Omny · freelance · fixed-scope</div>
                 <p class="piece-body">
                   Industrial networks are segmented into zones for safety, but
                   most teams audit that segmentation in spreadsheets. The
-                  <mark>Zones and Conduits</mark> diagram inside Omny's platform
+                  <strong>Zones and Conduits</strong> diagram inside Omny's platform
                   turns it into a live, interactive map: assets are
                   automatically categorised and their communication pathways
-                  visualised against the <mark>ISA/IEC 62443</mark> standard. A
+                  visualised against the <strong>ISA/IEC 62443</strong> standard. A
                   custom tree layout nests multiple asset levels inside zones.
                   Delivered freelance, concept to production.
                 </p>
@@ -1642,7 +1717,7 @@
           <div class="piece">
             <div class="comp sc-right vt-right">
               <div class="vhead-col vhead-anchor">
-                <span class="sq"></span><span class="num">04</span>
+                <span class="sq" aria-hidden="true"></span><span class="num">04</span>
                 <h3 class="ttl">Anomaly Front Page</h3>
               </div>
               <div class="txt">
@@ -1656,7 +1731,7 @@
                     >The approach:</em
                   >
                   a monitoring tool structured as a
-                  <mark>newspaper front page</mark>, auto-generated text turns
+                  <strong>newspaper front page</strong>, auto-generated text turns
                   detected outliers into ranked, readable stories, some shared
                   across teams, some personalised, each linked to a root-cause
                   view.<br /><em class="k">Built</em>
@@ -1691,6 +1766,9 @@
                     <img
                       src="assets/disputedareas.jpg"
                       alt="Disputed Borders, small multiples overview of all contested regions"
+                      width="1440"
+                      height="1606"
+                      loading="lazy"
                     />
                   </div>
                   <div class="figcap">disputed borders and territories</div>
@@ -1698,7 +1776,7 @@
               </div>
               <div class="txt">
                 <div class="head">
-                  <span class="sq"></span><span class="num">05</span>
+                  <span class="sq" aria-hidden="true"></span><span class="num">05</span>
                   <h3 class="ttl">Disputed Borders</h3>
                 </div>
                 <div class="piece-meta">
@@ -1708,7 +1786,7 @@
                   Makes disputed territories comparable at a glance for
                   researchers and journalists covering geopolitics. Every
                   contested region on one page, normalised so the reader can
-                  compare <mark>scale, shape, and context</mark>
+                  compare <strong>scale, shape, and context</strong>
                   without switching between zoomed-in views.
                 </p>
                 <p class="build-line">
@@ -1740,7 +1818,7 @@
                 <div class="also-info">
                   <div class="also-head">
                     <span class="also-num">06</span>
-                    <span class="also-title">Stockholm New Builds</span>
+                    <h3 class="also-title">Stockholm New Builds</h3>
                   </div>
                   <div class="also-meta">
                     urban policy · 3D geospatial · Three.js · Svelte
@@ -1765,7 +1843,7 @@
                 <div class="also-info">
                   <div class="also-head">
                     <span class="also-num">07</span>
-                    <span class="also-title">Network Explorer</span>
+                    <h3 class="also-title">Network Explorer</h3>
                   </div>
                   <div class="also-meta">Product · reusable component · D3</div>
                   <div class="also-desc">
@@ -1792,7 +1870,7 @@
                 <div class="also-info">
                   <div class="also-head">
                     <span class="also-num">08</span>
-                    <span class="also-title">Board Game Taxonomy</span>
+                    <h3 class="also-title">Board Game Taxonomy</h3>
                   </div>
                   <div class="also-meta">Data study · D3 · Observable</div>
                   <div class="also-desc">
@@ -1822,7 +1900,7 @@
                 <div class="also-info">
                   <div class="also-head">
                     <span class="also-num">09</span>
-                    <span class="also-title">Unga Mördare</span>
+                    <h3 class="also-title">Unga Mördare</h3>
                   </div>
                   <div class="also-meta">
                     Aftonbladet · investigation · data journalism
@@ -1932,10 +2010,11 @@
         </div>
 
         <div class="section">
+          <h2 class="sr-only">Working together</h2>
           <div class="two-col">
             <div>
               <h3>Why clients bring me in</h3>
-              <ul class="checklist">
+              <ul class="checklist" role="list">
                 <li>
                   Turn messy, high-stakes datasets into clear visual
                   explanations
@@ -1959,7 +2038,7 @@
             </div>
             <div>
               <h3>How we'd work together</h3>
-              <ul class="checklist">
+              <ul class="checklist" role="list">
                 <li>
                   Fixed-scope projects: an interactive report, explainer,
                   dashboard, or exploration tool with a defined deliverable
@@ -1984,8 +2063,9 @@
           </p>
         </div>
 
-        <div class="section" id="about">
-          <section class="about">
+        <section class="section" id="about">
+          <h2 class="sr-only">About</h2>
+          <div class="about">
             <div>
               <p class="about-lead">
                 Data visualisation is never neutral. <br />Every dataset has
@@ -2002,7 +2082,7 @@
               </p>
               <p>
                 I work best where
-                <mark>off-the-shelf BI tools stop being enough</mark>,
+                <strong>off-the-shelf BI tools stop being enough</strong>,
                 collaborating with researchers, data scientists, and journalists
                 on complex or consequential data. I've also worked inside the UN
                 system (UNOPS, 2009–11), hold a Master of Disaster Management,
@@ -2013,7 +2093,7 @@
               <div class="about-cols">
                 <div>
                   <h3>Also</h3>
-                  <ul>
+                  <ul role="list">
                     <li>Founder, Explained studio</li>
                     <li>Organiser, DataViz Stockholm meetup</li>
                     <li>PREP certified (disaster preparedness)</li>
@@ -2021,7 +2101,7 @@
                 </div>
                 <div>
                   <h3>Education</h3>
-                  <ul>
+                  <ul role="list">
                     <li>MSc Intelligent Systems, UCL</li>
                     <li>
                       Master of Disaster Management, University of Copenhagen
@@ -2030,10 +2110,10 @@
                 </div>
               </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
 
-        <div class="contact" id="contact">
+        <footer class="contact" id="contact">
           <h2>Let's <em>talk.</em></h2>
           <div class="contact-links">
             <a href="mailto:patrickwojda@yahoo.com">Email</a>
@@ -2056,48 +2136,78 @@
               >Observable</a
             >
           </div>
-        </div>
+        </footer>
       </main>
     </div>
 
-    <div class="lightbox" id="lightbox">
+    <div class="lightbox" id="lightbox" tabindex="-1">
       <img id="lightbox-img" src="" alt="" />
+      <button id="lightbox-close" class="sr-only" type="button">Close image preview</button>
     </div>
 
     <script>
       const lb = document.getElementById("lightbox");
       const lbImg = document.getElementById("lightbox-img");
-      function openLb(src, alt) {
+      let lbTrigger = null;
+      function openLb(src, alt, trigger) {
+        lbTrigger = trigger || null;
         lbImg.src = src;
         lbImg.alt = alt;
         lb.classList.add("is-open");
-        document.body.style.overflow = "hidden";
+        lb.setAttribute("role", "dialog");
+        lb.setAttribute("aria-modal", "true");
+        lb.setAttribute("aria-label", alt || "Image preview");
+        document.documentElement.classList.add("lb-open");
+        lb.focus();
       }
       function closeLb() {
         lb.classList.remove("is-open");
-        document.body.style.overflow = "";
-        if (document.activeElement) document.activeElement.blur();
+        lb.removeAttribute("aria-modal");
+        document.documentElement.classList.remove("lb-open");
+        if (lbTrigger) {
+          lbTrigger.focus();
+          lbTrigger = null;
+        }
       }
       document
         .querySelectorAll(".showcase img, .zoom-media img")
         .forEach((img) => {
           img.style.cursor = "zoom-in";
+          img.setAttribute("tabindex", "0");
           img.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            openLb(img.src, img.alt);
+            openLb(img.src, img.alt, img);
+          });
+          img.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openLb(img.src, img.alt, img);
+            }
           });
         });
       document.querySelectorAll("[data-src]").forEach((div) => {
+        div.setAttribute("tabindex", "0");
         div.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
-          openLb(div.dataset.src, div.getAttribute("aria-label") || "");
+          openLb(div.dataset.src, div.getAttribute("aria-label") || "", div);
+        });
+        div.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openLb(div.dataset.src, div.getAttribute("aria-label") || "", div);
+          }
         });
       });
       lb.addEventListener("click", closeLb);
+      document.getElementById("lightbox-close").addEventListener("click", closeLb);
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeLb();
+        if (lb.classList.contains("is-open") && e.key === "Tab") {
+          e.preventDefault();
+          lb.focus();
+        }
       });
     </script>
   </body>

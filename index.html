@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Hand-built: vanilla HTML/CSS/JS, no framework. Newsreader / Familjen Grotesk / Fragment Mono. Stockholm, 2026. -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -23,7 +24,7 @@
       content="https://gitnoise.github.io/portfolio/assets/erosion1.jpg"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800;900&family=Fragment+Mono&family=Familjen+Grotesk:wght@600;700&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -34,7 +35,7 @@
       }
 
       :root {
-        --paper: #fcfcfc;
+        --paper: #f7f9fc;
         --ink: #111111;
         --red: #e2216a;
         --red-block: color-mix(in srgb, var(--red) 80%, transparent);
@@ -42,7 +43,8 @@
         --muted: #555555;
         --disp: "Newsreader", Georgia, serif;
         --narrow: "Inter", system-ui, sans-serif;
-        --mono: "JetBrains Mono", monospace;
+        --mono: "Fragment Mono", monospace;
+        --grot: "Familjen Grotesk", "Archivo", sans-serif;
       }
 
       body {
@@ -52,15 +54,6 @@
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
-      }
-      body::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        opacity: 0.025;
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
-        z-index: 9999;
       }
       .wrap {
         max-width: 1080px;
@@ -83,7 +76,7 @@
         position: sticky;
         top: 0;
         background: var(--paper);
-        z-index: 20;
+        z-index: 100;
       }
       .topbar .mark {
         display: flex;
@@ -142,10 +135,10 @@
         align-items: end;
       }
       .hero h1 {
-        font-size: 78px;
+        font-size: clamp(64px, 9vw, 110px);
         font-weight: 800;
         line-height: 0.92;
-        letter-spacing: -2.5px;
+        letter-spacing: -3px;
       }
       .hero h1 .blk {
         display: inline-block;
@@ -195,10 +188,9 @@
 
       /* Section head */
       .sec-head {
-        display: flex;
-        align-items: baseline;
-        gap: 18px;
-        margin: 0 0 26px;
+        margin: 0 0 34px;
+        position: relative;
+        z-index: 1;
       }
       .sec-head h2 {
         font-size: 13px;
@@ -206,62 +198,30 @@
         text-transform: uppercase;
         letter-spacing: 2px;
       }
-      .sec-head .rule {
-        flex: 1;
-        height: 1px;
-        background: var(--ink);
-        align-self: center;
-      }
-      .sec-head .count {
-        font-family: var(--mono);
-        font-size: 11px;
-        color: var(--muted);
-      }
       .section {
-        margin-top: 76px;
+        margin-top: 120px;
         scroll-margin-top: 80px;
+        position: relative;
+      }
+      .ghost {
+        position: absolute;
+        top: -40px;
+        right: -60px;
+        font-family: var(--disp);
+        font-style: italic;
+        font-weight: 700;
+        font-size: clamp(120px, 18vw, 220px);
+        line-height: 1;
+        color: color-mix(in srgb, var(--ink) 5%, transparent);
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+        white-space: nowrap;
       }
       #contact {
         scroll-margin-top: 80px;
       }
 
-      /* What I do */
-      .offer {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 44px;
-        align-items: start;
-      }
-      .offer-lead {
-        font-family: var(--narrow);
-        font-size: 21px;
-        line-height: 1.45;
-        color: var(--ink);
-      }
-      .offer-list {
-        list-style: none;
-      }
-      .offer-list li {
-        font-family: var(--narrow);
-        font-size: 16px;
-        line-height: 1.5;
-        color: #333333;
-        padding: 9px 0 9px 22px;
-        position: relative;
-        border-top: 1px solid var(--line);
-      }
-      .offer-list li:first-child {
-        border-top: none;
-      }
-      .offer-list li::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 15px;
-        width: 8px;
-        height: 8px;
-        background: var(--red-block);
-      }
       .build-line {
         font-family: var(--mono);
         font-size: 13px;
@@ -320,18 +280,15 @@
         color: #333333;
         padding: 8px 0 8px 24px;
         position: relative;
-        border-top: 1px solid var(--line);
-      }
-      .checklist li:first-child {
-        border-top: none;
       }
       .checklist li::before {
-        content: "✔";
+        content: "";
         position: absolute;
         left: 0;
-        top: 8px;
-        color: var(--red);
-        font-size: 13px;
+        top: 13px;
+        width: 8px;
+        height: 8px;
+        background: var(--red-block);
       }
 
       /* Client work */
@@ -341,7 +298,7 @@
         line-height: 1.5;
         color: #333333;
         max-width: 640px;
-        margin-bottom: 30px;
+        margin-bottom: 44px;
       }
       .clients-intro strong {
         font-weight: 600;
@@ -350,13 +307,10 @@
       .clients-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        border-top: 1px solid var(--ink);
-        border-left: 1px solid var(--line);
+        gap: 40px 48px;
       }
       .client {
-        border-right: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        padding: 20px 20px 26px;
+        padding: 0;
       }
       .client-tag {
         font-family: var(--mono);
@@ -382,6 +336,7 @@
       /* ===== Gallery, editorial compositions ===== */
       .piece {
         position: relative;
+        z-index: 1;
         padding: 64px 0;
       }
 
@@ -473,16 +428,6 @@
         }
       }
 
-      .piece-title {
-        font-size: 34px;
-        font-weight: 800;
-        letter-spacing: -1px;
-        line-height: 1;
-      }
-      .piece-title .n {
-        color: var(--red);
-        font-weight: 900;
-      }
       .piece-meta {
         font-family: var(--mono);
         font-size: 11px;
@@ -594,16 +539,6 @@
         flex: 1;
       }
 
-      /* placeholder labels */
-      .ph-label {
-        font-family: var(--mono);
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        padding: 14px;
-        line-height: 1.4;
-        color: #888888;
-      }
 
       /* figure caption, quiet margin note */
       .figcap {
@@ -637,9 +572,9 @@
         position: relative;
         z-index: 1;
         display: block;
-        font-family: var(--mono);
+        font-family: var(--grot);
         font-size: 13px;
-        font-weight: 500;
+        font-weight: 600;
         letter-spacing: 1px;
         color: var(--ink);
         margin-bottom: 8px;
@@ -680,8 +615,9 @@
         z-index: 1;
         writing-mode: vertical-rl;
         transform: rotate(180deg);
-        font-family: var(--mono);
+        font-family: var(--grot);
         font-size: 13px;
+        font-weight: 600;
         letter-spacing: 1px;
         color: var(--ink);
       }
@@ -696,15 +632,6 @@
         color: var(--ink);
         line-height: 1;
         margin: 0;
-      }
-      /* vertical header on the outer right edge */
-      .vhead-col.vhead-right {
-        padding-left: 0;
-        padding-right: 4px;
-      }
-      .vhead-col.vhead-right .sq {
-        left: auto;
-        right: -14px;
       }
       /* vertical title as outer-margin anchor (full piece height) */
       .vhead-col.vhead-anchor {
@@ -726,6 +653,7 @@
         justify-content: space-between;
         gap: 14px;
       }
+      .withheld-fill { min-height: 240px; height: 100%; }
       .withheld .wl {
         font-family: var(--mono);
         font-size: 10px;
@@ -740,13 +668,36 @@
         color: #d8d6cc;
       }
 
-      /* big numeral */
+      .colophon {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 24px 0 40px;
+      }
+
+      /* stat block */
+      .stat-block { margin-top: 20px; }
       .bignum {
-        font-size: 90px;
-        font-weight: 900;
+        font-family: var(--grot);
+        font-size: clamp(96px, 14vw, 180px);
+        font-weight: 700;
         line-height: 0.8;
+        letter-spacing: -4px;
         color: var(--red);
-        letter-spacing: -3px;
+        display: block;
+      }
+      .bignum .of { font-size: 0.45em; color: var(--ink); letter-spacing: -2px; }
+      .stat-cap {
+        font-family: var(--mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--muted);
+        display: block;
+        max-width: 30ch;
+        margin-top: 10px;
       }
 
       /* layouts, showcase is the dominant column; text is capped narrow */
@@ -784,14 +735,17 @@
       }
       /* pin foot to column bottom on flip / vertical-title layouts only */
       .comp.flip > .txt > .piece-foot,
-      .comp.vt-left > .txt > .piece-foot,
-      .comp.vt-right > .txt > .piece-foot {
+      .comp.vt-left > .txt > .piece-foot {
         margin-top: auto;
         padding-top: 32px;
       }
       .piece-body {
         max-width: 38ch;
       }
+      .head + .piece-meta, .vhead-col ~ .txt .piece-meta { margin-top: 16px; }
+      .piece-meta + .piece-body { margin-top: 14px; }
+      .piece-meta + .stat-block { margin-top: 16px; }
+      .stat-block + .piece-body { margin-top: 14px; }
       .comp.sc-left,
       .comp.sc-right {
         grid-template-columns: minmax(280px, 1fr) minmax(0, 1.72fr);
@@ -847,23 +801,6 @@
       .comp.vt-left > .txt {
         grid-column: 3;
         align-self: stretch;
-      }
-      .comp.vt-right {
-        grid-template-columns: minmax(280px, 1fr) minmax(0, 1.72fr) auto;
-        align-items: stretch;
-      }
-      .comp.vt-right > .txt {
-        grid-column: 1;
-        align-self: stretch;
-      }
-      .comp.vt-right > .showcase {
-        grid-column: 2;
-        grid-row: 1 / -1;
-        align-self: stretch;
-      }
-      .comp.vt-right > .vhead-anchor {
-        grid-column: 3;
-        grid-row: 1 / -1;
       }
       /* zoom/detail under text; hero spans full height beside the text column */
       .txt .zoom {
@@ -1021,21 +958,11 @@
         display: block;
         object-fit: contain;
       }
-      /* piece 1 (Spotify), text + confidential panel */
-      .comp-1 {
-        grid-template-columns: 1.1fr 1fr;
-        gap: 20px;
-      }
-      .comp-1 .txt {
-        padding-right: 10px;
-      }
-      .comp-1 .withheld {
-        min-height: 220px;
-      }
-
       /* Also built strip */
       .also-built {
         margin-top: 48px;
+        position: relative;
+        z-index: 1;
       }
       .also-built h3 {
         font-family: var(--mono);
@@ -1044,16 +971,15 @@
         letter-spacing: 1.5px;
         color: var(--muted);
         margin-bottom: 24px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid var(--line);
       }
       .also-row {
         display: grid;
-        grid-template-columns: 120px 1fr;
-        gap: 16px 24px;
+        grid-template-columns: 200px 1fr;
+        gap: 16px 28px;
         align-items: start;
         padding: 28px 0;
         border-bottom: 1px solid var(--line);
+        position: relative;
       }
       .also-row .img {
         min-height: 0;
@@ -1073,9 +999,9 @@
         flex-wrap: wrap;
       }
       .also-info .also-num {
-        font-family: var(--mono);
+        font-family: var(--grot);
         font-size: 13px;
-        font-weight: 500;
+        font-weight: 600;
         letter-spacing: 1px;
         color: var(--red);
       }
@@ -1120,8 +1046,8 @@
       }
       @media (max-width: 860px) {
         .also-row {
-          grid-template-columns: 100px 1fr;
-          gap: 12px 16px;
+          grid-template-columns: 140px 1fr;
+          gap: 12px 20px;
         }
       }
 
@@ -1226,7 +1152,7 @@
         gap: 24px;
       }
       .contact h2 {
-        font-size: 60px;
+        font-size: clamp(48px, 7vw, 96px);
         font-weight: 800;
         letter-spacing: -2px;
         position: relative;
@@ -1301,17 +1227,11 @@
         }
         .clients-grid {
           grid-template-columns: repeat(2, 1fr);
-        }
-        .client {
-          padding: 14px 14px 18px;
+          gap: 32px 28px;
         }
         .client-name {
           font-size: 16px;
           margin-bottom: 6px;
-        }
-        .client-tag {
-          font-size: 9px;
-          margin-bottom: 8px;
         }
         .client-desc {
           font-size: 12px;
@@ -1319,8 +1239,7 @@
         }
 
         /* stack every piece: showcase (with its header) then description */
-        .comp,
-        .comp-1 {
+        .comp {
           display: flex;
           flex-direction: column;
           gap: 18px;
@@ -1336,10 +1255,6 @@
           order: 1;
           width: 100%;
         }
-        .comp-1 .withheld {
-          order: 2;
-          min-height: 200px;
-        }
 
         /* images fill full width at natural aspect ratio */
         .comp .img {
@@ -1351,8 +1266,9 @@
         .txt .zoom {
           max-width: none;
         }
-        .comp.vt-left > .vhead-anchor,
-        .comp.vt-right > .vhead-anchor {
+        .stat-block { margin-top: 14px; }
+        .bignum { font-size: clamp(72px, 20vw, 96px); letter-spacing: -3px; }
+        .comp.vt-left > .vhead-anchor {
           order: 0;
         }
 
@@ -1432,6 +1348,7 @@
       @media (max-width: 560px) {
         .clients-grid {
           grid-template-columns: 1fr;
+          gap: 32px 28px;
         }
       }
     </style>
@@ -1491,7 +1408,6 @@
         <div class="section">
           <div class="sec-head">
             <h2>Client work</h2>
-            <span class="rule"></span>
           </div>
           <p class="clients-intro">
             Most of what I build is internal:
@@ -1557,9 +1473,9 @@
         </div>
 
         <div class="section" id="work">
+          <span class="ghost" aria-hidden="true">Work</span>
           <div class="sec-head">
             <h2>Selected work</h2>
-            <span class="rule"></span>
           </div>
 
           <!-- 01 · Erosion of European Democracy · text left, showcase right -->
@@ -1570,15 +1486,13 @@
                   <span class="sq"></span><span class="num">01</span>
                   <h3 class="ttl">Erosion of European Democracy</h3>
                 </div>
-                <div class="piece-meta" style="margin-top: 16px">
+                <div class="piece-meta">
                   V-Dem · data exploration · explained.media
                 </div>
-                <p class="piece-body" style="margin-top: 14px">
+                <p class="piece-body">
                   A <strong>V-Dem exploration</strong>: a series of views built
-                  to answer different questions rather than one chart. Europe's
-                  democratic high point was <strong>2011</strong>; since then,
-                  33 of 39 <strong>European countries</strong> have lost ground.
-                  A diverging <strong>heatmap</strong> makes year-on-year change
+                  to answer different questions rather than one chart. A
+                  diverging <strong>heatmap</strong> makes year-on-year change
                   scannable by country. A slope chart widens the lens to the
                   full <strong>Europe-and-Caucasus region</strong>: 32 countries
                   backsliding, 11 improving, between 2012 and 2022.
@@ -1586,12 +1500,14 @@
                 <div class="piece-foot">
                   <span>Observable · coming soon</span>
                 </div>
-                <div class="zoom figunit">
-                  <div class="img contain">
-                    <img
-                      src="assets/democracy2.png"
-                      alt="Europe's democratic backsliding, slope chart comparing liberal democracy scores in 2012 and 2022"
-                    />
+                <div class="zoom-block">
+                  <div class="zoom-media">
+                    <div class="img contain">
+                      <img
+                        src="assets/democracy2.png"
+                        alt="Europe's democratic backsliding, slope chart comparing liberal democracy scores in 2012 and 2022"
+                      />
+                    </div>
                   </div>
                   <div class="figcap">2012 vs 2022</div>
                 </div>
@@ -1655,10 +1571,10 @@
                   <span class="sq"></span><span class="num">02</span>
                   <h3 class="ttl">Covid-19 Dashboard</h3>
                 </div>
-                <div class="piece-meta" style="margin-top: 16px">
+                <div class="piece-meta">
                   Aftonbladet · data journalism · public
                 </div>
-                <p class="piece-body" style="margin-top: 14px">
+                <p class="piece-body">
                   Sweden's <strong>most-viewed</strong> COVID dashboard,
                   maintained across the full arc of the pandemic. As the public
                   story shifted, the dashboard was continually rebuilt to track
@@ -1685,17 +1601,17 @@
                   <span class="sq"></span><span class="num">03</span>
                   <h3 class="ttl">Infrastructure Security Map</h3>
                 </div>
-                <div class="piece-meta" style="margin-top: 16px">
+                <div class="piece-meta">
                   Omny · freelance · fixed-scope
                 </div>
-                <p class="piece-body" style="margin-top: 14px">
+                <p class="piece-body">
                   The <strong>Zones and Conduits</strong> diagram inside Omny's
                   security platform: a live network map that automatically
                   categorises assets and visualises their communication
                   pathways, built to enforce and audit segmentation under the
                   <strong>ISA/IEC 62443</strong>
                   industrial cybersecurity standard. Built in
-                  <strong>Svelte and D3</strong> with a custom treemap layout
+                  Svelte and D3 with a custom treemap layout
                   algorithm for nesting multiple asset levels inside zones, plus
                   zoom, pan, and dependency highlighting. Delivered freelance,
                   concept to production.
@@ -1706,7 +1622,7 @@
               </div>
               <div class="showcase">
                 <div class="withheld-block">
-                  <div class="withheld" style="min-height: 240px; height: 100%">
+                  <div class="withheld withheld-fill">
                     <span class="wl">Confidential</span>
                     <span class="wn"
                       >Client work under NDA. Abstracted walkthrough of the
@@ -1728,7 +1644,7 @@
               </div>
               <div class="showcase">
                 <div class="withheld-block">
-                  <div class="withheld" style="min-height: 240px; height: 100%">
+                  <div class="withheld withheld-fill">
                     <span class="wl">Confidential</span>
                     <span class="wn"
                       >Much of my best work supports internal decision-making
@@ -1745,7 +1661,7 @@
                     >the good stuff is under NDA; ask me about it</strong
                   >
                 </div>
-                <p class="piece-body" style="margin-top: 14px">
+                <p class="piece-body">
                   <em style="color: var(--muted)">The problem:</em> surfacing
                   the anomalies that matter from terabytes of mostly time-series
                   data.<br /><br /><em style="color: var(--muted)"
@@ -1787,10 +1703,10 @@
                   <span class="sq"></span><span class="num">05</span>
                   <h3 class="ttl">Disputed Borders</h3>
                 </div>
-                <div class="piece-meta" style="margin-top: 16px">
+                <div class="piece-meta">
                   Cartography · D3 · Observable
                 </div>
-                <p class="piece-body" style="margin-top: 14px">
+                <p class="piece-body">
                   Makes disputed territories comparable at a glance for
                   researchers and journalists covering geopolitics. Every
                   contested region on one page, normalised so the reader
@@ -1909,7 +1825,6 @@
         <div class="section">
           <div class="sec-head">
             <h2>Tools & stack</h2>
-            <span class="rule"></span>
           </div>
           <div class="skills">
             <span class="skill">React</span><span class="skill">Svelte</span
@@ -1937,9 +1852,9 @@
         </div>
 
         <div class="section" id="about">
+          <span class="ghost" aria-hidden="true">About</span>
           <div class="sec-head">
             <h2>About</h2>
-            <span class="rule"></span>
           </div>
           <section class="about">
             <div>
@@ -2022,6 +1937,7 @@
             >
           </div>
         </div>
+        <p class="colophon">Hand-built in vanilla HTML, CSS &amp; JS · set in Newsreader, Familjen Grotesk &amp; Fragment Mono · Stockholm 2026</p>
       </main>
     </div>
     <script>
@@ -2045,7 +1961,7 @@
           document
             .querySelectorAll(".annot[data-target]")
             .forEach(function (annot) {
-              var piece = annot.closest(".piece");
+              var piece = annot.closest(".piece, .also-row");
               if (!piece) return;
               if (annot.offsetParent === null) {
                 if (annot._svg) annot._svg.innerHTML = "";

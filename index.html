@@ -82,12 +82,15 @@
         padding: 0 44px;
       }
       mark,
-      .piece-body strong,
       .clients-intro strong {
         background: transparent;
         color: var(--red);
         font-weight: 700;
         font-style: normal;
+      }
+      .piece-body strong {
+        color: var(--ink);
+        font-weight: 700;
       }
 
       /* Topbar */
@@ -217,27 +220,29 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 0;
-        font-family: var(--mono);
-        font-size: 11.5px;
-        color: var(--muted);
+        font-family: var(--narrow);
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--ink);
+        letter-spacing: 0.5px;
+        line-height: 1.3;
+        text-transform: uppercase;
       }
       .hero-facts .fact {
         display: flex;
         align-items: flex-start;
-        gap: 8px;
-        line-height: 1.5;
-        padding-right: 24px;
+        gap: 12px;
+        padding-right: 28px;
       }
       .hero-facts .fact + .fact {
-        border-left: 1px solid var(--line);
-        padding-left: 24px;
+        padding-left: 28px;
       }
       .hero-facts .sqs {
-        width: 8px;
-        height: 8px;
-        background: var(--red-block);
+        width: 11px;
+        height: 11px;
+        background: var(--red);
         flex-shrink: 0;
-        margin-top: 3px;
+        margin-top: 5px;
       }
 
       .section {
@@ -266,8 +271,10 @@
         flex-shrink: 0;
         background: var(--red);
       }
+      .hero-facts + .section {
+        margin-top: 72px;
+      }
       .stack-cloud {
-        margin-top: 16px;
         display: flex;
         flex-wrap: wrap;
         gap: 4px 20px;
@@ -408,7 +415,7 @@
         color: #333333;
       }
       .about-body strong {
-        color: var(--red);
+        color: var(--ink);
         font-weight: 700;
       }
       .piece-foot {
@@ -1467,10 +1474,7 @@
               Interactive tools, dashboards, and data stories for NGOs, research
               teams, and newsrooms working with consequential data.
             </p>
-            <p class="hero-avail">
-              Taking on fixed-scope freelance projects alongside my role at
-              Datastory.
-            </p>
+            <p class="hero-avail">Taking on fixed-scope freelance projects.</p>
           </div>
           <div class="hero-side">
             <img
@@ -1484,7 +1488,7 @@
         </section>
         <div class="hero-facts">
           <span class="fact"
-            ><span class="sqs" aria-hidden="true"></span> 20+ years frontend ·
+            ><span class="sqs" aria-hidden="true"></span> 20+ years frontend<br />
             10+ years dataviz</span
           >
           <span class="fact"
@@ -1492,8 +1496,8 @@
             most-viewed COVID dashboard</span
           >
           <span class="fact"
-            ><span class="sqs" aria-hidden="true"></span> Previously Spotify,
-            UN, Aftonbladet (Sweden's largest news site)</span
+            ><span class="sqs" aria-hidden="true"></span> Spotify, UN,
+            Aftonbladet (Sweden's #1 daily)</span
           >
         </div>
 
@@ -1511,7 +1515,7 @@
             <span class="sc">Vega-Lite</span>
             <span class="sc">Datawrapper</span>
             <span class="sc">Flourish</span>
-            <span class="sc">Geospatial</span>
+            <span class="sc">Cartography</span>
             <span class="sc">Figma</span>
             <span class="sc">Agile</span>
           </div>

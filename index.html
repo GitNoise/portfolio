@@ -5,7 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Patrick Wojda – Data Visualisation Engineer, Stockholm</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23111'/><text x='16' y='22.5' font-family='system-ui,-apple-system,sans-serif' font-size='18' font-weight='800' fill='%23f5f5f0' text-anchor='middle' letter-spacing='-1'>pw</text><rect x='0' y='28' width='32' height='4' rx='0' fill='%23e2216a'/></svg>" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23111'/><text x='16' y='22.5' font-family='system-ui,-apple-system,sans-serif' font-size='18' font-weight='800' fill='%23f5f5f0' text-anchor='middle' letter-spacing='-1'>pw</text><rect x='0' y='28' width='32' height='4' rx='0' fill='%23e2216a'/></svg>"
+    />
     <meta
       name="description"
       content="Senior data visualisation and frontend engineer. Interactive tools, dashboards, and data stories for NGOs, research teams, and newsrooms. Previously Spotify, UN, Aftonbladet."
@@ -682,6 +685,30 @@
       }
       .comp .img:hover img {
         transform: scale(1.03);
+      }
+      .comp .img:hover img.no-lightbox {
+        transform: none;
+      }
+      .comp .img img.no-lightbox {
+        cursor: default;
+      }
+      .comp .img.preview-muted img {
+        filter: grayscale(0.65) brightness(0.96);
+      }
+      .preview-confidential {
+        position: relative;
+      }
+      .preview-confidential .withheld-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(10, 10, 10, 0.9) 0%,
+          rgba(10, 10, 10, 0.2) 38%,
+          rgba(10, 10, 10, 0.2) 62%,
+          rgba(10, 10, 10, 0.92) 100%
+        );
+        pointer-events: none;
       }
       .txt {
         max-width: 100%;
@@ -1504,21 +1531,18 @@
 
         <div class="section">
           <div class="stack-cloud">
-            <span class="sc primary">D3</span>
-            <span class="sc primary">React</span>
-            <span class="sc primary">Svelte</span>
-            <span class="sc">TypeScript</span>
-            <span class="sc">Observable</span>
+            <span class="sc primary">D3JS</span>
+            <span class="sc">UX</span>
             <span class="sc">Three.js</span>
+            <span class="sc">Vega-Lite</span>
+            <span class="sc">Observable</span>
+            <span class="sc primary">Front-end</span>
             <span class="sc primary">Data Storytelling</span>
             <span class="sc">Tableau</span>
-            <span class="sc">UX</span>
-            <span class="sc">Vega-Lite</span>
+            <span class="sc primary">AI</span>
             <span class="sc">Datawrapper</span>
+            <span class="sc primary">Maps</span>
             <span class="sc">Flourish</span>
-            <span class="sc">Cartography</span>
-            <span class="sc">Figma</span>
-            <span class="sc">Agile</span>
           </div>
         </div>
 
@@ -1536,7 +1560,8 @@
             <div class="client">
               <div class="client-name">Datastory</div>
               <div class="client-desc">
-                Charting and visualisation layer for public-interest data storytelling.
+                AI-driven chart builder and visualisation layer for
+                public-interest data storytelling.
               </div>
             </div>
             <div class="client">
@@ -1554,13 +1579,15 @@
             <div class="client">
               <div class="client-name">Aftonbladet</div>
               <div class="client-desc">
-                Sweden's most-viewed COVID dashboard, plus long-form data journalism.
+                Sweden's most-viewed COVID dashboard, plus long-form data
+                journalism.
               </div>
             </div>
             <div class="client">
               <div class="client-name">Capgemini &amp; Consid</div>
               <div class="client-desc">
-                Systems for Swedish government agencies, embedded in client teams.
+                Systems for Swedish government agencies, embedded in client
+                teams.
               </div>
             </div>
             <div class="client">
@@ -1574,68 +1601,7 @@
 
         <div class="section" id="work">
           <h2 class="sr-only">Selected work</h2>
-          <div class="piece">
-            <div class="comp sc-right">
-              <div class="txt">
-                <div class="head">
-                  <span class="sq" aria-hidden="true"></span
-                  ><span class="num">01</span>
-                  <h3 class="ttl">Erosion of European Democracy</h3>
-                </div>
-                <div class="piece-meta">
-                  governance · V-Dem · data exploration · explained.media
-                </div>
-                <p class="piece-body">
-                  A <strong>V-Dem exploration</strong>: a series of views built
-                  to answer different questions rather than one chart. A
-                  diverging <strong>heatmap</strong> makes year-on-year change
-                  scannable by country. A slope chart widens the lens to the
-                  full <strong>Europe-and-Caucasus region</strong>: 32 countries
-                  backsliding, 11 improving, between 2012 and 2022.
-                </p>
-                <div class="piece-foot">
-                  <span>Observable · coming soon</span>
-                </div>
-                <div class="zoom-block">
-                  <div class="zoom-media">
-                    <div class="img contain">
-                      <img
-                        src="assets/democracy2.png"
-                        alt="Europe's democratic backsliding, slope chart comparing liberal democracy scores in 2012 and 2022"
-                        width="1264"
-                        height="1184"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-                  <div class="figcap">2012 vs 2022</div>
-                </div>
-              </div>
-              <div class="showcase showcase-split">
-                <div class="main figunit">
-                  <div class="img contain on-dark">
-                    <img
-                      src="assets/erosion1.jpg"
-                      alt="Erosion of European democracy, diverging heatmap of year-on-year democratic score changes by region, 1980–2022"
-                      width="1080"
-                      height="1349"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="figcap">
-                    erosion of european democracy – 39 european countries,
-                    change since 2011
-                  </div>
-                </div>
-                <p class="build-line">
-                  Same dataset, two views – each built to answer a different
-                  question about democratic decline.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- 02 · Covid-19 Dashboard · flip, showcase left -->
+          <!-- 01 · Covid-19 Dashboard · flip, showcase left -->
           <div class="piece">
             <div class="comp sc-right flip">
               <div class="showcase">
@@ -1676,7 +1642,7 @@
               <div class="txt">
                 <div class="head">
                   <span class="sq" aria-hidden="true"></span
-                  ><span class="num">02</span>
+                  ><span class="num">01</span>
                   <h3 class="ttl">Covid-19 Dashboard</h3>
                 </div>
                 <div class="piece-meta">
@@ -1704,7 +1670,84 @@
             </div>
           </div>
 
-          <!-- 03 · Infrastructure Security Map – Omny · text left, withheld right -->
+          <!-- 02 · Erosion of European Democracy -->
+          <div class="piece">
+            <div class="comp sc-right">
+              <div class="txt">
+                <div class="head">
+                  <span class="sq" aria-hidden="true"></span
+                  ><span class="num">02</span>
+                  <h3 class="ttl">Erosion of European Democracy</h3>
+                </div>
+                <div class="piece-meta">
+                  governance · V-Dem · data exploration · explained.media
+                </div>
+                <p class="piece-body">
+                  Built for the 2024 super election year. The raw
+                  <strong>V-Dem</strong> dataset is large, the first challenge
+                  was reducing it to something Observable could handle without
+                  losing analytical depth. The <strong>heatmap</strong> lets you
+                  scan dozens of countries simultaneously, colour-coding the
+                  years each democracy index rose or fell. A companion
+                  <strong>slope chart</strong> adds the missing dimension: by
+                  how much.
+                </p>
+                <div class="piece-foot">
+                  <span>
+                    <a
+                      href="https://observablehq.com/d/61701e2d85aa05a6"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >View heatmap →</a
+                    ><br />
+                    <a
+                      href="https://observablehq.com/d/65193c21ec0e09ab"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >View slope chart →</a
+                    ></span
+                  >
+                </div>
+                <div class="zoom-block">
+                  <div class="zoom-media">
+                    <div class="img contain">
+                      <img
+                        src="assets/democracy2.png"
+                        alt="Europe's democratic backsliding, slope chart comparing liberal democracy scores in 2012 and 2022"
+                        width="1264"
+                        height="1184"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="figcap">2012 vs 2022</div>
+                </div>
+              </div>
+              <div class="showcase showcase-split">
+                <div class="main figunit">
+                  <div class="img contain on-dark">
+                    <img
+                      src="assets/erosion1.jpg"
+                      alt="Erosion of European democracy, diverging heatmap of year-on-year democratic score changes by region, 1980–2022"
+                      width="1080"
+                      height="1349"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="figcap">
+                    erosion of european democracy – 39 european countries,
+                    change since 2011
+                  </div>
+                </div>
+                <p class="build-line">
+                  Same dataset, two views – each built to answer a different
+                  question about democratic decline.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 03 · Infrastructure Security Map – Omny -->
           <div class="piece">
             <div class="comp sc-right">
               <div class="txt">
@@ -1730,66 +1773,36 @@
                 </div>
               </div>
               <div class="showcase">
-                <div class="withheld-block">
-                  <div class="withheld withheld-fill">
-                    <span class="wl">Confidential</span>
-                    <span class="wn"
-                      >Client work under NDA. Abstracted walkthrough of the
-                      layout strategy and interaction design available on a
-                      call.</span
-                    >
+                <div class="main figunit">
+                  <div class="preview-confidential">
+                    <div class="img contain on-dark preview-muted">
+                      <img
+                        src="assets/omny.png"
+                        alt="Infrastructure Security Map, Zones and Conduits diagram showing assets segmented into security zones"
+                        width="2340"
+                        height="1606"
+                        loading="lazy"
+                        class="no-lightbox"
+                      />
+                    </div>
+                    <div class="withheld withheld-overlay">
+                      <span class="wl">Confidential</span>
+                      <span class="wn"
+                        >Client work under NDA. Abstracted walkthrough of the
+                        layout strategy and interaction design available on a
+                        call.</span
+                      >
+                    </div>
+                  </div>
+                  <div class="figcap">
+                    zones and conduits · infrastructure security map
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 04 · Anomaly Front Page · vertical title right -->
-          <div class="piece">
-            <div class="comp sc-right vt-right">
-              <div class="vhead-col vhead-anchor">
-                <span class="sq" aria-hidden="true"></span
-                ><span class="num">04</span>
-                <h3 class="ttl">Anomaly Front Page</h3>
-              </div>
-              <div class="txt">
-                <div class="piece-meta">
-                  Spotify · product · with data science
-                </div>
-                <p class="piece-body">
-                  <em class="k">The problem:</em> surfacing the anomalies that
-                  matter from terabytes of mostly time-series data.<br /><br /><em
-                    class="k"
-                    >The approach:</em
-                  >
-                  a monitoring tool structured as a
-                  <strong>newspaper front page</strong>, auto-generated text
-                  turns detected outliers into ranked, readable stories, some
-                  shared across teams, some personalised, each linked to a
-                  root-cause view.<br /><em class="k">Built</em>
-                  with data scientists and engineers on the underlying outlier
-                  detection.
-                </p>
-                <div class="piece-foot">
-                  <span>Next.js · React · D3</span>
-                </div>
-              </div>
-              <div class="showcase">
-                <div class="withheld-block">
-                  <div class="withheld withheld-fill">
-                    <span class="wl">Confidential</span>
-                    <span class="wn"
-                      >Much of my best work supports internal decision-making
-                      and can't be shown publicly. Happy to discuss
-                      architecture, design decisions, and my role.</span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 05 · Disputed Borders · flip, showcase left -->
+          <!-- 04 · Disputed Borders · flip, showcase left -->
           <div class="piece">
             <div class="comp sc-right flip">
               <div class="showcase">
@@ -1809,7 +1822,7 @@
               <div class="txt">
                 <div class="head">
                   <span class="sq" aria-hidden="true"></span
-                  ><span class="num">05</span>
+                  ><span class="num">04</span>
                   <h3 class="ttl">Disputed Borders</h3>
                 </div>
                 <div class="piece-meta">
@@ -1838,90 +1851,70 @@
             </div>
           </div>
 
+          <!-- 05 · Anomaly Front Page · vertical title right -->
+          <div class="piece">
+            <div class="comp sc-right vt-right">
+              <div class="vhead-col vhead-anchor">
+                <span class="sq" aria-hidden="true"></span
+                ><span class="num">05</span>
+                <h3 class="ttl">Anomaly Front Page</h3>
+              </div>
+              <div class="txt">
+                <div class="piece-meta">
+                  Spotify · product · with data science
+                </div>
+                <p class="piece-body">
+                  The anomalies that matter were buried in
+                  <strong>terabytes</strong> of mostly time-series data.
+                  Detection ran across thousands of metrics, but the output was
+                  a wall of charts where a 10% drop in monthly active users
+                  looked the same as a flickering sensor.<br /><br />
+                  I structured the monitoring tool as a newspaper like front
+                  page. Auto-generated text turns detected outliers into
+                  <strong>ranked, readable stories</strong>, each with a
+                  headline, a date, the metric, and a chart of the relevant
+                  window. Some stories are shared across teams, some
+                  personalised, each linked to a
+                  <strong>root-cause view</strong>.<br /><br />
+                  Built with the data scientists and engineers on the underlying
+                  outlier detection.<br /><br />
+                  Finding an anomaly dropped from hours of scanning dashboards
+                  to seconds of reading.
+                </p>
+                <div class="piece-foot">
+                  <span>Next.js · React · D3</span>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="main figunit">
+                  <div class="preview-confidential">
+                    <div class="img contain preview-muted">
+                      <img
+                        src="assets/spotifypixelated.png"
+                        alt="Anomaly Front Page, pixelated preview of a monitoring dashboard with ranked outlier stories"
+                        width="1693"
+                        height="929"
+                        loading="lazy"
+                        class="no-lightbox"
+                      />
+                    </div>
+                    <div class="withheld withheld-overlay">
+                      <span class="wl">Confidential</span>
+                      <span class="wn"
+                        >Much of my best work supports internal decision-making
+                        and can't be shown publicly. Happy to discuss
+                        architecture, design decisions, and my role.</span
+                      >
+                    </div>
+                  </div>
+                  <div class="figcap">anomaly front page · preview</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="also-built">
             <div class="also-grid">
-              <div class="also-row">
-                <div
-                  class="img on-dark"
-                  style="--bg: url(assets/3dmap.jpg)"
-                  role="img"
-                  aria-label="Stockholm New Builds, 3D extrusion map"
-                  data-src="assets/3dmap.jpg"
-                ></div>
-                <div class="also-info">
-                  <div class="also-head">
-                    <span class="also-num">06</span>
-                    <h3 class="also-title">Stockholm New Builds</h3>
-                  </div>
-                  <div class="also-meta">
-                    urban policy · 3D geospatial · Three.js · Svelte
-                  </div>
-                  <div class="also-desc">
-                    Nearly 9,000 new buildings over a decade as an explorable 3D
-                    landscape. The challenge was making abstract records
-                    physical: the detail view deliberately reads as both city
-                    silhouette and bar chart.
-                  </div>
-                  <div class="also-link">Demo on request</div>
-                </div>
-              </div>
-              <div class="also-row">
-                <div
-                  class="img"
-                  style="--bg: url(assets/network1.png)"
-                  role="img"
-                  aria-label="Network Explorer, reusable radial network component"
-                  data-src="assets/network1.png"
-                ></div>
-                <div class="also-info">
-                  <div class="also-head">
-                    <span class="also-num">07</span>
-                    <h3 class="also-title">Network Explorer</h3>
-                  </div>
-                  <div class="also-meta">Product · reusable component · D3</div>
-                  <div class="also-desc">
-                    When a product has dozens of interconnected services, the
-                    question changes depending on who's looking. One layout
-                    needed to answer all of them: fixed node positions across
-                    views, a category colour system, and highlight states that
-                    make the same graph serve different audiences. Deployed
-                    internally to map product architecture.
-                  </div>
-                  <div class="also-link">
-                    Production views under NDA · demo on request
-                  </div>
-                </div>
-              </div>
-              <div class="also-row">
-                <div
-                  class="img"
-                  style="--bg: url(assets/radialbarchart.png)"
-                  role="img"
-                  aria-label="Fantasy &amp; War Dominate Board Games, radial grouped bar chart"
-                  data-src="assets/radialbarchart.png"
-                ></div>
-                <div class="also-info">
-                  <div class="also-head">
-                    <span class="also-num">08</span>
-                    <h3 class="also-title">Board Game Taxonomy</h3>
-                  </div>
-                  <div class="also-meta">Data study · D3 · Observable</div>
-                  <div class="also-desc">
-                    A study in annotation and static communication, built on
-                    30,000 messy, overlapping BoardGameGeek categories. When the
-                    goal is explanation rather than exploration, the context has
-                    to live in the chart.
-                  </div>
-                  <div class="also-link">
-                    <a
-                      href="https://observablehq.com/d/33703039e1484511"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >View →</a
-                    >
-                  </div>
-                </div>
-              </div>
               <div class="also-row">
                 <div
                   class="img"
@@ -1932,7 +1925,7 @@
                 ></div>
                 <div class="also-info">
                   <div class="also-head">
-                    <span class="also-num">09</span>
+                    <span class="also-num">06</span>
                     <h3 class="also-title">Unga Mördare</h3>
                   </div>
                   <div class="also-meta">
@@ -1956,28 +1949,101 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="thumb-strip">
-            <div class="thumb-grid">
-              <a
-                class="thumb-item"
-                href="https://static.aftonbladet-cdn.se/special/de-som-kom/statistik/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <div class="also-row">
                 <div
-                  class="thumb-img"
+                  class="img"
                   style="--bg: url(assets/desomkom.png)"
                   role="img"
                   aria-label="De Som Kom, welfare and integration statistics for 2015 refugees"
                   data-src="assets/desomkom.png"
                 ></div>
-                <span class="thumb-num">10</span>
-                <div class="thumb-title">De Som Kom 2015</div>
-                <div class="thumb-meta">Aftonbladet · data journalism</div>
-              </a>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">07</span>
+                    <h3 class="also-title">De Som Kom 2015</h3>
+                  </div>
+                  <div class="also-meta">
+                    Aftonbladet · data journalism · migration · welfare
+                  </div>
+                  <div class="also-desc">
+                    Longitudinal welfare and integration statistics for refugees
+                    who arrived in Sweden during the 2015 migration crisis.
+                    Built to make employment, education, and benefit outcomes
+                    comparable across cohorts for a general audience.
+                  </div>
+                  <div class="also-link">
+                    <a
+                      href="https://static.aftonbladet-cdn.se/special/de-som-kom/statistik/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >View →</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="also-row">
+                <div
+                  class="img on-dark"
+                  style="--bg: url(assets/3dmap.jpg)"
+                  role="img"
+                  aria-label="Stockholm New Builds, 3D extrusion map"
+                  data-src="assets/3dmap.jpg"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">08</span>
+                    <h3 class="also-title">Stockholm New Builds</h3>
+                  </div>
+                  <div class="also-meta">
+                    urban policy · 3D geospatial · Three.js · Svelte ·
+                    AI-assisted
+                  </div>
+                  <div class="also-desc">
+                    Nearly 9,000 new buildings over a decade as an explorable 3D
+                    landscape. AI-assisted automation of the heavy geographic
+                    shapefile transforms. The detail view deliberately reads as
+                    both city silhouette and bar chart.
+                  </div>
+                  <div class="also-link">Demo on request</div>
+                </div>
+              </div>
+              <div class="also-row">
+                <div
+                  class="img"
+                  style="--bg: url(assets/radialbarchart.png)"
+                  role="img"
+                  aria-label="Fantasy &amp; War Dominate Board Games, radial grouped bar chart"
+                  data-src="assets/radialbarchart.png"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">09</span>
+                    <h3 class="also-title">Board Game Taxonomy</h3>
+                  </div>
+                  <div class="also-meta">
+                    Data study · D3 · Observable · AI-assisted
+                  </div>
+                  <div class="also-desc">
+                    A study in annotation and static communication, built on
+                    30,000 messy, overlapping BoardGameGeek categories.
+                    AI-assisted exploration across multiple design directions
+                    before committing to the final form.
+                  </div>
+                  <div class="also-link">
+                    <a
+                      href="https://observablehq.com/d/33703039e1484511"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >View →</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="thumb-strip">
+            <div class="thumb-grid">
               <div class="thumb-item">
                 <div
                   class="thumb-img"
@@ -1986,9 +2052,21 @@
                   aria-label="Valkompass, Swedish election party matcher"
                   data-src="assets/electioncompass.png"
                 ></div>
-                <span class="thumb-num">11</span>
+                <span class="thumb-num">10</span>
                 <div class="thumb-title">Valkompass</div>
                 <div class="thumb-meta">Aftonbladet · election tool</div>
+              </div>
+              <div class="thumb-item">
+                <div
+                  class="thumb-img on-dark"
+                  style="--bg: url(assets/skrap.png)"
+                  role="img"
+                  aria-label="Skräp i Gamla Stan, 3D visualisation of how much trash would fill Stockholm's old town"
+                  data-src="assets/skrap.png"
+                ></div>
+                <span class="thumb-num">11</span>
+                <div class="thumb-title">Skräp i Gamla Stan</div>
+                <div class="thumb-meta">Aftonbladet · 3D · environment</div>
               </div>
               <div class="thumb-item">
                 <div
@@ -2004,15 +2082,15 @@
               </div>
               <div class="thumb-item">
                 <div
-                  class="thumb-img on-dark"
-                  style="--bg: url(assets/skrap.png)"
+                  class="thumb-img"
+                  style="--bg: url(assets/network1.png)"
                   role="img"
-                  aria-label="Skräp i Gamla Stan, 3D visualisation of how much trash would fill Stockholm's old town"
-                  data-src="assets/skrap.png"
+                  aria-label="Network Explorer, reusable radial network component"
+                  data-src="assets/network1.png"
                 ></div>
                 <span class="thumb-num">13</span>
-                <div class="thumb-title">Skräp i Gamla Stan</div>
-                <div class="thumb-meta">Aftonbladet · 3D · environment</div>
+                <div class="thumb-title">Network Explorer</div>
+                <div class="thumb-meta">Product · reusable component · D3</div>
               </div>
               <div class="thumb-item">
                 <div
@@ -2111,7 +2189,8 @@
                 Hi, I'm Patrick. I've built humanitarian knowledge systems for
                 the United Nations, Sweden's most-viewed COVID dashboard for
                 Aftonbladet, and financial analytics tools used across Spotify
-                Finance. Today I lead the visualisation layer at Datastory.
+                Finance. Today I lead the visualisation layer at Datastory,
+                where the product is an AI-driven chart builder.
               </p>
               <p>
                 I work best where
@@ -2205,7 +2284,7 @@
         }
       }
       document
-        .querySelectorAll(".showcase img, .zoom-media img")
+        .querySelectorAll(".showcase img:not(.no-lightbox), .zoom-media img")
         .forEach((img) => {
           img.style.cursor = "zoom-in";
           img.setAttribute("tabindex", "0");

@@ -7,7 +7,8 @@
     <title>Patrick Wojda – Data Visualisation Engineer, Stockholm</title>
     <link
       rel="icon"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23111'/><text x='16' y='22.5' font-family='system-ui,-apple-system,sans-serif' font-size='18' font-weight='800' fill='%23f5f5f0' text-anchor='middle' letter-spacing='-1'>pw</text><rect x='0' y='28' width='32' height='4' rx='0' fill='%23e2216a'/></svg>"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23e2216a'/><text x='16' y='22.5' font-family='system-ui,-apple-system,sans-serif' font-size='18' font-weight='800' fill='%23fff' text-anchor='middle' letter-spacing='-1'>pw</text></svg>"
     />
     <meta
       name="description"
@@ -41,11 +42,8 @@
       content="https://gitnoise.github.io/portfolio/assets/og-image.png"
     />
     <link rel="canonical" href="https://gitnoise.github.io/portfolio/" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='2' fill='%23e2216a'/></svg>"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800;900&family=Fragment+Mono&display=swap"
       rel="stylesheet"
@@ -1128,10 +1126,6 @@
         letter-spacing: 0.5px;
         margin-top: 4px;
       }
-      a.thumb-item .thumb-title::after {
-        content: " →";
-        color: var(--red);
-      }
       @media (max-width: 860px) {
         .thumb-grid {
           grid-template-columns: repeat(2, 1fr);
@@ -1454,7 +1448,54 @@
           print-color-adjust: exact;
         }
       }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .comp .img img,
+        .also-row .img,
+        .thumb-item .thumb-img,
+        .piece-foot a,
+        .also-link a {
+          transition: none !important;
+        }
+      }
     </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Patrick Wojda",
+        "jobTitle": "Senior Data Visualisation Engineer",
+        "url": "https://gitnoise.github.io/portfolio/",
+        "email": "patrickwojda@yahoo.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Stockholm",
+          "addressCountry": "SE"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/patrickwojda/",
+          "https://observablehq.com/@gitnoise"
+        ],
+        "knowsAbout": [
+          "Data Visualisation",
+          "D3.js",
+          "React",
+          "Svelte",
+          "Three.js",
+          "Observable",
+          "Cartography",
+          "Data Storytelling",
+          "Accessibility",
+          "SQL",
+          "Pandas",
+          "SVG",
+          "Canvas",
+          "Vega-Lite"
+        ]
+      }
+    </script>
   </head>
   <body>
     <svg width="0" height="0" aria-hidden="true" style="position: absolute">
@@ -1532,19 +1573,21 @@
         </div>
 
         <div class="section">
+          <h2 class="sr-only">Skills</h2>
           <div class="stack-cloud">
-            <span class="sc primary">D3JS</span>
-            <span class="sc">UX</span>
+            <span class="sc primary">D3</span>
             <span class="sc">Three.js</span>
-            <span class="sc">Vega-Lite</span>
-            <span class="sc">Observable</span>
-            <span class="sc primary">Front-end</span>
+            <span class="sc">Accessibility</span>
             <span class="sc primary">Data Storytelling</span>
-            <span class="sc">Tableau</span>
-            <span class="sc primary">AI</span>
-            <span class="sc">Datawrapper</span>
-            <span class="sc primary">Maps</span>
-            <span class="sc">Flourish</span>
+            <span class="sc">Observable</span>
+            <span class="sc primary">Cartography</span>
+            <span class="sc">Vega-Lite</span>
+            <span class="sc">Pandas</span>
+            <span class="sc primary">React</span>
+            <span class="sc">SVG</span>
+            <span class="sc primary">Svelte</span>
+            <span class="sc">SQL</span>
+            <span class="sc">Canvas</span>
           </div>
         </div>
 
@@ -1596,7 +1639,8 @@
             <div class="client">
               <div class="client-name">United Nations</div>
               <div class="client-desc">
-                Data-transparency and knowledge-management systems for UNOPS.
+                Humanitarian data-transparency and knowledge-management systems
+                for UNOPS field operations.
               </div>
             </div>
           </div>
@@ -1683,7 +1727,7 @@
                   <h3 class="ttl">Erosion of European Democracy</h3>
                 </div>
                 <div class="piece-meta">
-                  governance · V-Dem · data exploration · explained.media
+                  research · V-Dem · data exploration · 2024 · explained.media
                 </div>
                 <p class="piece-body">
                   Built for the 2024 super election year. The raw
@@ -1876,8 +1920,9 @@
                   Auto-generated text turns detected outliers into
                   <strong>ranked, readable stories</strong>, each with a
                   headline, a date, the metric, and a relevant chart. Each story
-                  linked to a <strong></strong>detailed root-cause analysis</strong>
-                  <strong>root-cause analysis view</strong>.<br /><br />
+                  linked to a
+                  <strong>detailed root-cause analysis view</strong
+                  >.<br /><br />
                   Finding an anomaly dropped from hours of scanning dashboards
                   to seconds of reading.
                 </p>
@@ -2004,7 +2049,6 @@
                     shapefile transforms. The detail view deliberately reads as
                     both city silhouette and bar chart.
                   </div>
-                  <div class="also-link">Demo on request</div>
                 </div>
               </div>
               <div class="also-row">
@@ -2054,7 +2098,10 @@
                 ></div>
                 <span class="thumb-num">10</span>
                 <div class="thumb-title">Valkompass</div>
-                <div class="thumb-meta">Aftonbladet · election tool</div>
+                <div class="thumb-meta">
+                  Aftonbladet · election party matcher built with Göteborg
+                  University
+                </div>
               </div>
               <div class="thumb-item">
                 <div
@@ -2066,7 +2113,9 @@
                 ></div>
                 <span class="thumb-num">11</span>
                 <div class="thumb-title">Skräp i Gamla Stan</div>
-                <div class="thumb-meta">Aftonbladet · 3D · environment</div>
+                <div class="thumb-meta">
+                  Aftonbladet · 3D volume visualisation of Stockholm's waste
+                </div>
               </div>
               <div class="thumb-item">
                 <div
@@ -2078,7 +2127,10 @@
                 ></div>
                 <span class="thumb-num">12</span>
                 <div class="thumb-title">Atlantic Crossing Tracker</div>
-                <div class="thumb-meta">Aftonbladet · live tracking</div>
+                <div class="thumb-meta">
+                  Aftonbladet · real-time position tracker for Thunberg's 2019
+                  Atlantic crossing
+                </div>
               </div>
               <div class="thumb-item">
                 <div
@@ -2090,7 +2142,9 @@
                 ></div>
                 <span class="thumb-num">13</span>
                 <div class="thumb-title">Network Explorer</div>
-                <div class="thumb-meta">Product · reusable component · D3</div>
+                <div class="thumb-meta">
+                  Reusable radial network component · D3 · configurable layouts
+                </div>
               </div>
               <div class="thumb-item">
                 <div
@@ -2102,7 +2156,10 @@
                 ></div>
                 <span class="thumb-num">14</span>
                 <div class="thumb-title">Was There More Snow?</div>
-                <div class="thumb-meta">Data study</div>
+                <div class="thumb-meta">
+                  Personal data study comparing Swedish winters 1979–1986 vs
+                  2013–2020
+                </div>
               </div>
               <div class="thumb-item">
                 <div
@@ -2114,7 +2171,9 @@
                 ></div>
                 <span class="thumb-num">15</span>
                 <div class="thumb-title">Trend Detection</div>
-                <div class="thumb-meta">Sample data · analytics</div>
+                <div class="thumb-meta">
+                  Automatic change-point detection in time-series MAU data
+                </div>
               </div>
             </div>
           </div>
@@ -2135,7 +2194,8 @@
                   from concept to launch
                 </li>
                 <li>
-                  Go beyond what off-the-shelf BI and dashboard tools and generative AI can do
+                  Go beyond what off-the-shelf BI and dashboard tools and
+                  generative AI can do
                 </li>
                 <li>
                   Work directly with researchers, journalists, analysts, and
@@ -2162,6 +2222,10 @@
                   Direct with NGOs and research teams, or as a subcontractor
                   through studios and agencies
                 </li>
+                <li>
+                  References and walkthroughs of confidential work available on
+                  request
+                </li>
               </ul>
             </div>
           </div>
@@ -2187,23 +2251,26 @@
             </div>
             <div class="about-body">
               <p>
-                Hi, I'm Patrick. I've built humanitarian knowledge systems for
-                the United Nations, Sweden's most-viewed COVID dashboard for
-                Aftonbladet, and financial analytics tools used across Spotify
-                Finance. Today I lead the visualisation layer at Datastory,
-                where the product is an AI-driven chart builder. I use AI daily
-                to move faster on the parts that should be cheap, so the
-                judgment gets more room.
+                Hi, I'm Patrick. I hold a Master of Disaster Management and have
+                worked inside the UN system, building humanitarian
+                data-transparency and knowledge-management tools for UNOPS field
+                operations. I also built Sweden's most-viewed COVID dashboard
+                for Aftonbladet and financial analytics tools used across
+                Spotify Finance. Today I lead the visualisation layer at
+                Datastory, where the product is an AI-driven chart builder. I
+                use AI daily to move faster on the parts that should be cheap,
+                so the judgment gets more room.
               </p>
               <p>
                 I work best where
-                <strong>off-the-shelf BI tools and generative AI stop being enough</strong>,
-                collaborating with researchers, data scientists, and journalists
-                on complex or consequential data. I've also worked inside the UN
-                system, hold a Master of Disaster Management,
-                and build to the constraints that matter in the field:
-                accessibility, low-bandwidth performance, and multilingual
-                audiences. I work in English, Swedish, Polish, and French.
+                <strong
+                  >off-the-shelf BI tools and generative AI stop being
+                  enough</strong
+                >, collaborating with researchers, data scientists, and
+                journalists on complex or consequential data. I build to the
+                constraints that matter in the field: accessibility,
+                low-bandwidth performance, and multilingual audiences. I work in
+                English, Swedish, Polish, and French.
               </p>
               <div class="about-cols">
                 <div>
@@ -2275,7 +2342,7 @@
         lb.setAttribute("aria-modal", "true");
         lb.setAttribute("aria-label", alt || "Image preview");
         document.documentElement.classList.add("lb-open");
-        lb.focus();
+        document.getElementById("lightbox-close").focus();
       }
       function closeLb() {
         lb.classList.remove("is-open");
@@ -2305,6 +2372,7 @@
         });
       document.querySelectorAll("[data-src]").forEach((div) => {
         div.setAttribute("tabindex", "0");
+        div.setAttribute("role", "button");
         div.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -2325,7 +2393,12 @@
         if (e.key === "Escape") closeLb();
         if (lb.classList.contains("is-open") && e.key === "Tab") {
           e.preventDefault();
-          lb.focus();
+          var closeBtn = document.getElementById("lightbox-close");
+          if (document.activeElement === closeBtn) {
+            lb.focus();
+          } else {
+            closeBtn.focus();
+          }
         }
       });
     </script>

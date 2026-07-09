@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Patrick Wojda – Data Visualisation Engineer, Stockholm</title>
+    <title>Patrick Wojda – Senior Data Visualisation Engineer, Stockholm</title>
     <link
       rel="icon"
       type="image/svg+xml"
@@ -28,29 +28,7 @@
       property="og:image"
       content="https://gitnoise.github.io/portfolio/assets/og-image.png?v=2"
     />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Senior data visualisation engineer. Interactive tools, dashboards, and data stories for NGOs, research teams, and newsrooms."
-    />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Patrick Wojda – Senior Data Visualisation Engineer"
-    />
-    <meta
-      name="twitter:description"
-      content="Senior data visualisation and frontend engineer. Interactive tools, dashboards, and data stories for NGOs, research teams, and newsrooms. Viz lead at an AI chart builder. Previously Spotify, UN, Aftonbladet."
-    />
-    <meta
-      name="twitter:image"
-      content="https://gitnoise.github.io/portfolio/assets/og-image.png?v=2"
-    />
-    <meta
-      name="twitter:image:alt"
-      content="Senior data visualisation engineer. Interactive tools, dashboards, and data stories for NGOs, research teams, and newsrooms."
-    />
     <link rel="canonical" href="https://gitnoise.github.io/portfolio/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -159,7 +137,21 @@
       }
 
       /* Topbar */
+      .topbar-shell {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .topbar-bg {
+        position: absolute;
+        inset: 0;
+        left: calc(50% - 50vw);
+        width: 100vw;
+        background: var(--paper);
+        pointer-events: none;
+      }
       .topbar {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -170,10 +162,7 @@
         letter-spacing: var(--ls-mono);
         color: var(--muted);
         text-transform: uppercase;
-        position: sticky;
-        top: 0;
-        background: var(--paper);
-        z-index: 100;
+        background: transparent;
       }
       .topbar .mark {
         display: flex;
@@ -416,7 +405,7 @@
         color: var(--muted);
       }
 
-      /* ===== Gallery, editorial compositions ===== */
+      /* Gallery */
       .piece {
         position: relative;
         z-index: 1;
@@ -457,10 +446,7 @@
         font-size: var(--fs-body);
         line-height: var(--lh-body);
         color: var(--text);
-      }
-      .about-body strong {
-        color: var(--ink);
-        font-weight: 700;
+        max-width: 38ch;
       }
       .piece-foot {
         font-family: var(--mono);
@@ -471,18 +457,19 @@
         gap: 16px;
         align-items: center;
       }
-      .piece-foot a {
+      .piece-foot a,
+      .also-link a {
         color: var(--red);
         text-decoration: none;
         display: inline-block;
         transition: transform var(--duration-fast) var(--ease-out);
       }
-      .piece-foot a:hover {
+      .piece-foot a:hover,
+      .also-link a:hover {
         text-decoration: underline;
         transform: translateX(3px);
       }
 
-      /* image placeholder */
       .img {
         background: var(--placeholder);
         overflow: hidden;
@@ -512,13 +499,11 @@
         object-fit: contain;
       }
 
-      /* showcase, the image group */
       .showcase {
         display: flex;
         flex-direction: column;
         gap: var(--sp-tight);
       }
-      /* vertical-header showcase: title column on the OUTER edge, big image beside it */
       .showcase.row {
         flex-direction: row;
         align-items: flex-start;
@@ -537,7 +522,6 @@
         flex: 1;
       }
 
-      /* figure caption, quiet margin note */
       .figcap {
         background: transparent;
         font-family: var(--mono);
@@ -549,7 +533,6 @@
         display: block;
       }
 
-      /* header, lives INSIDE the showcase; red square connected behind the title */
       .head {
         position: relative;
         isolation: isolate;
@@ -589,7 +572,6 @@
         max-width: 12em;
       }
 
-      /* vertical header variant, square connected, title runs vertically */
       .vhead-col {
         position: relative;
         isolation: isolate;
@@ -630,7 +612,6 @@
         line-height: 1;
         margin: 0;
       }
-      /* vertical title as outer-margin anchor (full piece height) */
       .vhead-col.vhead-anchor {
         align-self: stretch;
         min-width: 68px;
@@ -640,7 +621,6 @@
         font-size: var(--fs-display-v);
       }
 
-      /* black = confidential / withheld */
       .withheld {
         background: var(--ink);
         color: var(--paper);
@@ -696,7 +676,6 @@
         border-radius: 2px;
       }
 
-      /* layouts, showcase is the dominant column; text is capped narrow */
       .comp {
         display: grid;
         gap: var(--sp-gutter) var(--sp-block);
@@ -714,7 +693,6 @@
       .figunit .figcap {
         flex: 0 0 auto;
       }
-      /* showcase images keep their natural aspect ratio */
       .comp .img {
         display: block;
         min-height: 0;
@@ -759,15 +737,11 @@
         display: flex;
         flex-direction: column;
       }
-      /* pin foot to column bottom on flip / vertical-title layouts only */
       .comp.flip > .txt > .piece-foot,
       .comp.vt-left > .txt > .piece-foot,
       .comp.vt-right > .txt > .piece-foot {
         margin-top: auto;
         padding-top: var(--sp-row);
-      }
-      .piece-body {
-        max-width: 38ch;
       }
       .head + .piece-meta,
       .vhead-col ~ .txt .piece-meta {
@@ -779,8 +753,7 @@
       .comp.sc-left,
       .comp.sc-right {
         grid-template-columns: minmax(280px, 1fr) minmax(0, 1.72fr);
-      } /* text | showcase */
-      /* frame is a single thick vertical rule on the composition's outer edge */
+      }
       .comp.framed {
         padding: 8px 28px;
       }
@@ -794,10 +767,9 @@
         border: none;
         padding: 0;
       }
-      /* flip, showcase on the left */
       .comp.flip {
         grid-template-columns: minmax(0, 1.72fr) minmax(280px, 1fr);
-      } /* showcase | text */
+      }
       .comp.flip .head {
         text-align: right;
       }
@@ -805,7 +777,6 @@
         left: auto;
         right: -10px;
       }
-      /* vertical anchor, three-column editorial grid */
       .comp.vt-left {
         grid-template-columns: auto minmax(0, 1.72fr) minmax(280px, 1fr);
         align-items: stretch;
@@ -859,7 +830,6 @@
       .comp.vt-right .withheld-block .withheld {
         flex: 1;
       }
-      /* zoom/detail under text; hero spans full height beside the text column */
       .txt .zoom {
         max-width: min(300px, 100%);
       }
@@ -886,7 +856,6 @@
         grid-row: 1 / -1;
         align-self: stretch;
       }
-      /* text column: stack top-down, zoom pinned to bottom-left */
       .comp:has(.zoom) .txt:not(.txt-vhead) {
         display: flex;
         flex-direction: column;
@@ -919,7 +888,6 @@
       .comp:has(.zoom) .txt:not(.txt-vhead) .piece-foot {
         margin-top: 20px;
       }
-      /* showcase, each figunit is image + caption, moved as one block */
       .comp > .showcase:not(.row) {
         display: flex;
         flex-direction: column;
@@ -956,8 +924,6 @@
       .comp .zoom .img.contain {
         display: block;
       }
-      /* grid of screenshots (evolution over time) */
-      /* contact-sheet collage, one plate, columns stack independently */
       .imgrid {
         display: flex;
         gap: var(--sp-group);
@@ -1087,18 +1053,7 @@
         white-space: nowrap;
         margin-top: 8px;
       }
-      .also-link a {
-        color: var(--red);
-        text-decoration: none;
-        display: inline-block;
-        transition: transform var(--duration-fast) var(--ease-out);
-      }
-      .also-link a:hover {
-        text-decoration: underline;
-        transform: translateX(3px);
-      }
       @media (max-width: 860px) {
-        /* matches --breakpoint */
         .also-grid {
           grid-template-columns: 1fr;
           gap: var(--sp-component);
@@ -1176,7 +1131,6 @@
         margin-top: 4px;
       }
       @media (max-width: 860px) {
-        /* matches --breakpoint */
         .thumb-grid {
           grid-template-columns: repeat(2, 1fr);
           gap: 16px 12px;
@@ -1300,7 +1254,6 @@
         color: var(--red);
       }
       @media (max-width: 860px) {
-        /* matches --breakpoint */
         .wrap {
           padding: 0 22px;
         }
@@ -1358,7 +1311,6 @@
           line-height: 1.4;
         }
 
-        /* stack every piece: showcase (with its header) then description */
         .comp {
           display: flex;
           flex-direction: column;
@@ -1376,7 +1328,6 @@
           width: 100%;
         }
 
-        /* images fill full width at natural aspect ratio */
         .comp .img {
           width: 100%;
           height: auto !important;
@@ -1391,7 +1342,6 @@
           order: 0;
         }
 
-        /* header sizing */
         .head .ttl {
           font-size: var(--fs-display-compact);
         }
@@ -1401,7 +1351,6 @@
           height: 96px;
         }
 
-        /* alternate header alignment on mobile for layout rhythm */
         .piece:nth-of-type(even) .head {
           text-align: right;
         }
@@ -1418,7 +1367,6 @@
           right: -14px;
         }
 
-        /* vertical-header showcase: render header horizontally, stacked above images */
         .showcase.row {
           flex-direction: column;
           gap: 12px;
@@ -1480,8 +1428,10 @@
       }
 
       @media print {
-        .topbar {
+        .topbar-shell {
           position: static;
+        }
+        .topbar {
           border-bottom: 1px solid #000;
         }
         .lightbox {
@@ -1571,15 +1521,18 @@
     </svg>
     <a href="#main" class="skip-link">Skip to content</a>
     <div class="wrap">
-      <header class="topbar">
-        <span class="mark">Patrick Wojda</span>
-        <nav class="topnav" aria-label="Primary">
-          <a href="#work">Work</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <span class="loc">Stockholm</span>
-      </header>
+      <div class="topbar-shell">
+        <div class="topbar-bg" aria-hidden="true"></div>
+        <header class="topbar">
+          <span class="mark">Patrick Wojda</span>
+          <nav class="topnav" aria-label="Primary">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <span class="loc">Stockholm</span>
+        </header>
+      </div>
 
       <main id="main">
         <section class="hero">
@@ -1689,7 +1642,6 @@
 
         <section class="section" id="work">
           <h2 class="sr-only">Selected work</h2>
-          <!-- 01 · Covid-19 Dashboard · flip, showcase left -->
           <article class="piece">
             <div class="comp sc-right flip">
               <div class="showcase">
@@ -1758,7 +1710,6 @@
             </div>
           </article>
 
-          <!-- 02 · Erosion of European Democracy -->
           <article class="piece">
             <div class="comp sc-right">
               <div class="txt">
@@ -1835,7 +1786,6 @@
             </div>
           </article>
 
-          <!-- 03 · Infrastructure Security Map – Omny -->
           <article class="piece">
             <div class="comp sc-right">
               <div class="txt">
@@ -1890,7 +1840,6 @@
             </div>
           </article>
 
-          <!-- 04 · Disputed Borders · flip, showcase left -->
           <article class="piece">
             <div class="comp sc-right flip">
               <div class="showcase">
@@ -1939,7 +1888,6 @@
             </div>
           </article>
 
-          <!-- 05 · Anomaly Front Page · vertical title right -->
           <article class="piece">
             <div class="comp sc-right vt-right">
               <div class="vhead-col vhead-anchor">
@@ -2373,82 +2321,54 @@
 
     <div class="lightbox" id="lightbox" tabindex="-1">
       <img id="lightbox-img" src="" alt="" />
-      <button id="lightbox-close" class="sr-only" type="button">
-        Close image preview
-      </button>
     </div>
 
     <script>
       const lb = document.getElementById("lightbox");
       const lbImg = document.getElementById("lightbox-img");
       let lbTrigger = null;
+
       function openLb(src, alt, trigger) {
         lbTrigger = trigger || null;
         lbImg.src = src;
         lbImg.alt = alt;
         lb.classList.add("is-open");
-        lb.setAttribute("role", "dialog");
-        lb.setAttribute("aria-modal", "true");
-        lb.setAttribute("aria-label", alt || "Image preview");
         document.documentElement.classList.add("lb-open");
-        document.getElementById("lightbox-close").focus();
       }
+
       function closeLb() {
         lb.classList.remove("is-open");
-        lb.removeAttribute("aria-modal");
         document.documentElement.classList.remove("lb-open");
-        if (lbTrigger) {
-          lbTrigger.focus();
-          lbTrigger = null;
-        }
+        lbTrigger?.focus();
+        lbTrigger = null;
       }
-      document
-        .querySelectorAll(".showcase img:not(.no-lightbox), .zoom-media img")
-        .forEach((img) => {
-          img.style.cursor = "zoom-in";
-          img.setAttribute("tabindex", "0");
-          img.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            openLb(img.src, img.alt, img);
-          });
-          img.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              openLb(img.src, img.alt, img);
-            }
-          });
-        });
-      document.querySelectorAll("[data-src]").forEach((div) => {
-        div.setAttribute("tabindex", "0");
-        div.setAttribute("role", "button");
-        div.addEventListener("click", (e) => {
+
+      function bindZoom(el, getSrc, getAlt) {
+        el.style.cursor = "zoom-in";
+        el.tabIndex = 0;
+        const open = () => openLb(getSrc(), getAlt(), el);
+        el.addEventListener("click", (e) => {
           e.preventDefault();
-          e.stopPropagation();
-          openLb(div.dataset.src, div.getAttribute("aria-label") || "", div);
+          open();
         });
-        div.addEventListener("keydown", (e) => {
+        el.addEventListener("keydown", (e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            openLb(div.dataset.src, div.getAttribute("aria-label") || "", div);
+            open();
           }
         });
-      });
-      lb.addEventListener("click", closeLb);
+      }
+
       document
-        .getElementById("lightbox-close")
-        .addEventListener("click", closeLb);
+        .querySelectorAll(".showcase img:not(.no-lightbox), .zoom-media img")
+        .forEach((img) => bindZoom(img, () => img.src, () => img.alt));
+      document.querySelectorAll("[data-src]").forEach((div) => {
+        bindZoom(div, () => div.dataset.src, () => div.getAttribute("aria-label") || "");
+      });
+
+      lb.addEventListener("click", closeLb);
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeLb();
-        if (lb.classList.contains("is-open") && e.key === "Tab") {
-          e.preventDefault();
-          var closeBtn = document.getElementById("lightbox-close");
-          if (document.activeElement === closeBtn) {
-            lb.focus();
-          } else {
-            closeBtn.focus();
-          }
-        }
       });
     </script>
   </body>

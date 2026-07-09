@@ -105,7 +105,6 @@
 
         /* Layout */
         --max-width: 1080px;
-        --breakpoint: 860px;
       }
 
       html {
@@ -412,12 +411,6 @@
         padding: 60px 0;
       }
 
-      .withheld-block {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        min-height: 0;
-      }
       .zoom-block {
         position: relative;
         display: flex;
@@ -793,12 +786,6 @@
         flex-direction: column;
         position: relative;
       }
-      .comp.vt-left .withheld-block {
-        flex: 1;
-      }
-      .comp.vt-left .withheld-block .withheld {
-        flex: 1;
-      }
       .comp.vt-left > .txt {
         grid-column: 3;
         align-self: stretch;
@@ -824,68 +811,29 @@
         grid-column: 3;
         grid-row: 1 / -1;
       }
-      .comp.vt-right .withheld-block {
-        flex: 1;
-      }
-      .comp.vt-right .withheld-block .withheld {
-        flex: 1;
-      }
-      .txt .zoom {
-        max-width: min(300px, 100%);
-      }
-      .comp:has(.zoom):not(.vt-left):not(.vt-right) {
+      .comp:has(.zoom-block):not(.vt-left):not(.vt-right) {
         align-items: stretch;
       }
-      .comp.sc-right:not(.flip):has(.zoom) .txt {
+      .comp.sc-right:not(.flip):has(.zoom-block) .txt {
         grid-column: 1;
         grid-row: 1 / -1;
         align-self: stretch;
       }
-      .comp.sc-right:not(.flip):has(.zoom) .showcase {
+      .comp.sc-right:not(.flip):has(.zoom-block) .showcase {
         grid-column: 2;
         grid-row: 1 / -1;
         align-self: stretch;
       }
-      .comp.flip:not(.vt-left):not(.vt-right):has(.zoom) .showcase {
-        grid-column: 1;
-        grid-row: 1 / -1;
-        align-self: stretch;
-      }
-      .comp.flip:not(.vt-left):not(.vt-right):has(.zoom) .txt {
-        grid-column: 2;
-        grid-row: 1 / -1;
-        align-self: stretch;
-      }
-      .comp:has(.zoom) .txt:not(.txt-vhead) {
+      .comp:has(.zoom-block) .txt:not(.txt-vhead) {
         display: flex;
         flex-direction: column;
-      }
-      .comp:has(.zoom) .txt:not(.txt-vhead) .piece-body,
-      .comp:has(.zoom) .txt:not(.txt-vhead) .build-line {
-        max-width: 38ch;
-      }
-      .comp:has(.zoom) .txt:not(.txt-vhead) .zoom {
-        margin-top: auto;
-        align-self: flex-start;
-        padding-top: var(--sp-inset);
       }
       .comp:has(.zoom-block) .txt:not(.txt-vhead) .zoom-block {
         margin-top: auto;
         align-self: flex-start;
         padding-top: var(--sp-component);
       }
-      .comp:has(.zoom-block) .txt:not(.txt-vhead) .zoom-block > .zoom {
-        margin-top: 0;
-        padding-top: 0;
-        align-self: flex-start;
-      }
-      .comp.flip:has(.zoom) .txt:not(.txt-vhead) .zoom {
-        align-self: flex-end;
-      }
-      .comp:has(.zoom) .txt:not(.txt-vhead) .build-line {
-        margin-top: var(--sp-row);
-      }
-      .comp:has(.zoom) .txt:not(.txt-vhead) .piece-foot {
+      .comp:has(.zoom-block) .txt:not(.txt-vhead) .piece-foot {
         margin-top: 20px;
       }
       .comp > .showcase:not(.row) {
@@ -898,9 +846,6 @@
         flex: 0 0 auto;
         display: flex;
         flex-direction: column;
-      }
-      .comp:has(.zoom) .showcase:not(.showcase-split) .main.figunit {
-        margin-top: auto;
       }
       .comp .showcase.showcase-split {
         display: flex;
@@ -915,13 +860,11 @@
         margin-top: auto;
         max-width: 42ch;
       }
-      .comp .main .img,
-      .comp .zoom .img {
+      .comp .main .img {
         aspect-ratio: unset;
         height: auto;
       }
-      .comp .main .img.contain,
-      .comp .zoom .img.contain {
+      .comp .main .img.contain {
         display: block;
       }
       .imgrid {
@@ -966,14 +909,6 @@
         margin-top: var(--sp-block);
         position: relative;
         z-index: 1;
-      }
-      .also-built h3 {
-        font-family: var(--mono);
-        font-size: var(--fs-sm);
-        text-transform: uppercase;
-        letter-spacing: var(--ls-section);
-        color: var(--muted);
-        margin-bottom: 24px;
       }
       .also-grid {
         display: grid;
@@ -1064,18 +999,11 @@
       .thumb-strip {
         margin-top: var(--sp-block);
       }
-      .thumb-strip h3 {
-        font-family: var(--mono);
-        font-size: var(--fs-sm);
-        text-transform: uppercase;
-        letter-spacing: var(--ls-section);
-        color: var(--muted);
-        margin-bottom: var(--sp-group);
-      }
       .thumb-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: var(--sp-group) 20px;
+        row-gap: var(--sp-inset);
+        column-gap: 20px;
       }
       .thumb-item {
         text-decoration: none;
@@ -1133,7 +1061,8 @@
       @media (max-width: 860px) {
         .thumb-grid {
           grid-template-columns: repeat(2, 1fr);
-          gap: 16px 12px;
+          row-gap: var(--sp-row);
+          column-gap: 12px;
         }
         .thumb-item .thumb-title {
           font-size: var(--fs-md);
@@ -1334,9 +1263,6 @@
           min-height: 0;
           aspect-ratio: unset;
         }
-        .txt .zoom {
-          max-width: none;
-        }
         .comp.vt-left > .vhead-anchor,
         .comp.vt-right > .vhead-anchor {
           order: 0;
@@ -1370,10 +1296,6 @@
         .showcase.row {
           flex-direction: column;
           gap: 12px;
-        }
-        .showcase.pair {
-          flex-direction: column;
-          align-items: stretch;
         }
         .showcase.row .figs {
           flex-direction: column;
@@ -1468,7 +1390,6 @@
         "name": "Patrick Wojda",
         "jobTitle": "Senior Data Visualisation Engineer",
         "url": "https://gitnoise.github.io/portfolio/",
-        "email": "patrickwojda@yahoo.com",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Stockholm",
@@ -1787,29 +1708,7 @@
           </article>
 
           <article class="piece">
-            <div class="comp sc-right">
-              <div class="txt">
-                <div class="head">
-                  <span class="sq" aria-hidden="true"></span
-                  ><span class="num">03</span>
-                  <h3 class="ttl">Infrastructure Security Map</h3>
-                </div>
-                <div class="piece-meta">Omny · freelance · fixed-scope</div>
-                <p class="piece-body">
-                  Industrial networks are segmented into zones for safety, but
-                  most teams audit that segmentation in spreadsheets and PDF
-                  reports. The
-                  <strong>Zones and Conduits</strong> diagram inside Omny's
-                  platform turns it into a live, interactive map: assets are
-                  automatically categorised and their communication pathways
-                  visualised against the ISA/IEC 62443 standard. A
-                  <strong>custom tree layout</strong> nests multiple asset
-                  levels inside zones.
-                </p>
-                <div class="piece-foot">
-                  <span>Svelte · D3 · custom tree layout</span>
-                </div>
-              </div>
+            <div class="comp sc-right flip">
               <div class="showcase">
                 <div class="main figunit">
                   <div class="preview-confidential">
@@ -1837,25 +1736,33 @@
                   </div>
                 </div>
               </div>
+              <div class="txt">
+                <div class="head">
+                  <span class="sq" aria-hidden="true"></span
+                  ><span class="num">03</span>
+                  <h3 class="ttl">Infrastructure Security Map</h3>
+                </div>
+                <div class="piece-meta">Omny · freelance · fixed-scope</div>
+                <p class="piece-body">
+                  Industrial networks are segmented into zones for safety, but
+                  most teams audit that segmentation in spreadsheets and PDF
+                  reports. The
+                  <strong>Zones and Conduits</strong> diagram inside Omny's
+                  platform turns it into a live, interactive map: assets are
+                  automatically categorised and their communication pathways
+                  visualised against the ISA/IEC 62443 standard. A
+                  <strong>custom tree layout</strong> nests multiple asset
+                  levels inside zones.
+                </p>
+                <div class="piece-foot">
+                  <span>Svelte · D3 · custom tree layout</span>
+                </div>
+              </div>
             </div>
           </article>
 
           <article class="piece">
-            <div class="comp sc-right flip">
-              <div class="showcase">
-                <div class="main figunit">
-                  <div class="img contain">
-                    <img
-                      src="assets/disputedareas.jpg"
-                      alt="Disputed Borders, small multiples overview of all contested regions"
-                      width="1440"
-                      height="1606"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="figcap">disputed borders and territories</div>
-                </div>
-              </div>
+            <div class="comp sc-right">
               <div class="txt">
                 <div class="head">
                   <span class="sq" aria-hidden="true"></span
@@ -1883,6 +1790,20 @@
                     rel="noopener noreferrer"
                     >View →</a
                   >
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="main figunit">
+                  <div class="img contain">
+                    <img
+                      src="assets/disputedareas.jpg"
+                      alt="Disputed Borders, small multiples overview of all contested regions"
+                      width="1440"
+                      height="1606"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="figcap">disputed borders and territories</div>
                 </div>
               </div>
             </div>
@@ -2231,7 +2152,7 @@
         <section class="section outro">
           <p class="outro-line">
             Working on data that needs to be clear?
-            <a href="mailto:patrickwojda@yahoo.com">Email me</a>
+            <a href="mailto:patwo.infodesign@proton.me">Email me</a>
           </p>
         </section>
 
@@ -2295,7 +2216,7 @@
         <footer class="contact" id="contact">
           <h2>Let's <em>talk.</em></h2>
           <div class="contact-links">
-            <a href="mailto:patrickwojda@yahoo.com">Email</a>
+            <a href="mailto:patwo.infodesign@proton.me">Email</a>
             <a
               href="https://www.linkedin.com/in/patrickwojda/"
               target="_blank"
@@ -2320,7 +2241,7 @@
     </div>
 
     <div class="lightbox" id="lightbox" tabindex="-1">
-      <img id="lightbox-img" src="" alt="" />
+      <img id="lightbox-img" alt="" />
     </div>
 
     <script>
@@ -2339,14 +2260,20 @@
       function closeLb() {
         lb.classList.remove("is-open");
         document.documentElement.classList.remove("lb-open");
+        lbImg.removeAttribute("src");
+        lbImg.alt = "";
         lbTrigger?.focus();
         lbTrigger = null;
       }
 
-      function bindZoom(el, getSrc, getAlt) {
-        el.style.cursor = "zoom-in";
+      function bindZoom(el) {
         el.tabIndex = 0;
-        const open = () => openLb(getSrc(), getAlt(), el);
+        const open = () =>
+          openLb(
+            el.dataset.src || el.src,
+            el.alt || el.getAttribute("aria-label") || "",
+            el
+          );
         el.addEventListener("click", (e) => {
           e.preventDefault();
           open();
@@ -2361,14 +2288,12 @@
 
       document
         .querySelectorAll(".showcase img:not(.no-lightbox), .zoom-media img")
-        .forEach((img) => bindZoom(img, () => img.src, () => img.alt));
-      document.querySelectorAll("[data-src]").forEach((div) => {
-        bindZoom(div, () => div.dataset.src, () => div.getAttribute("aria-label") || "");
-      });
+        .forEach(bindZoom);
+      document.querySelectorAll("[data-src]").forEach(bindZoom);
 
       lb.addEventListener("click", closeLb);
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeLb();
+        if (e.key === "Escape" && lb.classList.contains("is-open")) closeLb();
       });
     </script>
   </body>

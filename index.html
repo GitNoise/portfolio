@@ -118,7 +118,13 @@
         --sp-tight: 10px;
         --sp-wrap: 44px;
         --sp-prose: 640px;
-        --sp-topbar: 80px;
+        --sp-topbar: var(--topbar-shell-height);
+        --topbar-pad-y: 32px;
+        --topbar-mark-scale-x: 2.2;
+        --topbar-mark-scale-y: 2;
+        --topbar-mark-weight: 900;
+        --topbar-mark-stroke: 0.5px;
+        --topbar-shell-height: 88px;
 
         /* Motion */
         --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
@@ -158,10 +164,20 @@
       }
 
       /* Topbar */
+      :root.topbar-compact {
+        --topbar-pad-y: 18px;
+        --topbar-mark-scale-x: 1;
+        --topbar-mark-scale-y: 1;
+        --topbar-mark-weight: 500;
+        --topbar-mark-stroke: 0px;
+        --topbar-shell-height: 52px;
+      }
       .topbar-shell {
         position: sticky;
         top: 0;
         z-index: 100;
+        height: var(--topbar-shell-height);
+        transition: height var(--duration-normal) var(--ease-out);
       }
       .topbar-bg {
         position: absolute;
@@ -173,10 +189,12 @@
       }
       .topbar {
         position: relative;
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
-        padding: 18px 0;
+        height: 100%;
+        box-sizing: border-box;
+        padding: var(--topbar-pad-y) 0;
         border-bottom: var(--border-subtle);
         font-family: var(--mono);
         font-size: var(--fs-sm);
@@ -184,17 +202,46 @@
         color: var(--muted);
         text-transform: uppercase;
         background: transparent;
+        transition: padding var(--duration-normal) var(--ease-out);
       }
       .topbar .mark {
-        display: flex;
-        align-items: center;
-        gap: 9px;
+        justify-self: start;
+        display: inline-block;
         color: var(--ink);
-        font-weight: 500;
+        font-weight: var(--topbar-mark-weight);
+        text-decoration: none;
+        -webkit-text-stroke: var(--topbar-mark-stroke) currentColor;
+        paint-order: stroke fill;
+        transform: scale(
+          var(--topbar-mark-scale-x),
+          var(--topbar-mark-scale-y)
+        );
+        transform-origin: left center;
+        transition:
+          transform var(--duration-normal) var(--ease-out),
+          font-weight var(--duration-normal) var(--ease-out),
+          -webkit-text-stroke-width var(--duration-normal) var(--ease-out),
+          color var(--duration-fast) var(--ease-out);
+      }
+      .topbar .mark:hover {
+        color: var(--red);
+      }
+      html.topbar-no-transition .topbar-shell,
+      html.topbar-no-transition .topbar,
+      html.topbar-no-transition .topbar .mark {
+        transition: none !important;
       }
       .topnav {
+        position: relative;
+        z-index: 1;
+        grid-column: 2;
+        justify-self: center;
         display: flex;
         gap: var(--sp-group);
+      }
+      .topbar .loc {
+        grid-column: 3;
+        justify-self: end;
       }
       .topnav a {
         color: var(--muted);
@@ -225,11 +272,12 @@
       }
       /* Hero */
       .hero {
-        padding: 80px 0 var(--sp-gutter);
+        padding: 96px 0 calc(var(--sp-gutter) + 16px);
         display: grid;
         grid-template-columns: 1fr auto;
         gap: var(--sp-inset);
         align-items: end;
+        color: var(--ink);
       }
       .hero h1 {
         font-size: clamp(64px, 9vw, 110px);
@@ -246,7 +294,7 @@
       .hero-col {
         display: flex;
         flex-direction: column;
-        gap: var(--sp-component);
+        gap: calc(var(--sp-component) + 8px);
       }
       .hero-role {
         font-family: var(--narrow);
@@ -271,12 +319,12 @@
         position: absolute;
         top: -480px;
         right: -20px;
-        width: 175%;
-        max-width: 607px;
+        width: 165%;
+        max-width: 560px;
         height: auto;
         pointer-events: none;
-        opacity: 0.1;
-        filter: grayscale(1) contrast(1.8) brightness(1.15);
+        opacity: 0.07;
+        filter: grayscale(1) contrast(1.5) brightness(1.08);
         mix-blend-mode: multiply;
       }
       .k {
@@ -284,8 +332,8 @@
       }
       .hero-facts {
         list-style: none;
-        margin-top: var(--sp-inset);
-        padding-bottom: var(--sp-tight);
+        margin-top: calc(var(--sp-inset) + 16px);
+        padding-bottom: calc(var(--sp-tight) + 8px);
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 0;
@@ -334,27 +382,36 @@
         background: var(--red);
       }
       .hero-facts + .section {
-        margin-top: var(--sp-block);
+        margin-top: calc(var(--sp-section) - 50px);
       }
       .stack-cloud {
         display: flex;
         flex-wrap: wrap;
-        gap: 4px 20px;
+        gap: 4px 12px;
         align-items: baseline;
         justify-content: left;
-        line-height: 0.85;
+        line-height: 0.88;
+        overflow-x: clip;
+        padding: 1px 0;
+        max-width: 920px;
       }
       .stack-cloud .sc {
         font-family: var(--narrow);
-        font-weight: 800;
-        font-size: clamp(32px, 4.5vw, 50px);
+        font-weight: 900;
+        font-size: clamp(48px, 2.5vw, 26px);
         text-transform: uppercase;
-        color: color-mix(in srgb, var(--ink) 8%, transparent);
-        filter: url(#outline);
+        color: color-mix(in srgb, var(--ink) 11%, transparent);
+      }
+      .stack-cloud .sc-s {
+        font-size: clamp(18px, 2vw, 20px);
+      }
+      .stack-cloud .sc-l {
+        font-size: clamp(32px, 2.8vw, 27px);
       }
       .stack-cloud .sc.primary {
-        font-size: clamp(48px, 6.5vw, 76px);
-        color: color-mix(in srgb, var(--ink) 12%, transparent);
+        font-weight: 900;
+        font-size: clamp(42px, 5.8vw, 68px);
+        color: color-mix(in srgb, var(--red) 40%, transparent);
       }
       /* Why + How sections */
       .two-col {
@@ -393,13 +450,18 @@
       }
 
       /* Client work */
+      .section:has(> .clients-grid) {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-gutter);
+      }
       .clients-intro {
         font-family: var(--narrow);
         font-size: var(--fs-body);
         line-height: var(--lh-body);
         color: var(--text);
         max-width: var(--sp-prose);
-        margin-bottom: 44px;
+        margin-bottom: 0;
       }
       .clients-intro strong {
         font-weight: 600;
@@ -430,7 +492,20 @@
       .piece {
         position: relative;
         z-index: 1;
-        padding: 60px 0;
+      }
+      #work > .piece {
+        padding-bottom: 48px;
+      }
+      #work > .piece + .piece {
+        padding-top: 48px;
+      }
+      #work > .piece + .also-built {
+        margin-top: 0;
+        padding-top: 48px;
+      }
+      #work > .piece + .piece::before,
+      #work > .piece + .also-built::before {
+        display: none;
       }
 
       .zoom-block {
@@ -1108,11 +1183,26 @@
         gap: var(--sp-block);
         align-items: start;
       }
+      .about-manifesto {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
       .about-lead {
         font-family: var(--narrow);
-        font-size: var(--fs-display-sm);
+        font-size: calc(var(--fs-display-sm) * 0.875);
         line-height: 1.4;
-        font-weight: 500;
+        font-weight: 300;
+        display: flex;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .about-lead-kicker {
+        font-family: var(--narrow);
+        font-size: calc(var(--fs-display-sm) * 0.875);
+        line-height: 1.4;
+        font-weight: 600;
       }
       .about-body {
         font-family: var(--narrow);
@@ -1205,48 +1295,115 @@
         color: var(--red);
       }
       @media (max-width: 860px) {
+        :root,
+        :root.topbar-compact {
+          --sp-section: 72px;
+          --sp-block: 48px;
+          --sp-gutter: 32px;
+          --sp-inset: 28px;
+          --topbar-pad-y: 14px;
+          --topbar-mark-scale-x: 1;
+          --topbar-mark-scale-y: 1;
+          --topbar-mark-weight: 700;
+          --topbar-mark-stroke: 0px;
+          --topbar-shell-height: 48px;
+        }
+        .topbar-shell,
+        .topbar,
+        .topbar .mark {
+          transition: none;
+        }
+        .topbar {
+          grid-template-columns: 1fr auto;
+          grid-template-rows: auto;
+          row-gap: 0;
+        }
+        .topbar .mark {
+          grid-column: 1;
+          grid-row: 1;
+        }
+        .topnav {
+          grid-column: 2;
+          grid-row: 1;
+          justify-self: end;
+          gap: 16px;
+        }
+        .topbar .loc {
+          display: none;
+        }
         .wrap {
-          padding: 0 22px;
+          padding: 0 20px;
+          overflow-x: clip;
         }
         .hero {
           grid-template-columns: 1fr;
-          gap: var(--sp-group);
-          padding: var(--sp-gutter) 0 var(--sp-inset);
+          gap: var(--sp-row);
+          padding: calc(var(--sp-row) + 8px) 0 calc(var(--sp-component) + 12px);
         }
         .hero h1 {
-          font-size: 46px;
+          font-size: clamp(36px, 10vw, 46px);
           letter-spacing: -1.5px;
+        }
+        .hero-role {
+          font-size: var(--fs-body);
         }
         .hero-side {
           min-width: 0;
           min-height: 0;
-          height: clamp(260px, 45vw, 340px);
+          height: clamp(200px, 52vw, 280px);
           overflow: hidden;
         }
         .hero-side .portrait-img {
           position: relative;
-          width: 65%;
-          max-width: 260px;
+          width: 52%;
+          max-width: 200px;
           top: 0;
           right: 0;
           float: right;
           display: block;
-          opacity: 0.18;
+          opacity: 0.1;
+          filter: grayscale(1) contrast(1.5) brightness(1.08);
         }
         .hero-facts {
           position: relative;
           z-index: 2;
-          margin-top: clamp(-220px, -30vw, -160px);
+          margin-top: clamp(-108px, -16vw, -64px);
           grid-template-columns: 1fr;
-          gap: var(--sp-tight);
-          font-size: var(--fs-body);
+          gap: calc(var(--sp-tight) + 4px);
+          font-size: var(--fs-md);
+          padding-bottom: calc(var(--sp-tight) + 6px);
         }
         .hero-facts .fact + .fact {
           padding-left: 0;
         }
+        .hero-facts + .section {
+          margin-top: calc(var(--sp-section) - 50px);
+        }
+        .stack-cloud {
+          gap: 4px 10px;
+          line-height: 0.92;
+        }
+        .stack-cloud .sc {
+          font-size: clamp(14px, 3.2vw, 18px);
+          font-weight: 600;
+          color: color-mix(in srgb, var(--ink) 9%, transparent);
+        }
+        .stack-cloud .sc-s {
+          font-size: clamp(11px, 2.6vw, 14px);
+        }
+        .stack-cloud .sc-l {
+          font-size: clamp(15px, 3.6vw, 19px);
+        }
+        .stack-cloud .sc.primary {
+          font-size: clamp(22px, 6vw, 32px);
+          font-weight: 700;
+        }
         .about,
         .two-col {
           grid-template-columns: 1fr;
+          gap: var(--sp-component);
+        }
+        .section:has(> .clients-grid) {
           gap: var(--sp-component);
         }
         .clients-grid {
@@ -1273,6 +1430,7 @@
         .comp .txt {
           padding-right: 0 !important;
           order: 2;
+          min-width: 0;
         }
         .comp .showcase {
           order: 1;
@@ -1289,30 +1447,51 @@
         .comp.vt-right > .vhead-anchor {
           order: 0;
         }
+        #work > .piece {
+          padding-bottom: 40px;
+        }
+        #work > .piece + .piece {
+          padding-top: 40px;
+        }
+        #work > .piece + .also-built {
+          padding-top: 40px;
+        }
+        #work > .piece + .piece::before,
+        #work > .piece + .also-built::before {
+          content: "";
+          display: block;
+          width: 84px;
+          height: 2px;
+          background: var(--red-block);
+          opacity: 0.8;
+          margin: -41px auto 39px;
+        }
+        .comp.flip .head,
+        .piece:nth-of-type(even) .head {
+          text-align: left;
+        }
+        .comp.flip .head .sq,
+        .piece:nth-of-type(even) .head .sq {
+          left: -10px;
+          right: auto;
+        }
+        .piece:nth-of-type(even) .vhead-col {
+          justify-content: flex-start;
+          text-align: left;
+        }
+        .piece:nth-of-type(even) .vhead-col .sq {
+          left: -14px;
+          right: auto;
+        }
 
         .head .ttl {
           font-size: var(--fs-display-compact);
+          max-width: none;
         }
         .head .sq,
         .vhead-col .sq {
-          width: 96px;
-          height: 96px;
-        }
-
-        .piece:nth-of-type(even) .head {
-          text-align: right;
-        }
-        .piece:nth-of-type(even) .head .sq {
-          left: auto;
-          right: -10px;
-        }
-        .piece:nth-of-type(even) .vhead-col {
-          justify-content: flex-end;
-          text-align: right;
-        }
-        .piece:nth-of-type(even) .vhead-col .sq {
-          left: auto;
-          right: -14px;
+          width: 72px;
+          height: 72px;
         }
 
         .showcase.row {
@@ -1353,9 +1532,28 @@
         }
       }
       @media (max-width: 560px) {
+        :root,
+        :root.topbar-compact {
+          --topbar-shell-height: 44px;
+        }
+        .topnav {
+          gap: 12px;
+        }
+        .stack-cloud .sc {
+          font-size: clamp(13px, 3vw, 16px);
+        }
+        .stack-cloud .sc-s {
+          font-size: clamp(10px, 2.4vw, 13px);
+        }
+        .stack-cloud .sc-l {
+          font-size: clamp(14px, 3.2vw, 17px);
+        }
+        .stack-cloud .sc.primary {
+          font-size: clamp(20px, 5.5vw, 28px);
+        }
         .clients-grid {
-          grid-template-columns: 1fr;
-          gap: var(--sp-row) var(--sp-component);
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--sp-row) 16px;
         }
       }
 
@@ -1403,6 +1601,17 @@
         .also-link a {
           transition: none !important;
         }
+        .topbar,
+        .topbar .mark,
+        .topbar-shell {
+          transition: none !important;
+        }
+        .topbar .mark {
+          transform: scale(
+            var(--topbar-mark-scale-x),
+            var(--topbar-mark-scale-y)
+          );
+        }
       }
     </style>
     <script type="application/ld+json">
@@ -1441,33 +1650,26 @@
     </script>
   </head>
   <body>
-    <svg width="0" height="0" aria-hidden="true" style="position: absolute">
-      <filter id="outline">
-        <feMorphology
-          in="SourceAlpha"
-          operator="dilate"
-          radius="0.4"
-          result="dilated"
-        />
-        <feFlood flood-color="#111" flood-opacity="0.7" result="outlineColor" />
-        <feComposite
-          in="outlineColor"
-          in2="dilated"
-          operator="in"
-          result="outline"
-        />
-        <feMerge>
-          <feMergeNode in="outline" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    </svg>
+    <script>
+      document.documentElement.classList.add("topbar-no-transition");
+      (function () {
+        var mobile = window.matchMedia("(max-width: 860px)");
+        function syncTopbarState() {
+          document.documentElement.classList.toggle(
+            "topbar-compact",
+            mobile.matches || window.scrollY > 48,
+          );
+        }
+        syncTopbarState();
+        window.addEventListener("pageshow", syncTopbarState);
+      })();
+    </script>
     <a href="#main" class="skip-link">Skip to content</a>
     <div class="wrap">
       <div class="topbar-shell">
         <div class="topbar-bg" aria-hidden="true"></div>
         <header class="topbar">
-          <span class="mark">Patrick Wojda</span>
+          <a href="#" class="mark" aria-label="Back to top">Patrick Wojda</a>
           <nav class="topnav" aria-label="Primary">
             <a href="#work">Work</a>
             <a href="#about">About</a>
@@ -1513,18 +1715,18 @@
           <h2 class="sr-only">Skills</h2>
           <div class="stack-cloud">
             <span class="sc primary">D3</span>
-            <span class="sc">Three.js</span>
-            <span class="sc">Accessibility</span>
+            <span class="sc sc-l">Canvas</span>
+            <span class="sc sc-s">Three.js</span>
+            <span class="sc sc-l">Accessibility</span>
             <span class="sc primary">Data Storytelling</span>
-            <span class="sc">Observable</span>
-            <span class="sc primary">Cartography</span>
+            <span class="sc sc-s">Observable</span>
             <span class="sc">Vega-Lite</span>
-            <span class="sc">Pandas</span>
+            <span class="sc primary">Cartography</span>
+            <span class="sc sc-s">Pandas</span>
             <span class="sc primary">React</span>
-            <span class="sc">SVG</span>
+            <span class="sc sc-l">SVG</span>
             <span class="sc primary">Svelte</span>
-            <span class="sc">SQL</span>
-            <span class="sc">Canvas</span>
+            <span class="sc sc-s">SQL</span>
           </div>
         </section>
 
@@ -2181,36 +2383,33 @@
         <section class="section" id="about">
           <h2 class="sr-only">About</h2>
           <div class="about">
-            <div>
+            <div class="about-manifesto">
               <p class="about-lead">
                 Data visualisation is never neutral. <br />Every dataset has
                 boundaries someone drew, and every tool carries the assumptions
-                of its design. AI defaults are assumptions nobody chose.<br /><br />That
-                belief shapes the work I do.
+                of its design.
               </p>
+              <p class="about-lead-kicker">That belief shapes the work I do.</p>
             </div>
             <div class="about-body">
               <p>
-                Hi, I'm Patrick. I hold a Master of Disaster Management and have
-                worked inside the UN system, building humanitarian
-                data-transparency and knowledge-management tools for UNOPS field
-                operations. I also built Sweden's most-viewed COVID dashboard
-                for Aftonbladet and financial analytics tools used across
-                Spotify Finance. Today I lead the visualisation layer at
-                Datastory, where the product is an AI-driven chart builder. I
-                use AI daily to move faster on the parts that should be cheap,
-                so the judgment gets more room.
-              </p>
-              <p>
-                I work best where
+                Hi, I'm Patrick. I work where
                 <strong
                   >off-the-shelf BI tools and generative AI stop being
                   enough</strong
-                >, collaborating with researchers, data scientists, and
-                journalists on complex or consequential data. I build to the
-                constraints that matter in the field: accessibility,
-                low-bandwidth performance, and multilingual audiences. I work in
-                English, Swedish, Polish, and French.
+                >.
+              </p>
+              <p>
+                Today I lead the visualisation layer at Datastory, building an
+                AI-powered chart builder. I collaborate with researchers, data
+                scientists, and journalists to turn complex or high-stakes data
+                into tools people can trust and use.
+              </p>
+              <p>
+                I build for the constraints that matter in the real world:
+                accessibility, low-bandwidth performance, multilingual
+                audiences, and clear communication. I work in English, Swedish,
+                Polish, and French.
               </p>
               <div class="about-cols">
                 <div>
@@ -2294,7 +2493,7 @@
           openLb(
             el.dataset.src || el.src,
             el.alt || el.getAttribute("aria-label") || "",
-            el
+            el,
           );
         el.addEventListener("click", (e) => {
           e.preventDefault();
@@ -2317,6 +2516,82 @@
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && lb.classList.contains("is-open")) closeLb();
       });
+
+      const topbarCompactOn = 48;
+      const topbarCompactOff = 8;
+      const topbarMobile = window.matchMedia("(max-width: 860px)");
+      let topbarCompact = false;
+      let topbarTicking = false;
+
+      function updateTopbar() {
+        if (topbarMobile.matches) {
+          topbarCompact = true;
+          document.documentElement.classList.add("topbar-compact");
+          topbarTicking = false;
+          return;
+        }
+        const y = window.scrollY;
+        if (!topbarCompact && y > topbarCompactOn) {
+          topbarCompact = true;
+          document.documentElement.classList.add("topbar-compact");
+        } else if (topbarCompact && y < topbarCompactOff) {
+          topbarCompact = false;
+          document.documentElement.classList.remove("topbar-compact");
+        }
+        topbarTicking = false;
+      }
+
+      function enableTopbarTransitions() {
+        document.documentElement.classList.remove("topbar-no-transition");
+      }
+
+      topbarCompact =
+        document.documentElement.classList.contains("topbar-compact");
+      updateTopbar();
+      requestAnimationFrame(() => {
+        requestAnimationFrame(enableTopbarTransitions);
+      });
+
+      topbarMobile.addEventListener("change", () => {
+        document.documentElement.classList.add("topbar-no-transition");
+        updateTopbar();
+        requestAnimationFrame(enableTopbarTransitions);
+      });
+
+      window.addEventListener("pageshow", () => {
+        document.documentElement.classList.add("topbar-no-transition");
+        topbarCompact =
+          topbarMobile.matches || window.scrollY > topbarCompactOn;
+        document.documentElement.classList.toggle(
+          "topbar-compact",
+          topbarCompact,
+        );
+        requestAnimationFrame(enableTopbarTransitions);
+      });
+
+      document
+        .querySelector(".topbar .mark")
+        ?.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+              .matches
+              ? "auto"
+              : "smooth",
+          });
+        });
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (!topbarTicking) {
+            requestAnimationFrame(updateTopbar);
+            topbarTicking = true;
+          }
+        },
+        { passive: true },
+      );
     </script>
   </body>
 </html>

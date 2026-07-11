@@ -384,34 +384,87 @@
       .hero-facts + .section {
         margin-top: calc(var(--sp-section) - 50px);
       }
-      .stack-cloud {
+      .about-skills {
+        position: relative;
+      }
+      .skill-annot {
+        position: absolute;
+        bottom: 100%;
+        left: 74px;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+        font-family: var(--narrow);
+        font-style: italic;
+        font-size: 13px;
+        line-height: 1.3;
+        color: var(--red);
+        white-space: nowrap;
+      }
+      .skill-annot svg {
+        flex-shrink: 0;
+        margin-top: 3px;
+      }
+      .skill-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+      }
+      .skill-card {
+        box-sizing: border-box;
+        aspect-ratio: 1;
+        background: var(--paper);
+        box-shadow:
+          1px 0 0 0 color-mix(in srgb, var(--ink) 8%, transparent),
+          0 1px 0 0 color-mix(in srgb, var(--ink) 8%, transparent);
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .skill-card .glyph {
+        width: 10px;
+        height: 10px;
+        flex-shrink: 0;
+        background: color-mix(in srgb, var(--ink) 42%, transparent);
+      }
+      .skill-card .g-viz {
+        border-radius: 50%;
+      }
+      .skill-card .g-data {
+        clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      }
+      .skill-card .skill-name {
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        line-height: 1.4;
+        color: var(--muted);
+      }
+      .skill-card.primary {
+        background: color-mix(in srgb, var(--red) 70%, var(--paper));
+        box-shadow: none;
+      }
+      .skill-card.primary .glyph {
+        background: var(--paper);
+      }
+      .skill-card.primary .skill-name {
+        color: var(--paper);
+      }
+      .skill-legend {
+        margin-top: var(--sp-group);
+        font-family: var(--mono);
+        font-size: var(--fs-sm);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        color: var(--muted);
         display: flex;
         flex-wrap: wrap;
-        gap: 4px 12px;
-        align-items: baseline;
-        justify-content: left;
-        line-height: 0.88;
-        overflow-x: clip;
-        padding: 1px 0;
-        max-width: 920px;
-      }
-      .stack-cloud .sc {
-        font-family: var(--narrow);
-        font-weight: 900;
-        font-size: clamp(48px, 2.5vw, 26px);
-        text-transform: uppercase;
-        color: color-mix(in srgb, var(--ink) 11%, transparent);
-      }
-      .stack-cloud .sc-s {
-        font-size: clamp(18px, 2vw, 20px);
-      }
-      .stack-cloud .sc-l {
-        font-size: clamp(32px, 2.8vw, 27px);
-      }
-      .stack-cloud .sc.primary {
-        font-weight: 900;
-        font-size: clamp(42px, 5.8vw, 68px);
-        color: color-mix(in srgb, var(--red) 40%, transparent);
+        gap: 8px 20px;
       }
       /* Why + How sections */
       .two-col {
@@ -453,14 +506,13 @@
       .section:has(> .clients-grid) {
         display: flex;
         flex-direction: column;
-        gap: var(--sp-gutter);
+        gap: var(--sp-row);
       }
       .clients-intro {
         font-family: var(--narrow);
         font-size: var(--fs-body);
         line-height: var(--lh-body);
         color: var(--text);
-        max-width: var(--sp-prose);
         margin-bottom: 0;
       }
       .clients-intro strong {
@@ -1183,26 +1235,21 @@
         gap: var(--sp-block);
         align-items: start;
       }
+      .about > .about-skills {
+        align-self: center;
+      }
       .about-manifesto {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
+        max-width: 680px;
       }
       .about-lead {
         font-family: var(--narrow);
-        font-size: calc(var(--fs-display-sm) * 0.875);
-        line-height: 1.4;
-        font-weight: 300;
-        display: flex;
-        align-items: stretch;
-        gap: 12px;
+        font-size: clamp(22px, 2.8vw, 30px);
+        line-height: 1.5;
+        font-weight: 400;
       }
-
-      .about-lead-kicker {
-        font-family: var(--narrow);
-        font-size: calc(var(--fs-display-sm) * 0.875);
-        line-height: 1.4;
-        font-weight: 600;
+      .about-lead strong {
+        font-weight: 700;
+        color: var(--ink);
       }
       .about-body {
         font-family: var(--narrow);
@@ -1379,24 +1426,46 @@
         .hero-facts + .section {
           margin-top: calc(var(--sp-section) - 50px);
         }
-        .stack-cloud {
-          gap: 4px 10px;
-          line-height: 0.92;
+        .skill-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
         }
-        .stack-cloud .sc {
-          font-size: clamp(14px, 3.2vw, 18px);
-          font-weight: 600;
-          color: color-mix(in srgb, var(--ink) 9%, transparent);
+        .skill-card {
+          aspect-ratio: auto;
+          background: transparent;
+          box-shadow: none;
+          border: 1px solid var(--line);
+          padding: 6px 10px;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 7px;
         }
-        .stack-cloud .sc-s {
-          font-size: clamp(11px, 2.6vw, 14px);
+        .skill-card .glyph {
+          width: 9px;
+          height: 9px;
+          background: color-mix(in srgb, var(--ink) 42%, transparent);
         }
-        .stack-cloud .sc-l {
-          font-size: clamp(15px, 3.6vw, 19px);
+        .skill-card .skill-name {
+          font-size: 10px;
+          line-height: 1;
+          color: var(--muted);
+          white-space: nowrap;
         }
-        .stack-cloud .sc.primary {
-          font-size: clamp(22px, 6vw, 32px);
-          font-weight: 700;
+        .skill-card.primary {
+          background: color-mix(in srgb, var(--red) 70%, var(--paper));
+          border-color: transparent;
+        }
+        .skill-card.primary .glyph {
+          background: var(--paper);
+        }
+        .skill-card.primary .skill-name {
+          color: var(--paper);
+        }
+        .skill-legend {
+          gap: 8px 16px;
+          font-size: 11px;
         }
         .about,
         .two-col {
@@ -1405,6 +1474,10 @@
         }
         .section:has(> .clients-grid) {
           gap: var(--sp-component);
+        }
+        .clients-intro {
+          margin-left: 0;
+          max-width: var(--sp-prose);
         }
         .clients-grid {
           grid-template-columns: repeat(2, 1fr);
@@ -1538,18 +1611,6 @@
         }
         .topnav {
           gap: 12px;
-        }
-        .stack-cloud .sc {
-          font-size: clamp(13px, 3vw, 16px);
-        }
-        .stack-cloud .sc-s {
-          font-size: clamp(10px, 2.4vw, 13px);
-        }
-        .stack-cloud .sc-l {
-          font-size: clamp(14px, 3.2vw, 17px);
-        }
-        .stack-cloud .sc.primary {
-          font-size: clamp(20px, 5.5vw, 28px);
         }
         .clients-grid {
           grid-template-columns: repeat(2, 1fr);
@@ -1712,21 +1773,14 @@
         </ul>
 
         <section class="section">
-          <h2 class="sr-only">Skills</h2>
-          <div class="stack-cloud">
-            <span class="sc primary">D3</span>
-            <span class="sc sc-l">Canvas</span>
-            <span class="sc sc-s">Three.js</span>
-            <span class="sc sc-l">Accessibility</span>
-            <span class="sc primary">Data Storytelling</span>
-            <span class="sc sc-s">Observable</span>
-            <span class="sc">Vega-Lite</span>
-            <span class="sc primary">Cartography</span>
-            <span class="sc sc-s">Pandas</span>
-            <span class="sc primary">React</span>
-            <span class="sc sc-l">SVG</span>
-            <span class="sc primary">Svelte</span>
-            <span class="sc sc-s">SQL</span>
+          <h2 class="sr-only">Approach</h2>
+          <div class="about-manifesto">
+            <p class="about-lead">
+              Data visualisation is never neutral. Every dataset has boundaries
+              someone drew, and every tool carries the assumptions of its
+              design.
+              <strong>That belief shapes the work I do.</strong>
+            </p>
           </div>
         </section>
 
@@ -1738,8 +1792,7 @@
             <strong>data interfaces</strong>
             for teams where common BI and generative AI tools hit their limits.
             The work starts with understanding what the data supports and what
-            insight it can carry. The work is often confidential; the clients
-            are not.
+            insight it can carry.
           </p>
           <div class="clients-grid">
             <div class="client">
@@ -2380,13 +2433,115 @@
         <section class="section" id="about">
           <h2 class="sr-only">About</h2>
           <div class="about">
-            <div class="about-manifesto">
-              <p class="about-lead">
-                Data visualisation is never neutral. <br />Every dataset has
-                boundaries someone drew, and every tool carries the assumptions
-                of its design.
-              </p>
-              <p class="about-lead-kicker">That belief shapes the work I do.</p>
+            <div class="about-skills">
+              <h3 class="sr-only">Skills</h3>
+              <div class="skill-annot" aria-hidden="true">
+                <svg
+                  width="24"
+                  height="26"
+                  viewBox="0 0 24 26"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M22 3 C 13 5, 8 11, 5 21"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M2 16.5 L5 22 L10.5 19"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span>what I reach for first</span>
+              </div>
+              <div class="skill-grid" role="list">
+                <div class="skill-card primary" role="listitem">
+                  <span class="glyph g-viz" aria-hidden="true"></span>
+                  <span class="skill-name">D3</span>
+                </div>
+                <div class="skill-card primary" role="listitem">
+                  <span class="glyph g-viz" aria-hidden="true"></span>
+                  <span class="skill-name">Data Storytelling</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-viz" aria-hidden="true"></span>
+                  <span class="skill-name">Scrollytelling</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-viz" aria-hidden="true"></span>
+                  <span class="skill-name">SVG</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-viz" aria-hidden="true"></span>
+                  <span class="skill-name">Cartography</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-viz" aria-hidden="true"></span>
+                  <span class="skill-name">Mapbox</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-viz" aria-hidden="true"></span>
+                  <span class="skill-name">Canvas</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-viz" aria-hidden="true"></span>
+                  <span class="skill-name">Three.js</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-viz" aria-hidden="true"></span>
+                  <span class="skill-name">Observable Plot</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-viz" aria-hidden="true"></span>
+                  <span class="skill-name">Vega-Lite</span>
+                </div>
+                <div class="skill-card primary" role="listitem">
+                  <span class="glyph g-eng" aria-hidden="true"></span>
+                  <span class="skill-name">Svelte</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-eng" aria-hidden="true"></span>
+                  <span class="skill-name">React</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-eng" aria-hidden="true"></span>
+                  <span class="skill-name">TypeScript</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-eng" aria-hidden="true"></span>
+                  <span class="skill-name">Accessibility</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-data" aria-hidden="true"></span>
+                  <span class="skill-name">SQL</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-data" aria-hidden="true"></span>
+                  <span class="skill-name">Pandas</span>
+                </div>
+                <div class="skill-card primary" role="listitem">
+                  <span class="glyph g-data" aria-hidden="true"></span>
+                  <span class="skill-name">Data Wrangling</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-data" aria-hidden="true"></span>
+                  <span class="skill-name">Statistics</span>
+                </div>
+                <div class="skill-card" role="listitem">
+                  <span class="glyph g-data" aria-hidden="true"></span>
+                  <span class="skill-name">Open Data</span>
+                </div>
+              </div>
+              <div class="skill-legend" aria-hidden="true">
+                <span>&#9679; visualisation</span>
+                <span>&#9632; engineering</span>
+                <span>&#9650; data</span>
+              </div>
             </div>
             <div class="about-body">
               <p>

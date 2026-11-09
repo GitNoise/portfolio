@@ -1061,6 +1061,20 @@
         display: block;
         object-fit: contain;
       }
+      .work-group {
+        margin: var(--sp-block) 0 0;
+        padding: 48px 0 0;
+        border-top: 1px solid var(--rule, currentColor);
+        font-family: var(--narrow);
+        font-size: var(--fs-md);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      #work > .work-group + .also-built {
+        margin-top: 32px;
+      }
       /* Also built strip */
       .also-built {
         margin-top: var(--sp-block);
@@ -1086,9 +1100,9 @@
       .also-row .img::before {
         content: "";
         position: absolute;
-        inset: 0;
+        inset: 20px;
         background-image: var(--bg);
-        background-size: cover;
+        background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
         transition: transform var(--duration-normal) var(--ease-out);
@@ -1178,9 +1192,9 @@
       .thumb-item .thumb-img::before {
         content: "";
         position: absolute;
-        inset: 0;
+        inset: 14px;
         background-image: var(--bg);
-        background-size: cover;
+        background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
         transition: transform var(--duration-normal) var(--ease-out);
@@ -1949,78 +1963,24 @@
                 <div class="head">
                   <span class="sq" aria-hidden="true"></span
                   ><span class="num">02</span>
-                  <h3 class="ttl">Erosion of European Democracy</h3>
+                  <h3 class="ttl">Infrastructure Security Map</h3>
                 </div>
-                <div class="piece-meta">
-                  research · V-Dem · data exploration · 2024 · explained.media
-                </div>
+                <div class="piece-meta">Omny · freelance · fixed-scope</div>
                 <p class="piece-body">
-                  Built for the 2024 super election year. The raw
-                  <strong>V-Dem</strong> dataset is large, the first challenge
-                  was reducing it to something Observable could handle without
-                  losing analytical depth. The <strong>heatmap</strong> lets you
-                  scan dozens of countries simultaneously, colour-coding the
-                  years each democracy index rose or fell. A companion
-                  <strong>slope chart</strong> adds the missing dimension: by
-                  how much.
+                  Industrial networks are segmented into zones for safety, but
+                  most teams audit that segmentation in spreadsheets and PDF
+                  reports. The
+                  <strong>Zones and Conduits</strong> diagram inside Omny's
+                  platform turns it into a live, interactive map where assets
+                  are automatically categorised and their communication pathways
+                  visualised against the ISA/IEC 62443 standard. A
+                  <strong>custom tree layout</strong> nests multiple asset
+                  levels inside zones.
                 </p>
                 <div class="piece-foot">
-                  <span>
-                    <a
-                      href="https://observablehq.com/d/61701e2d85aa05a6"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >View heatmap →</a
-                    ><br />
-                    <a
-                      href="https://observablehq.com/d/65193c21ec0e09ab"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >View slope chart →</a
-                    ></span
-                  >
-                </div>
-                <div class="zoom-block">
-                  <div class="zoom-media">
-                    <div class="img contain">
-                      <img
-                        src="assets/democracy2.png"
-                        alt="Europe's democratic backsliding, slope chart comparing liberal democracy scores in 2012 and 2022"
-                        width="1264"
-                        height="1184"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-                  <div class="figcap">2012 vs 2022</div>
+                  <span>Svelte · D3 · custom tree layout</span>
                 </div>
               </div>
-              <div class="showcase showcase-split">
-                <div class="main figunit">
-                  <div class="img contain on-dark">
-                    <img
-                      src="assets/erosion1.jpg"
-                      alt="Erosion of European democracy, diverging heatmap of year-on-year democratic score changes by region, 1980–2022"
-                      width="1080"
-                      height="1349"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="figcap">
-                    erosion of european democracy, 39 european countries, change
-                    since 2011
-                  </div>
-                </div>
-                <p class="build-line">
-                  Same dataset, two views, each built to answer a different
-                  question about democratic decline.
-                </p>
-              </div>
-            </div>
-          </article>
-
-          <article class="piece">
-            <div class="comp sc-right flip">
               <div class="showcase">
                 <div class="main figunit">
                   <div class="preview-confidential">
@@ -2048,76 +2008,6 @@
                   </div>
                 </div>
               </div>
-              <div class="txt">
-                <div class="head">
-                  <span class="sq" aria-hidden="true"></span
-                  ><span class="num">03</span>
-                  <h3 class="ttl">Infrastructure Security Map</h3>
-                </div>
-                <div class="piece-meta">Omny · freelance · fixed-scope</div>
-                <p class="piece-body">
-                  Industrial networks are segmented into zones for safety, but
-                  most teams audit that segmentation in spreadsheets and PDF
-                  reports. The
-                  <strong>Zones and Conduits</strong> diagram inside Omny's
-                  platform turns it into a live, interactive map where assets
-                  are automatically categorised and their communication pathways
-                  visualised against the ISA/IEC 62443 standard. A
-                  <strong>custom tree layout</strong> nests multiple asset
-                  levels inside zones.
-                </p>
-                <div class="piece-foot">
-                  <span>Svelte · D3 · custom tree layout</span>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="piece">
-            <div class="comp sc-right">
-              <div class="txt">
-                <div class="head">
-                  <span class="sq" aria-hidden="true"></span
-                  ><span class="num">04</span>
-                  <h3 class="ttl">Disputed Borders</h3>
-                </div>
-                <div class="piece-meta">
-                  geopolitics · cartography · D3 · Observable
-                </div>
-                <p class="piece-body">
-                  Makes disputed territories comparable at a glance for
-                  researchers and journalists covering geopolitics. Every
-                  contested region on one page, normalised so the reader can
-                  compare <strong>scale, shape, and context</strong>
-                  without switching between zoomed-in views.
-                </p>
-                <p class="build-line">
-                  Each region gets its own scale, so sparse continents stay
-                  legible instead of vanishing into one dense world map.
-                </p>
-                <div class="piece-foot">
-                  <a
-                    href="https://observablehq.com/d/a959ea8e5b1aa989"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >View →</a
-                  >
-                </div>
-              </div>
-              <div class="showcase">
-                <div class="main figunit">
-                  <div class="img contain">
-                    <img
-                      src="assets/disputedareas.jpg"
-                      alt="Disputed Borders, small multiples overview of all contested regions"
-                      width="1440"
-                      height="1606"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="figcap">disputed borders and territories</div>
-                </div>
-              </div>
             </div>
           </article>
 
@@ -2125,7 +2015,7 @@
             <div class="comp sc-right vt-right">
               <div class="vhead-col vhead-anchor">
                 <span class="sq" aria-hidden="true"></span
-                ><span class="num">05</span>
+                ><span class="num">03</span>
                 <h3 class="ttl">Anomaly Front Page</h3>
               </div>
               <div class="txt">
@@ -2192,7 +2082,7 @@
                 ></div>
                 <div class="also-info">
                   <div class="also-head">
-                    <span class="also-num">06</span>
+                    <span class="also-num">04</span>
                     <h3 class="also-title">Unga Mördare</h3>
                   </div>
                   <div class="also-meta">
@@ -2225,7 +2115,7 @@
                 ></div>
                 <div class="also-info">
                   <div class="also-head">
-                    <span class="also-num">07</span>
+                    <span class="also-num">05</span>
                     <h3 class="also-title">De Som Kom 2015</h3>
                   </div>
                   <div class="also-meta">
@@ -2247,60 +2137,6 @@
                   </div>
                 </div>
               </article>
-              <article class="also-row">
-                <div
-                  class="img on-dark"
-                  style="--bg: url(assets/3dmap.jpg)"
-                  role="img"
-                  aria-label="Stockholm New Builds, 3D extrusion map"
-                  data-src="assets/3dmap.jpg"
-                ></div>
-                <div class="also-info">
-                  <div class="also-head">
-                    <span class="also-num">08</span>
-                    <h3 class="also-title">Stockholm New Builds</h3>
-                  </div>
-                  <div class="also-meta">
-                    urban policy · 3D geospatial · Three.js · Svelte
-                  </div>
-                  <div class="also-desc">
-                    Nearly 9,000 new buildings over a decade as an explorable 3D
-                    landscape. AI-assisted automation of the heavy geographic
-                    shapefile transforms. The detail view deliberately reads as
-                    both city silhouette and bar chart.
-                  </div>
-                </div>
-              </article>
-              <article class="also-row">
-                <div
-                  class="img"
-                  style="--bg: url(assets/radialbarchart.png)"
-                  role="img"
-                  aria-label="Fantasy &amp; War Dominate Board Games, radial grouped bar chart"
-                  data-src="assets/radialbarchart.png"
-                ></div>
-                <div class="also-info">
-                  <div class="also-head">
-                    <span class="also-num">09</span>
-                    <h3 class="also-title">Board Game Taxonomy</h3>
-                  </div>
-                  <div class="also-meta">Data study · D3 · Observable</div>
-                  <div class="also-desc">
-                    A study in annotation and static communication, built on
-                    30,000 messy, overlapping BoardGameGeek categories.
-                    Exploration across multiple design directions before
-                    committing to the final form.
-                  </div>
-                  <div class="also-link">
-                    <a
-                      href="https://observablehq.com/d/33703039e1484511"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >View →</a
-                    >
-                  </div>
-                </div>
-              </article>
             </div>
           </div>
 
@@ -2314,7 +2150,7 @@
                   aria-label="Valkompass, Swedish election party matcher"
                   data-src="assets/electioncompass.png"
                 ></div>
-                <span class="thumb-num">10</span>
+                <span class="thumb-num">06</span>
                 <h3 class="thumb-title">Valkompass</h3>
                 <div class="thumb-meta">
                   Aftonbladet · election party matcher built with Göteborg
@@ -2329,7 +2165,7 @@
                   aria-label="Skräp i Gamla Stan, 3D visualisation of how much trash would fill Stockholm's old town"
                   data-src="assets/skrap.png"
                 ></div>
-                <span class="thumb-num">11</span>
+                <span class="thumb-num">07</span>
                 <h3 class="thumb-title">Skräp i Gamla Stan</h3>
                 <div class="thumb-meta">
                   Aftonbladet · 3D volume visualisation of Stockholm's waste
@@ -2343,48 +2179,11 @@
                   aria-label="Greta Thunberg Atlantic crossing, live position tracker"
                   data-src="assets/gretatracker.png"
                 ></div>
-                <span class="thumb-num">12</span>
+                <span class="thumb-num">08</span>
                 <h3 class="thumb-title">Atlantic Crossing Tracker</h3>
                 <div class="thumb-meta">
                   Aftonbladet · real-time position tracker for Thunberg's 2019
                   Atlantic crossing
-                </div>
-              </div>
-              <div class="thumb-item">
-                <div
-                  class="thumb-img"
-                  style="--bg: url(assets/network1.png)"
-                  role="img"
-                  aria-label="Network Explorer, reusable radial network component"
-                  data-src="assets/network1.png"
-                ></div>
-                <span class="thumb-num">13</span>
-                <h3 class="thumb-title">Network Explorer</h3>
-                <div class="thumb-meta">
-                  Reusable radial network component · D3 · configurable layouts
-                </div>
-                <div class="also-link">
-                  <a
-                    href="https://observablehq.com/d/4a52e3781ccd554c"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >View →</a
-                  >
-                </div>
-              </div>
-              <div class="thumb-item">
-                <div
-                  class="thumb-img"
-                  style="--bg: url(assets/personalsnow.png)"
-                  role="img"
-                  aria-label="Was there more snow when I was a kid, comparing winters 1979–1986 vs 2013–2020"
-                  data-src="assets/personalsnow.png"
-                ></div>
-                <span class="thumb-num">14</span>
-                <h3 class="thumb-title">Was There More Snow?</h3>
-                <div class="thumb-meta">
-                  Personal data study comparing Swedish winters 1979–1986 vs
-                  2013–2020
                 </div>
               </div>
               <div class="thumb-item">
@@ -2395,12 +2194,212 @@
                   aria-label="Trend change detection for MAU actuals"
                   data-src="assets/trendchange.png"
                 ></div>
-                <span class="thumb-num">15</span>
+                <span class="thumb-num">09</span>
                 <h3 class="thumb-title">Trend Detection</h3>
                 <div class="thumb-meta">
                   Automatic change-point detection in time-series MAU data
                 </div>
               </div>
+            </div>
+          </div>
+
+          <h3 class="work-group">Personal projects</h3>
+          <div class="also-built personal-grid">
+            <div class="also-grid">
+              <article class="also-row">
+                <div
+                  class="img"
+                  style="--bg: url(assets/underfunded.jpg)"
+                  role="img"
+                  aria-label="Where is the money missing? Bivariate world map of humanitarian need against unfunded UN appeals"
+                  data-src="assets/underfunded.jpg"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">10</span>
+                    <h3 class="also-title">Need and missing money</h3>
+                  </div>
+                  <div class="also-meta">Personal · humanitarian · OCHA · INFORM</div>
+                  <div class="also-desc">Humanitarian need against the share of each country's 2025 UN appeals that went unfunded. Persistent gaps since 2021 are outlined.</div>
+                  <div class="also-link">
+                    <a href="https://gitnoise.github.io/bivariate-maps/cases/underfunded-crises/" target="_blank" rel="noopener noreferrer">View →</a>
+                  </div>
+                </div>
+              </article>
+              <article class="also-row">
+                <div
+                  class="img"
+                  style="--bg: url(assets/democracydashboard.jpg)"
+                  role="img"
+                  aria-label="Democracy in Europe dashboard, Hungary's Liberal Democracy Index with governing parties shaded"
+                  data-src="assets/democracydashboard.jpg"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">11</span>
+                    <h3 class="also-title">Democracy in Europe</h3>
+                  </div>
+                  <div class="also-meta">Personal · V-Dem · Svelte · D3</div>
+                  <div class="also-desc">Who governed when Europe's democracies rose and fell. 44 countries since 1945, with the governing parties shaded.</div>
+                  <div class="also-link">
+                    <a href="https://gitnoise.github.io/europe-democracy-dashboard/" target="_blank" rel="noopener noreferrer">View →</a>
+                  </div>
+                </div>
+              </article>
+              <article class="also-row">
+                <div
+                  class="img on-dark"
+                  style="--bg: url(assets/erosion1.jpg)"
+                  role="img"
+                  aria-label="Erosion of European democracy, heatmap of year-on-year democracy score changes"
+                  data-src="assets/erosion1.jpg"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">12</span>
+                    <h3 class="also-title">Erosion of European Democracy</h3>
+                  </div>
+                  <div class="also-meta">Personal · V-Dem · Observable · 2024</div>
+                  <div class="also-desc">A heatmap of 39 European countries, colouring the years each democracy score rose or fell since 2011.</div>
+                  <div class="also-link">
+                    <a href="https://observablehq.com/d/61701e2d85aa05a6" target="_blank" rel="noopener noreferrer">View →</a>
+                  </div>
+                </div>
+              </article>
+              <article class="also-row">
+                <div
+                  class="img"
+                  style="--bg: url(assets/democracy2.png)"
+                  role="img"
+                  aria-label="Europe's democratic backsliding, slope chart comparing liberal democracy scores in 2012 and 2022"
+                  data-src="assets/democracy2.png"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">13</span>
+                    <h3 class="also-title">Europe's Democratic Backsliding</h3>
+                  </div>
+                  <div class="also-meta">Personal · V-Dem · Observable · 2024</div>
+                  <div class="also-desc">A slope chart of liberal democracy scores, 2012 against 2022: which countries fell, and by how much.</div>
+                  <div class="also-link">
+                    <a href="https://observablehq.com/d/65193c21ec0e09ab" target="_blank" rel="noopener noreferrer">View →</a>
+                  </div>
+                </div>
+              </article>
+              <article class="also-row">
+                <div
+                  class="img"
+                  style="--bg: url(assets/disputedareas.jpg)"
+                  role="img"
+                  aria-label="Disputed Borders, small multiples of all contested regions"
+                  data-src="assets/disputedareas.jpg"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">14</span>
+                    <h3 class="also-title">Disputed Borders</h3>
+                  </div>
+                  <div class="also-meta">Personal · cartography · D3 · Observable</div>
+                  <div class="also-desc">Every contested region on one page. Each region gets its own scale, so sparse continents stay legible.</div>
+                  <div class="also-link">
+                    <a href="https://observablehq.com/d/a959ea8e5b1aa989" target="_blank" rel="noopener noreferrer">View →</a>
+                  </div>
+                </div>
+              </article>
+              <article class="also-row">
+                <div
+                  class="img on-dark"
+                  style="--bg: url(assets/3dmap.jpg)"
+                  role="img"
+                  aria-label="Stockholm New Builds, 3D extrusion map"
+                  data-src="assets/3dmap.jpg"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">15</span>
+                    <h3 class="also-title">Stockholm New Builds</h3>
+                  </div>
+                  <div class="also-meta">Personal · 3D geospatial · Three.js · Svelte</div>
+                  <div class="also-desc">Nearly 9,000 new buildings over a decade as an explorable 3D landscape that reads as both city silhouette and bar chart.</div>
+                </div>
+              </article>
+              <article class="also-row">
+                <div
+                  class="img"
+                  style="--bg: url(assets/energywatercolour.jpg)"
+                  role="img"
+                  aria-label="World energy 1965–2024, bump stream painted in watercolour"
+                  data-src="assets/energywatercolour.jpg"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">16</span>
+                    <h3 class="also-title">World energy in watercolour</h3>
+                  </div>
+                  <div class="also-meta">Personal · generative · WebGL · D3</div>
+                  <div class="also-desc">World energy use by source, 1965–2024, as a bump stream painted by a WebGL watercolour shader.</div>
+                  <div class="also-link">
+                    <a href="https://gitnoise.github.io/energywatercolour/" target="_blank" rel="noopener noreferrer">View →</a>
+                  </div>
+                </div>
+              </article>
+              <article class="also-row">
+                <div
+                  class="img"
+                  style="--bg: url(assets/radialbarchart.png)"
+                  role="img"
+                  aria-label="Fantasy &amp; War Dominate Board Games, radial grouped bar chart"
+                  data-src="assets/radialbarchart.png"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">17</span>
+                    <h3 class="also-title">Board Game Taxonomy</h3>
+                  </div>
+                  <div class="also-meta">Personal · data study · D3 · Observable</div>
+                  <div class="also-desc">A study in annotation, built on 30,000 messy, overlapping BoardGameGeek categories.</div>
+                  <div class="also-link">
+                    <a href="https://observablehq.com/d/33703039e1484511" target="_blank" rel="noopener noreferrer">View →</a>
+                  </div>
+                </div>
+              </article>
+              <article class="also-row">
+                <div
+                  class="img"
+                  style="--bg: url(assets/network1.png)"
+                  role="img"
+                  aria-label="Network Explorer, reusable radial network component"
+                  data-src="assets/network1.png"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">18</span>
+                    <h3 class="also-title">Network Explorer</h3>
+                  </div>
+                  <div class="also-meta">Personal · D3 · component</div>
+                  <div class="also-desc">A reusable radial network component with configurable layouts.</div>
+                  <div class="also-link">
+                    <a href="https://observablehq.com/d/4a52e3781ccd554c" target="_blank" rel="noopener noreferrer">View →</a>
+                  </div>
+                </div>
+              </article>
+              <article class="also-row">
+                <div
+                  class="img"
+                  style="--bg: url(assets/personalsnow.png)"
+                  role="img"
+                  aria-label="Was there more snow when I was a kid, comparing winters 1979–1986 vs 2013–2020"
+                  data-src="assets/personalsnow.png"
+                ></div>
+                <div class="also-info">
+                  <div class="also-head">
+                    <span class="also-num">19</span>
+                    <h3 class="also-title">Was There More Snow?</h3>
+                  </div>
+                  <div class="also-meta">Personal · data study</div>
+                  <div class="also-desc">Swedish winters of my childhood, 1979–1986, against 2013–2020.</div>
+                </div>
+              </article>
             </div>
           </div>
         </section>
@@ -2578,6 +2577,10 @@
                 and journalists to turn complex or high-stakes data into tools
                 people can trust and use.
                 <strong>I take on fixed-scope freelance projects.</strong>
+              </p>
+              <p>
+                I use AI tools like any other tool. I still check the sources
+                myself and decide what the data can and can't show.
               </p>
 
               <p>I work in English, Swedish, Polish, and French.</p>

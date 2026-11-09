@@ -825,6 +825,38 @@
         object-fit: contain;
         border-radius: 2px;
       }
+      .lb-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        font: 400 22px/1 var(--mono);
+        cursor: pointer;
+      }
+      .lb-nav:hover,
+      .lb-nav:focus-visible {
+        background: rgba(255, 255, 255, 0.28);
+      }
+      .lb-prev {
+        left: 16px;
+      }
+      .lb-next {
+        right: 16px;
+      }
+      .lb-count {
+        position: absolute;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.7);
+        font: 400 var(--fs-sm) var(--mono);
+        letter-spacing: var(--ls-label);
+      }
 
       .comp {
         display: grid;
@@ -2626,18 +2658,39 @@
     </div>
 
     <div class="lightbox" id="lightbox" tabindex="-1">
+      <button class="lb-nav lb-prev" type="button" aria-label="Previous image">
+        ←
+      </button>
       <img id="lightbox-img" alt="" />
+      <button class="lb-nav lb-next" type="button" aria-label="Next image">
+        →
+      </button>
+      <div class="lb-count" aria-live="polite"></div>
     </div>
 
     <script>
       const lb = document.getElementById("lightbox");
       const lbImg = document.getElementById("lightbox-img");
-      let lbTrigger = null;
+      const lbCount = lb.querySelector(".lb-count");
+      const lbItems = [
+        ...new Set([
+          ...document.querySelectorAll(
+            ".showcase img:not(.no-lightbox), .zoom-media img, [data-src]",
+          ),
+        ]),
+      ];
+      let lbIndex = -1;
 
-      function openLb(src, alt, trigger) {
-        lbTrigger = trigger || null;
-        lbImg.src = src;
-        lbImg.alt = alt;
+      function showLb(i) {
+        lbIndex = (i + lbItems.length) % lbItems.length;
+        const el = lbItems[lbIndex];
+        lbImg.src = el.dataset.src || el.src;
+        lbImg.alt = el.alt || el.getAttribute("aria-label") || "";
+        lbCount.textContent = `${lbIndex + 1} / ${lbItems.length}`;
+      }
+
+      function openLb(i) {
+        showLb(i);
         lb.classList.add("is-open");
         document.documentElement.classList.add("lb-open");
       }
@@ -2647,38 +2700,57 @@
         document.documentElement.classList.remove("lb-open");
         lbImg.removeAttribute("src");
         lbImg.alt = "";
-        lbTrigger?.focus();
-        lbTrigger = null;
+        const el = lbItems[lbIndex];
+        if (el) {
+          el.scrollIntoView({ block: "center" });
+          el.focus({ preventScroll: true });
+        }
+        lbIndex = -1;
       }
 
-      function bindZoom(el) {
+      lbItems.forEach((el, i) => {
         el.tabIndex = 0;
-        const open = () =>
-          openLb(
-            el.dataset.src || el.src,
-            el.alt || el.getAttribute("aria-label") || "",
-            el,
-          );
         el.addEventListener("click", (e) => {
           e.preventDefault();
-          open();
+          openLb(i);
         });
         el.addEventListener("keydown", (e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            open();
+            openLb(i);
           }
         });
-      }
+      });
 
-      document
-        .querySelectorAll(".showcase img:not(.no-lightbox), .zoom-media img")
-        .forEach(bindZoom);
-      document.querySelectorAll("[data-src]").forEach(bindZoom);
-
+      lb.querySelector(".lb-prev").addEventListener("click", (e) => {
+        e.stopPropagation();
+        showLb(lbIndex - 1);
+      });
+      lb.querySelector(".lb-next").addEventListener("click", (e) => {
+        e.stopPropagation();
+        showLb(lbIndex + 1);
+      });
       lb.addEventListener("click", closeLb);
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && lb.classList.contains("is-open")) closeLb();
+        if (!lb.classList.contains("is-open")) return;
+        if (e.key === "Escape") closeLb();
+        else if (e.key === "ArrowLeft") showLb(lbIndex - 1);
+        else if (e.key === "ArrowRight") showLb(lbIndex + 1);
+      });
+      let lbTouchX = null;
+      lb.addEventListener(
+        "touchstart",
+        (e) => (lbTouchX = e.touches[0].clientX),
+        { passive: true },
+      );
+      lb.addEventListener("touchend", (e) => {
+        if (lbTouchX === null) return;
+        const dx = e.changedTouches[0].clientX - lbTouchX;
+        lbTouchX = null;
+        if (Math.abs(dx) > 50) {
+          e.preventDefault();
+          showLb(lbIndex + (dx < 0 ? 1 : -1));
+        }
       });
 
       const topbarCompactOn = 48;

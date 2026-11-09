@@ -1110,6 +1110,11 @@
       .also-row .img:hover::before {
         transform: scale(1.03);
       }
+      .also-row .img.fill::before {
+        inset: 0;
+        background-size: var(--size, cover);
+        background-position: var(--pos, center);
+      }
       .also-row .img.on-dark {
         background-color: var(--dark-bg-light);
       }
@@ -2139,8 +2144,8 @@
               </article>
               <article class="also-row">
                 <div
-                  class="img on-dark"
-                  style="--bg: url(assets/erosion1.jpg)"
+                  class="img on-dark fill"
+                  style="--bg: url(assets/erosion1.jpg); --pos: center 32%"
                   role="img"
                   aria-label="Erosion of European democracy, heatmap of year-on-year democracy score changes"
                   data-src="assets/erosion1.jpg"
@@ -2159,8 +2164,8 @@
               </article>
               <article class="also-row">
                 <div
-                  class="img"
-                  style="--bg: url(assets/democracy2.png)"
+                  class="img fill"
+                  style="--bg: url(assets/democracy2.png); --pos: center 65%"
                   role="img"
                   aria-label="Europe's democratic backsliding, slope chart comparing liberal democracy scores in 2012 and 2022"
                   data-src="assets/democracy2.png"
@@ -2179,8 +2184,8 @@
               </article>
               <article class="also-row">
                 <div
-                  class="img"
-                  style="--bg: url(assets/disputedareas.jpg)"
+                  class="img fill"
+                  style="--bg: url(assets/disputedareas.jpg); --pos: center top"
                   role="img"
                   aria-label="Disputed Borders, small multiples of all contested regions"
                   data-src="assets/disputedareas.jpg"
@@ -2291,7 +2296,7 @@
               </article>
               <article class="also-row">
                 <div
-                  class="img"
+                  class="img fill"
                   style="--bg: url(assets/democracydashboard.jpg)"
                   role="img"
                   aria-label="Democracy in Europe dashboard, Hungary's Liberal Democracy Index with governing parties shaded"
@@ -2351,8 +2356,8 @@
               </article>
               <article class="also-row">
                 <div
-                  class="img on-dark"
-                  style="--bg: url(assets/3dmap.jpg)"
+                  class="img on-dark fill"
+                  style="--bg: url(assets/3dmap.jpg); --size: 133% auto; --pos: 20% 37%"
                   role="img"
                   aria-label="Stockholm New Builds, 3D extrusion map"
                   data-src="assets/3dmap.jpg"
